@@ -1,0 +1,98 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css({.tmp,app}) styles/main.css -->
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:300,700,300italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="styles/font-awesome.css">
+        <link rel="stylesheet" href="styles/animate.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div class="bg"></div>
+
+        <div class="tip"></div>
+        <!-- <div class="tip"></div>
+        <div class="tip"></div>
+        <div class="tip"></div>
+        <div class="tip"></div> -->
+
+        <div class="top-bar">
+            <section class="motion-intro">
+                <article class="screen1">
+                    <img src="images/motion-plug-in.png" alt="">
+                    <h2>Plug-in your Leap Motion device now...</h2>
+                    <strong>or watch it in action <a href="#">here.</a></strong>
+                </article>
+            </section>
+        </div>
+
+        <header>
+            <ul>
+                <li class="home"><a href="#"><span class="tilde">~</span></a> <strong class="link-label">Hustle</strong></li>
+                <li><a href="#"><span class="fa fa-envelope"></span></a> <strong class="link-label">Message me</strong></li>
+                <li><a href="#"><span class="fa fa-twitter"></span></a> <strong class="link-label">@bobek_balinek</strong></li>
+            </ul>
+        </header>
+
+
+        <div class="container">
+            <div class="landing">
+                <img src="/images/logo.png" alt="">
+                <h1>Hello, I'm Bobby Bobak - a&nbsp;digital&nbsp;designer with passion for interaction</h1>
+                <p>I create clean, legible interfaces - no fluff. Based in Manchester, United Kingdom</p>
+                <h2>Choose a device to explore with:</h2>
+            </div>
+        </div>
+
+        <ul class="devices">
+            <li><a class="desktop" href="project.html"><span class="fa fa-location-arrow"></span> Mouse</a></li>
+            <li><a class="motion" href="project.html"><span class="fa fa-hand-o-up"></span> Leap Motion</a></li>
+            <li><a class="speech" href="project.html"><span class="fa fa-microphone"></span> Speech</a></li>
+        </ul>
+
+        <footer>
+            <h4 class="speech_output"> <span class="fa fa-chevron-down"></span> or read my recent posts </h4>
+        </footer>
+
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+
+        <script src="//js.leapmotion.com/0.2.1/leap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r61/three.min.js"></script>
+
+        <!-- build:js scripts/main.js -->
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/hammerjs/dist/hammer.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/components/mobile.js"></script>
+        <script src="scripts/components/motion.js"></script>
+        <script src="scripts/components/speech.js"></script>
+        <script src="scripts/components/particle.js"></script>
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
