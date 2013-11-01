@@ -1,0 +1,50 @@
+.tip.scroll{
+	/*width: 32px;*/
+	/*height: 32px;*/
+
+	background: #3C8FCD;
+	border: 4px solid #3C8FCD;
+
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
+	transition: all 0.3s linear;
+
+	-webkit-animation: lololo 1.5s infinite;
+}
+
+.touch .tip{
+	display: none;
+}
+
+
+.tip{
+	width: 48px;
+	height: 48px;
+	background: transparent;
+	border: 8px solid #3C8FCD;
+	border-radius: 100%;
+	position: absolute;
+
+	top: 50%;
+	left: 50%;
+
+	margin-left: -36px;
+	margin-right: -36px;
+
+	z-index: 40;
+	pointer-events:none;
+
+	-webkit-transition: none;
+	-moz-transition: none;
+	-ms-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+
+@-webkit-keyframes lololo {
+  0%   { -webkit-transform: translateY(-30px); }
+  50%   { -webkit-transform: translateY(30px); }
+  100%   { -webkit-transform: translateY(-30px); }
+}

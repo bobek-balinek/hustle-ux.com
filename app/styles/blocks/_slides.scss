@@ -1,0 +1,30 @@
+.slides{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.slides > li{
+	display: block;
+	padding: 4em 0;
+	height: calc(100% - 50px);
+}
+
+.slides > li:first-child{
+	padding: 2em 0 4em;
+}
+
+.slides > li:nth-child(even){
+	background: #f4f1ec;
+}
+
+.slides > li:nth-child(even) figcaption{
+	font-size: 1em;
+	width: 160px;
+	margin: 0 2em 0 0;
+	order: 1;
+}
+
+.slides > li:nth-child(even) img{
+	order: 2;
+}
