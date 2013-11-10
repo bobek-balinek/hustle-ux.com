@@ -45,6 +45,9 @@ header a{
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	box-sizing: border-box;
+
+	max-width: 40px;
+	max-height: 40px;
 }
 
 .link-label{
@@ -58,21 +61,11 @@ header:hover .link-label{
 header .home a{
 	color: #ffffff;
 	background: #3C8FCD;
-	padding: 7px 0;
+	padding: 0;
 	line-height: 1;
 }
 
-header .home span{
+header .home img{
 	width: 40px;
-	height: 30px;
-	background: #3C8FCD;
-	display: inline-block;
-
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
-
-	font-size: 3em;
-	/*margin-top: 20px;*/
+	height: 40px;
 }

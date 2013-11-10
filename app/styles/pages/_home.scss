@@ -4,13 +4,29 @@ body > section{
 	position: relative;
 	padding: 1em 0;
 	text-align: center;
-}
 
-.landing{
-	color: #ffffff;
-	background: #3C8FCD;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body > section:nth-child(odd){
 	background: #f4f1ec;
+}
+
+
+.landing{
+	// color: #ffffff;
+	// background: #3C8FCD;
+
+	h1{
+		border: none;
+		margin-top: 5em;
+		line-height: 1.5;
+	}
+}
+
+.logotype{
+	width: 230px;
 }
