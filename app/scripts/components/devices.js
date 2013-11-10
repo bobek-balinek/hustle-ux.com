@@ -18,19 +18,25 @@
 		};
 
 		var attachEvents = function(){
+
 			$('.motion', componentElement).on('click', function(event){
 				event.preventDefault();
+
 				$('.top-bar').toggleClass('open');
 				$(this).toggleClass('active');
+
+				/**
+				 * app.get('slider').show('motion');
+				 */
 			});
 
 			$('.desktop', componentElement).on('click', function(event){
 				event.preventDefault();
 
 				var offset = $('section.work').offset();
-				$('html, body').scrollTop(offset.top);
-				console.log(offset.top);
+				$('html, body').animate({'scrollTop': offset.top}, 400);
 			});
+
 		};
 
 		var unbindEvents = function(){
