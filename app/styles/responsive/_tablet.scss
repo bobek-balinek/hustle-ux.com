@@ -1,0 +1,22 @@
+@media screen and (max-width: 1000px){
+	.container{
+		width: 800px;
+	}
+
+	figure{
+		-webkit-flex-flow: column wrap;
+		-moz-flex-flow: column wrap;
+		-ms-flex-flow: column wrap;
+		flex-flow: column wrap;
+	}
+
+	figure img,
+	figure figcaption{
+		margin: 0;
+		width: 100%;
+	}
+
+	figure figcaption{
+		margin: 2em 0 0;
+	}
+}

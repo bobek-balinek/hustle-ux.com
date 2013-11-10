@@ -1,0 +1,16 @@
+body > section{
+	width: 100%;
+	min-height: 100%;
+	position: relative;
+	padding: 1em 0;
+	text-align: center;
+}
+
+.landing{
+	color: #ffffff;
+	background: #3C8FCD;
+}
+
+body > section:nth-child(odd){
+	background: #f4f1ec;
+}

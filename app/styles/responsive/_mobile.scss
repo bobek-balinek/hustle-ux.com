@@ -1,0 +1,42 @@
+
+@media screen and (max-width: 900px){
+
+	.top-bar{
+		z-index: 1;
+		height: 40px;
+		position: fixed;
+	}
+
+	header ul{
+		top: 0;
+		width: 100%;
+		-webkit-flex-flow: row wrap;
+		-moz-flex-flow: row wrap;
+		-webkit-justify-content: left;
+		-moz-justify-content: left;
+	}
+
+	header a{
+		margin: 0 20px 0;
+	}
+
+	.container{
+		width: 100%;
+	}
+
+	figure img,
+	.slides > li:nth-child(even) img{
+		order: 1;
+	}
+
+	figure figcaption,
+	.slides > li:nth-child(even) figcaption{
+		width: calc(100% - 2em);
+		margin: 2em 1em 0;
+		order: 2;
+	}
+}
+
+
+
+
