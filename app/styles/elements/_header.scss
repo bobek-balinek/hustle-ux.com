@@ -7,65 +7,76 @@ header{
 	left: 20px;
 	top: 40px;
 	width: auto;
-}
 
-header ul{
-	list-style: none;
-	padding: 0;
-	margin: 0;
+	ul{
+		list-style: none;
+		padding: 0;
+		margin: 0;
 
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
 
-	-webkit-flex-flow: column wrap;
-	-moz-flex-flow: column wrap;
-	-webkit-justify-content: top;
-	-moz-justify-content: top;
-}
+		-webkit-flex-flow: column wrap;
+		-moz-flex-flow: column wrap;
+		-webkit-justify-content: top;
+		-moz-justify-content: top;
+	}
 
-header li{
-	list-style: none;
-	margin-bottom: 30px;
-}
+	li{
+		list-style: none;
+		margin-bottom: 30px;
+	}
 
-header a{
-	text-align: center;
-	color: #666666;
-	background: #E5E5E5;
-	padding: 7px 10px;
-	z-index: 1;
-	font-size: 1.35em;
-	text-decoration: none;
-	margin: 0 1em 0 0;
+	a{
+		display: inline-block;
+		text-align: center;
+		color: #666666;
+		background: #E5E5E5;
+		padding: 7px 10px;
+		z-index: 1;
+		font-size: 1.35em;
+		text-decoration: none;
+		margin: 0 1em 0 0;
 
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
 
-	max-width: 40px;
-	max-height: 40px;
+		max-width: 40px;
+		max-height: 40px;
+	}
+
+	&:hover .link-label{
+		display: inline-block;
+	}
+
+	.home{
+		font-family: "din_blackregular";
+
+		a{
+			color: #ffffff;
+			background: #3C8FCD;
+			padding: 0;
+			line-height: 1;
+		}
+
+		img{
+			width: 40px;
+			height: 40px;
+		}
+
+		.link-label{
+			font-size: 1.375em;
+			vertical-align: top;
+			margin-top: 5px;
+		}
+	}
 }
 
 .link-label{
 	display: none;
-}
-
-header:hover .link-label{
-	display: inline;
-}
-
-header .home a{
-	color: #ffffff;
-	background: #3C8FCD;
-	padding: 0;
-	line-height: 1;
-}
-
-header .home img{
-	width: 40px;
-	height: 40px;
 }

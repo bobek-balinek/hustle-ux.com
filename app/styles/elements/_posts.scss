@@ -12,7 +12,7 @@
 			background: #f0f0f0;
 
 			.icon{
-				color: #666666;
+				color: $colour-grey;
 			}
 		}
 	}
@@ -26,7 +26,7 @@
 	}
 
 	small{
-		color: #666666;
+		color: $colour-grey;
 		font-style: italic;
 		display: block;
 	}

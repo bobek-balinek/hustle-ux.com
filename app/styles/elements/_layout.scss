@@ -4,9 +4,8 @@
  */
 
 body {
-	background: #3C8FCD;
 	background: #F9F9F9;
-	font-family: 'Merriweather', serif;
+	font-family: $fonts-family-base;
 	font-size: 100%;
 	font-size: 14px;
 	line-height: 1.5;
@@ -20,7 +19,7 @@ body, html {
 }
 
 h1,h2,h3,h4,h5,h6{
-	font-family: 'Merriweather', serif;
+	font-family: $fonts-family-base;
 }
 
 body *{
@@ -68,7 +67,7 @@ footer{
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	background: #ffffff;
+	background: $colour-white;
 	max-height: 100px;
 
 	padding: 20px 0;
