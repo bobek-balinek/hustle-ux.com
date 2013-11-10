@@ -12,14 +12,11 @@ body > section{
 }
 
 body > section:nth-child(odd){
-	background: $colour-grey-bright;
+	background: $colour-grey-light;
 }
 
 
 .landing{
-	// color: #ffffff;
-	// background: #3C8FCD;
-
 	h1{
 		border: none;
 		margin-top: 5em;
