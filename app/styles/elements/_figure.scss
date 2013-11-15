@@ -20,6 +20,7 @@ figure img{
 }
 
 figure figcaption{
+	text-align: left;
 	font-size: 1em;
 	width: 160px;
 	margin-left: 2em;
@@ -30,8 +31,16 @@ figure figcaption{
 	order: 2;
 }
 
-.title{
-	margin: 1em 0 0;
+.project-section:nth-child(even) figcaption{
+	text-align: right;
+	font-size: 1em;
+	width: 160px;
+	margin: 0 2em 0 0;
+	order: 1;
+}
+
+.project-section:nth-child(even) img{
+	order: 2;
 }
 
 figcaption > .title{

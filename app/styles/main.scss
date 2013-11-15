@@ -1,17 +1,6 @@
 @import "compass";
 @import "variables";
 
-@font-face {
-  font-family: 'din_blackregular';
-  src: url( $fonts-directory + '/din-black-webfont.eot');
-  src: url( $fonts-directory + '/din-black-webfont.eot?#iefix') format('embedded-opentype'),
-       url( $fonts-directory + '/din-black-webfont.woff') format('woff'),
-       url( $fonts-directory + '/din-black-webfont.ttf') format('truetype'),
-       url( $fonts-directory + '/din-black-webfont.svg#din_blackregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
 @import "elements/layout";
 
 /**

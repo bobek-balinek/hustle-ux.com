@@ -1,4 +1,4 @@
-body > section{
+.page-wrap > section{
 	width: 100%;
 	min-height: 100%;
 	position: relative;
@@ -11,8 +11,8 @@ body > section{
 	box-sizing: border-box;
 }
 
-body > section:nth-child(odd){
-	background: $colour-grey-light;
+.page-wrap > section:nth-child(even){
+	background: $colour-grey-bright;
 }
 
 

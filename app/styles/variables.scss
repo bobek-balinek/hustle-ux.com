@@ -13,10 +13,21 @@ $fonts-size-base: 14px;
 $colour-blue: #3C8FCD;
 $colour-navy: #364967;
 
-$colour-grey-bright: #F9F9F9;
+// $colour-grey-bright: #F9F9F9;
+// $colour-grey-bright: #f4f1ec;
+$colour-grey-bright: #F6F5F3;
 $colour-grey-light: #E5E5E5;
 $colour-grey: #666666;
-//
-//
 $colour-white: #ffffff;
 $colour-black: #333;
+
+@font-face {
+  font-family: 'din_blackregular';
+  src: url( $fonts-directory + '/din-black-webfont.eot');
+  src: url( $fonts-directory + '/din-black-webfont.eot?#iefix') format('embedded-opentype'),
+       url( $fonts-directory + '/din-black-webfont.woff') format('woff'),
+       url( $fonts-directory + '/din-black-webfont.ttf') format('truetype'),
+       url( $fonts-directory + '/din-black-webfont.svg#din_blackregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

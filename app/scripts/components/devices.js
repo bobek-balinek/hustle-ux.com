@@ -34,7 +34,7 @@
 				event.preventDefault();
 
 				var offset = $('section.work').offset();
-				$('html, body').animate({'scrollTop': offset.top}, 400);
+				$('.page-wrap').animate({'scrollTop': offset.top}, 400);
 			});
 
 		};
