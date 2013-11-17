@@ -16,6 +16,9 @@ body {
 
 body, html {
   height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -63,16 +66,14 @@ h2{
 
 
 footer{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	background: $colour-white;
+	width: 25em;
+	margin: 1em auto;
 	max-height: 100px;
 
 	padding: 20px 0;
-	z-index: 30;
 	text-align: center;
+	color: $colour-black;
+	border-bottom: 1px solid $colour-black;
 }
 
 .page-wrap{

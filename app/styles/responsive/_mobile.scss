@@ -1,6 +1,18 @@
 
 @media screen and (max-width: 568px){
 
+	body, html {
+	  height: auto;
+	}
+
+	body{
+		padding: 40px 0 0 0;
+	}
+
+	.page-wrap{
+		position: relative;
+	}
+
 	.top-bar{
 		z-index: 1;
 		height: 40px;
@@ -21,8 +33,6 @@
 			width: 100%;
 			-webkit-flex-flow: row wrap;
 			-moz-flex-flow: row wrap;
-			// -webkit-justify-content: left;
-			// -moz-justify-content: left;
 		}
 
 		a{
@@ -48,6 +58,27 @@
 
 	.container{
 		width: 100%;
+	}
+
+	.post{
+		.title{
+			text-align: left;
+		}
+
+		.container{
+			width: 90%;
+			padding: 0 5%;
+		}
+	}
+
+	h1{
+		font-size: 2em;
+	}
+
+	footer{
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
 	}
 
 	figure img,
