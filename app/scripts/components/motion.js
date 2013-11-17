@@ -40,7 +40,7 @@
 		};
 
 		var init = function(data, optionsData){
-			_.extend(options, optionsData);
+			$.extend( options, optionsData );
 
 			options.controller = new Leap.Controller({enableGestures: true});
 
@@ -102,8 +102,7 @@
 		};
 
 		var attachEvents = function(data){
-
-			_.extend(options.events, data);
+			$.extend( options.events, data );
 
 			/**
 			 * Controller events

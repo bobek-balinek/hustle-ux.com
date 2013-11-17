@@ -35,6 +35,8 @@
 					'disconnect': disconnectCallback
 				});
 			}
+
+			app.get('slider').init();
 		};
 
 		var fingerCallback = function(frame){

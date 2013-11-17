@@ -40,8 +40,6 @@
 				return;
 			}
 
-			// console.log(options.recognition);
-
 			if(options.recognition){
 				options.recognition.start();
 			}
@@ -58,8 +56,6 @@
 				options.recognition.interimResults = true;
 				options.recognition.lang = 'en-GB';
 
-				// console.log(options);
-
 				attachEvents();
 			}
 		};
@@ -67,14 +63,11 @@
 		var attachEvents = function(data){
 			data && _.extend(options.events, data);
 
-			// _.each(options.events, function(event))
 			var keys = _.keys(options.events);
 			_.each(keys, function(event_key){
-				// console.log(event_key);
 				options.recognition[event_key] = options.events[event_key];
 			});
 
-			// console.log(options);
 			return false;
 		};
 
