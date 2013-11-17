@@ -1,138 +1,173 @@
+(function(){
 
-var width = $(window).width();
-var height = $(window).height();
+	var pageComponent = function(){
 
-window.tt = null;
+		var componentElement = $('.selector');
+		var defaultOptions = {
+			fingerTipElement: document.querySelector('.tip'),
+			width: $(window).width(),
+			height: $(window).height()
+		};
 
-window.clickedElement = false;
+		var detect = function(){
+			return true;
+		};
 
-/**
- * Example of 1 finger hover
- */
-var fingerTipElement = document.querySelector('.tip');
+		var eneable = function(){
+			attachEvents();
+		};
 
-var fingerCallback = function(frame){
+		var init = function(){
+			window.tt = null;
+			window.clickedElement = false;
 
-	if(frame.fingers[0]){
-		fingerTipElement.className = 'tip';
+			detect() && eneable();
+		};
 
-		var pos = frame.fingers[0].stabilizedTipPosition;
-		var poss = app.get('motion').leapToScene(frame, pos, width, height);
+		var attachEvents = function(){
+			if( !Modernizr.touch ){
+				app.get('motion').attachEvents({
+					'1fingers': fingerCallback,
+					// 'screenTap': tapCallback,
+					'3fingers': backgroundCallback,
+					'5fingers': scrollCallback,
+					'ready': connectCallback,
+					'disconnect': disconnectCallback
+				});
+			}
+		};
 
-		var deltaX = poss[0] + 44;
-		var deltaY = poss[1] + 44;
+		var fingerCallback = function(frame){
+			if(frame.fingers[0]){
 
-		window.mouseX = deltaX;
-		window.mouseY = deltaY;
+				defaultOptions.fingerTipElement.className = 'tip';
 
-		fingerTipElement.style.left = deltaX + 'px';
-		fingerTipElement.style.top = deltaY + 'px';
+				var pos = frame.fingers[0].stabilizedTipPosition;
+				var poss = app.get('motion').leapToScene(frame, pos, defaultOptions.width, defaultOptions.height);
 
-		var gammaX = Math.abs(frame.fingers[0].tipVelocity[0]);
-		var gammaY = Math.abs(frame.fingers[0].tipVelocity[1]);
-		var gammaZ = Math.abs(frame.fingers[0].tipVelocity[2]);
+				var deltaX = poss[0] + 44;
+				var deltaY = poss[1] + 44;
+
+				window.mouseX = deltaX;
+				window.mouseY = deltaY;
+
+				defaultOptions.fingerTipElement.style.left = deltaX + 'px';
+				defaultOptions.fingerTipElement.style.top = deltaY + 'px';
+
+				var gammaX = Math.abs(frame.fingers[0].tipVelocity[0]);
+				var gammaY = Math.abs(frame.fingers[0].tipVelocity[1]);
+				var gammaZ = Math.abs(frame.fingers[0].tipVelocity[2]);
 
 
-		if(gammaX < 2 && gammaY < 2 && gammaZ < 2){
+				if(gammaX < 2 && gammaY < 2 && gammaZ < 2){
 
-			$(fingerTipElement).addClass('animated pulse');
+					$(defaultOptions.fingerTipElement).addClass('animated pulse');
 
-			window.tt = setTimeout(function(){
-				$(fingerTipElement).removeClass('animated pulse');
-			},1000);
-		}
-	}
-};
+					window.tt = setTimeout(function(){
+						$(defaultOptions.fingerTipElement).removeClass('animated pulse');
+					},1000);
+				}
+			}
+		};
 
-var backgroundCallback = function(frame){
-		var pos = frame.fingers[0].stabilizedTipPosition;
-		var poss = app.get('motion').leapToScene(frame, pos, width, height);
+		var backgroundCallback = function(frame){
+				var pos = frame.fingers[0].stabilizedTipPosition;
+				var poss = app.get('motion').leapToScene(frame, pos, defaultOptions.width, defaultOptions.height);
 
-		var velocX = Math.abs(frame.fingers[0].tipVelocity[0]);
-		var velocY = Math.abs(frame.fingers[0].tipVelocity[1]);
+				var velocX = Math.abs(frame.fingers[0].tipVelocity[0]);
+				var velocY = Math.abs(frame.fingers[0].tipVelocity[1]);
 
-		var deltaX = poss[0] + 44;
-		var deltaY = poss[1] + 44;
+				var deltaX = poss[0] + 44;
+				var deltaY = poss[1] + 44;
 
-		window.mouseX = deltaX * (velocX/ 100);
-		window.mouseY = deltaY * (velocY / 100);
+				window.mouseX = deltaX * (velocX/ 100);
+				window.mouseY = deltaY * (velocY / 100);
 
-		return ;
-};
+				return ;
+		};
 
-/**
- * Example of Tap to select
- */
-var tapCallback = function(gesture, frame){
-	var cords = app.get('motion').leapToScene(frame, gesture.position, $(window).width(), $(window).height());
+		/**
+		 * Example of Tap to select
+		 */
+		var tapCallback = function(gesture, frame){
+			var cords = app.get('motion').leapToScene(frame, gesture.position, $(window).width(), $(window).height());
 
-	setTimeout(function(){
-		var element = document.elementFromPoint( ( cords[0] + 44), (cords[1] + 44));
-		var old = 1;
-
-		if( $(element).prop('tagName') !== 'HTML' || $(element).prop('tagName') !== 'BODY' ){
-
-			$(element).css('-webkit-transform','scale(0.9)');
 			setTimeout(function(){
-				$(element).css('-webkit-transform','scale(1)');
-			},400);
-		}
+				var element = document.elementFromPoint( ( cords[0] + 44), (cords[1] + 44));
+				var old = 1;
 
-	},200);
+				if( $(element).prop('tagName') !== 'HTML' || $(element).prop('tagName') !== 'BODY' ){
 
-	return ;
-};
+					$(element).css('-webkit-transform','scale(0.9)');
+					setTimeout(function(){
+						$(element).css('-webkit-transform','scale(1)');
+					},400);
+				}
 
-/**
- * [swipeCallback description]
- * @param  {[type]} gesture [description]
- * @param  {[type]} frame   [description]
- * @return {[type]}         [description]
- */
-var connectCallback = function(){
+			},200);
 
-	$('html').addClass('motion');
-	console.log('connected!');
+			return ;
+		};
 
-};
+		/**
+		 * [swipeCallback description]
+		 * @param  {[type]} gesture [description]
+		 * @param  {[type]} frame   [description]
+		 * @return {[type]}         [description]
+		 */
+		var connectCallback = function(){
 
-var disconnectCallback = function(){
+			$('html').addClass('motion');
+			console.log('connected!');
 
-	$('html').removeClass('motion');
-	console.log('disconnected!');
+		};
 
-};
+		var disconnectCallback = function(){
 
-/**
- * Scrolling callback
- * @param  {[type]} frame   [description]
- * @param  {[type]} options [description]
- * @return {[type]}         [description]
- */
-var scrollCallback = function(frame, options){
-	var pos = frame.pointables[0].stabilizedTipPosition;
-	if(options.lastFrame.pointables.length > 0){
-		var delta = pos[1] - options.lastFrame.pointables[0].stabilizedTipPosition[1];
+			$('html').removeClass('motion');
+			console.log('disconnected!');
 
-		if( frame.hands[0] && frame.hands[0].palmVelocity ){
-			fingerTipElement.className = 'tip scroll';
-			var veloc = Math.abs(frame.hands[0].palmVelocity[1]);
-			var offset = ( $('.page-wrap').scrollTop() + (delta * (veloc / 100) ) );
-			$('.page-wrap').scrollTop( offset );
-		}
+		};
 
-	}
+		/**
+		 * Scrolling callback
+		 * @param  {[type]} frame   [description]
+		 * @param  {[type]} options [description]
+		 * @return {[type]}         [description]
+		 */
+		var scrollCallback = function(frame, options){
+			var pos = frame.pointables[0].stabilizedTipPosition;
+			if(options.lastFrame.pointables.length > 0){
+				var delta = pos[1] - options.lastFrame.pointables[0].stabilizedTipPosition[1];
 
-	return ;
-};
+				if( frame.hands[0] && frame.hands[0].palmVelocity ){
+					defaultOptions.fingerTipElement.className = 'tip scroll';
+					var veloc = Math.abs(frame.hands[0].palmVelocity[1]);
+					var offset = ( $('.page-wrap').scrollTop() + (delta * (veloc / 100) ) );
+					$('.page-wrap').scrollTop( offset );
+				}
 
-if( !Modernizr.touch ){
-	app.get('motion').attachEvents({
-		'1fingers': fingerCallback,
-		'screenTap': tapCallback,
-		'3fingers': backgroundCallback,
-		'5fingers': scrollCallback,
-		'deviceConnected': connectCallback,
-		'deviceDisconnected': disconnectCallback
-	});
-}
+			}
+
+			return ;
+		};
+
+
+		var unbindEvents = function(){
+
+		};
+
+		init();
+
+		return {
+			'init': init,
+			'detect': detect,
+			'eneable': eneable,
+			'attachEvents': attachEvents,
+			'unbindEvents': unbindEvents
+		};
+	};
+
+	app.register('page', pageComponent);
+
+})(jQuery, Modernizr, app);
