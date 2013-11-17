@@ -11,11 +11,12 @@
 	-webkit-animation: lololo 1.5s infinite;
 }
 
-.touch .tip{
-	display: none;
+.motion .tip{
+	display: block;
 }
 
 .tip{
+	display: none;
 	width: 48px;
 	height: 48px;
 	background: transparent;

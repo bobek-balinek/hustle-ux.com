@@ -14,6 +14,7 @@
 	var motionComponent = function(){
 
 		var options = {
+			controllerEvents: ['ready', 'connect', 'disconnect', 'focus', 'blur', 'deviceConnected', 'deviceDisconnected'],
 			controller: null,
 			isEnabled: false,
 			lastFrame: null,
@@ -103,6 +104,18 @@
 		var attachEvents = function(data){
 
 			_.extend(options.events, data);
+
+			/**
+			 * Controller events
+			 */
+			for(var i=0; i < options.controllerEvents.length; i++){
+				var eventType = options.controllerEvents[i];
+
+				if(options.events.hasOwnProperty(eventType)){
+					console.log(eventType + ' attached');
+					options.controller.on(eventType, options.events[eventType])
+				}
+			};
 
 			/** First Attachment **/
 			if(!data){

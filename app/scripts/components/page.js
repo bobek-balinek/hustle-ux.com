@@ -83,13 +83,23 @@ var tapCallback = function(gesture, frame){
 	return ;
 };
 
+/**
+ * [swipeCallback description]
+ * @param  {[type]} gesture [description]
+ * @param  {[type]} frame   [description]
+ * @return {[type]}         [description]
+ */
+var connectCallback = function(){
 
-var swipeCallback = function(gesture, frame){
+	$('html').addClass('motion');
+	console.log('connected!');
 
-	if(gesture.progress > 1 && gesture.radius < 25){
-		console.log('Listening....', gesture);
-		app.get('speech').start();
-	}
+};
+
+var disconnectCallback = function(){
+
+	$('html').removeClass('motion');
+	console.log('disconnected!');
 
 };
 
@@ -121,6 +131,8 @@ if( !Modernizr.touch ){
 		'1fingers': fingerCallback,
 		'screenTap': tapCallback,
 		'3fingers': backgroundCallback,
-		'5fingers': scrollCallback
+		'5fingers': scrollCallback,
+		'deviceConnected': connectCallback,
+		'deviceDisconnected': disconnectCallback
 	});
 }
