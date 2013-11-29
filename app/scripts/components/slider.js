@@ -53,6 +53,8 @@
 		var eneable = function(){
 			attachEvents();
 
+			getElement().addClass('active');
+
 			setActive(0);
 			console.log('enabled slider');
 		};

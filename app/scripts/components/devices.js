@@ -22,12 +22,13 @@
 			$('.motion', componentElement).on('click', function(event){
 				event.preventDefault();
 
-				$('.top-bar').toggleClass('open');
 				$(this).toggleClass('active');
 
-				/**
-				 * app.get('slider').show('motion');
-				 */
+				app.get('slider').init({
+					element: $('.slider-motion'),
+					slideSelector: 'li'
+				});
+
 			});
 
 			$('.desktop', componentElement).on('click', function(event){

@@ -30,19 +30,26 @@ var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
 		particles = new Array();
 
 		var PI2 = Math.PI * 2;
+		// var material = new THREE.ParticleCanvasMaterial( {
+		// 	color: 0xEFEFEF,
+		// 	program: function ( context ) {
+		// 		context.beginPath();
+		// 		context.arc( 0, 0, 1, 0, PI2, true );
+		// 		context.fill();
+		// 	}
+		// } );
+
 		var material = new THREE.ParticleCanvasMaterial( {
-
-			// color: 0xE6E6E6,
-			color: 0xEFEFEF,
+			// color: 0x3C8FCD,
+			color: 0xD7EAF7,
 			program: function ( context ) {
-
 				context.beginPath();
 				context.arc( 0, 0, 1, 0, PI2, true );
 				context.fill();
-
 			}
-
 		} );
+
+
 
 		var i = 0;
 

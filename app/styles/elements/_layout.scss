@@ -85,3 +85,9 @@ footer{
 	overflow: scroll;
 	-webkit-overflow-scrolling: touch;
 }
+
+
+.disable-hover,
+.disable-hover * {
+  pointer-events: none !important;
+}
