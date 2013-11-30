@@ -3,20 +3,34 @@
 		width: 100%;
 	}
 
-	figure{
+	.project-section,
+	.page-wrap > section{
+		min-height: 0 !important;
+		padding: 1em 0;
+	}
+
+	figure,
+	.project-section:nth-child(even) figure{
 		-webkit-flex-flow: column wrap;
 		-moz-flex-flow: column wrap;
 		-ms-flex-flow: column wrap;
 		flex-flow: column wrap;
+		order: 1;
 	}
 
 	figure img,
-	figure figcaption{
+	figure figcaption,
+	.project-section:nth-child(even) figcaption{
+		order: 2;
 		margin: 0;
 		width: 100%;
 	}
 
-	figure figcaption{
-		margin: 2em 0 0;
+	figure figcaption,
+	.project-section:nth-child(even) figcaption{
+		text-align: left;
+		margin: 1em 5%;
+		width: 90%;
 	}
+
 }

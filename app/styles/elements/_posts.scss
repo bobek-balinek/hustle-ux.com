@@ -6,7 +6,11 @@
 	li{
 		margin: 0;
 		position: relative;
-		border-bottom: 1px solid #E6E6E6;
+		border-top: 1px solid #E6E6E6;
+
+		&:first-child{
+			border-top: none;
+		}
 
 		&:hover{
 			background: #f0f0f0;
@@ -15,20 +19,24 @@
 				color: $colour-grey;
 			}
 		}
+
 	}
 
 	a{
 		display: block;
 		color: #3C8FCD;
 		font-size: 2em;
+		font-weight: bold;
 		padding: 2em 0;
 		text-decoration: none;
+		line-height: 1.5;
 	}
 
 	small{
 		color: $colour-grey;
 		font-style: italic;
 		display: block;
+		font-size: 0.6em;
 	}
 
 	.icon{

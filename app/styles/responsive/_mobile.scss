@@ -60,6 +60,11 @@
 		width: 100%;
 	}
 
+	.devices-info,
+	.devices{
+		display: none;
+	}
+
 	.post{
 		.title{
 			text-align: left;
@@ -81,20 +86,17 @@
 		margin-right: 10%;
 	}
 
-	figure img,
-	.slides > li:nth-child(even) img{
-		order: 1;
-	}
-
-	figure figcaption,
-	.slides > li:nth-child(even) figcaption{
-		width: calc(100% - 2em);
-		margin: 2em 1em 0;
-		order: 2;
-	}
-
 	.projects li{
 		margin: 0;
+	}
+
+	.posts-list{
+		a{
+			padding: 0.75em 5%;
+			text-align: left;
+			font-size: 1.5em;
+		}
+
 	}
 }
 
