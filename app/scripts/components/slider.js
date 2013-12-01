@@ -65,6 +65,11 @@
 			detect() && eneable();
 		};
 
+		var destroy = function(){
+			resetActive();
+			getElement().removeClass('active');
+		};
+
 		var setElement = function(element){
 			if(element){
 				options.element = element;
@@ -129,12 +134,11 @@
 			return getElement().find(options.slideSelector).eq(options.currentIndex);
 		};
 
-		// init(); only initialise when needed - requires objects
-
 		return {
 			'init': init,
 			'detect': detect,
 			'eneable': eneable,
+			'destroy': destroy,
 			'nextSlide': nextSlide,
 			'setElement': setElement,
 			'getElement': getElement,

@@ -1,5 +1,4 @@
 .slider{
-
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -10,6 +9,11 @@
 	list-style: none;
 	z-index: 25;
 	overflow: hidden;
+
+		-webkit-transition: -webkit-transform 1s;
+		-moz-transition: -moz-transform 1s;
+		-ms-transition: -ms-transform 1s;
+		transition: transform 1s;
 
 	@include translate3d(100%,0,0);
 
@@ -53,4 +57,31 @@
 		color: #ffffff;
 		font-weight: normal;
 	}
+}
+
+/**
+ * Slider Controls
+ */
+.slider-component{
+	width: 100%;
+}
+
+.slider-component--link{
+	color: white;
+	display: block;
+	padding: 2em;
+	background: #364967;
+	position: absolute;
+	top: 50%;
+	width: 3em;
+	margin-top: -2em;
+	z-index: 26;
+}
+
+.slider-component--link__prev{
+	left: 0;
+}
+
+.slider-component--link__next{
+	right: 0;
 }

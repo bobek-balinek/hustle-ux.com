@@ -10,17 +10,27 @@
 
 		var eneable = function(){
 			attachEvents();
-			console.log('enabled!');
 		};
 
 		var init = function(){
 			detect() && eneable();
 		};
 
+		var markSelected = function(){
+			componentElement.addClass('selected');
+		};
+
+		var resetSelected = function(){
+			componentElement.removeClass('selected');
+			componentElement.find('a').removeClass('active');
+		};
+
 		var attachEvents = function(){
 
 			$('.motion', componentElement).on('click', function(event){
 				event.preventDefault();
+				resetSelected();
+				markSelected();
 
 				$(this).toggleClass('active');
 
@@ -33,9 +43,20 @@
 
 			$('.desktop', componentElement).on('click', function(event){
 				event.preventDefault();
+				resetSelected();
+
+				app.get('slider').destroy();
 
 				var offset = $('section.work').offset();
 				$('.page-wrap').animate({'scrollTop': offset.top}, 400);
+			});
+
+
+			$('.speech', componentElement).on('click', function(event){
+				event.preventDefault();
+				resetSelected();
+
+				app.get('slider').destroy();
 			});
 
 		};
@@ -43,6 +64,7 @@
 		var unbindEvents = function(){
 			$('.motion', componentElement).off('click');
 			$('.desktop', componentElement).off('click');
+			$('.speech', componentElement).off('click');
 		};
 
 		init();

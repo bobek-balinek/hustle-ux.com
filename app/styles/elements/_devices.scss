@@ -21,6 +21,10 @@
 	-moz-justify-content: center;
 
 	@include alter-box-sizing;
+
+	&.selected a{
+		border-left: 0;
+	}
 }
 
 .devices li{
