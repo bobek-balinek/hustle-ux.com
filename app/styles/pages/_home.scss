@@ -4,6 +4,7 @@
 
 .landing{
 	overflow: hidden;
+	border-bottom: 1px solid #f0f0f0;
 
 	h1{
 		border: none;
@@ -12,6 +13,13 @@
 	}
 }
 
-.logotype{
-	width: 230px;
+// 	.homepage section:first-child{
+// 		background: none;
+// 	}
+
+
+.touch{
+	.landing h1{
+		margin: 0;
+	}
 }

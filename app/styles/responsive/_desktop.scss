@@ -1,3 +1,7 @@
+/**
+ * Standard desktop (up to large screens)
+ */
+
 @media screen and (max-width: 1200px){
 	.container{
 		width: 940px;
@@ -6,4 +10,36 @@
 	figure img{
 		width: 650px;
 	}
+
+	/**
+	 * Section with two images and one caption box
+	 */
+	.project-section--double-image{
+		min-height: 50%;
+
+		img{
+			width: 316px;
+
+			&:first-child{
+				margin-right: 20px;
+			}
+		}
+	}
+
+	/**
+	 * Section with three images and no caption box
+	 */
+	.project-section--triple-image{
+		min-height: 50%;
+
+		img{
+			width: 285px;
+			margin-left: 42px;
+
+			&:first-child{
+				margin-left: 0;
+			}
+		}
+	}
+
 }

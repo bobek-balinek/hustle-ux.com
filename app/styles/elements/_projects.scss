@@ -1,26 +1,32 @@
 .projects{
-	display: flex;
 	margin: 0;
 	padding: 0;
 	list-style: none;
+
+	@include display-flex;
 
 	li{
 		width: 320px;
 		margin: 0 0 20px 20px;
 		background: $colour-white;
 
-		-webkit-transition: -webkit-transform 0.1s linear;
-		-moz-transition: -moz-transform 0.1s linear;
-		-ms-transition: -ms-transform 0.1s linear;
-		-o-transition: -o-transform 0.1s linear;
-		transition: transform 0.1s linear;
+		-webkit-flex-flow: row wrap;
+		-moz-flex-flow: row wrap;
+		-ms-flex-flow: row wrap;
+		flex-flow: row wrap;
+
+		img{
+			-webkit-transition: -webkit-transform 0.1s linear;
+			-moz-transition: -moz-transform 0.1s linear;
+			-ms-transition: -ms-transform 0.1s linear;
+			-o-transition: -o-transform 0.1s linear;
+			transition: transform 0.1s linear;
+		}
 
 		&:hover{
-			-webkit-transform: scale3d(0.97,0.97,0.97);
-			-moz-transform: scale3d(0.97,0.97,0.97);
-			-ms-transform: scale3d(0.97,0.97,0.97);
-			-o-transform: scale3d(0.97,0.97,0.97);
-			transform: scale3d(0.97,0.97,0.97);
+			img{
+				@include scale3d(1.02,1.02,1.02);
+			}
 		}
 	}
 

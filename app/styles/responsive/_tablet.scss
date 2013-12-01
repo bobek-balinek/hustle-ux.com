@@ -1,11 +1,15 @@
+/**
+ * Generic tablet
+ */
 @media screen and (max-width: 1000px){
 	.container{
 		width: 100%;
 	}
 
-	.project-section,
-	.page-wrap > section{
-		min-height: 0 !important;
+	.page-section,
+	.project-section--with-title,
+	.project-section--with-title h1,
+	.project-section{
 		padding: 1em 0;
 	}
 
@@ -18,10 +22,8 @@
 		order: 1;
 	}
 
-	figure img,
-	figure figcaption,
-	.project-section:nth-child(even) figcaption{
-		order: 2;
+	figure img{
+		order: 1;
 		margin: 0;
 		width: 100%;
 	}
@@ -31,6 +33,62 @@
 		text-align: left;
 		margin: 1em 5%;
 		width: 90%;
+		order: 2;
+	}
+
+
+	/**
+	 * Section with two images and one caption box
+	 */
+	.project-section--double-image{
+
+		img{
+			width: 100%;
+
+			&:first-child{
+				margin-bottom: 1em;
+			}
+		}
+	}
+
+	/**
+	 * Section with three images and no caption box
+	 */
+	.project-section--triple-image{
+
+		figure{
+			-webkit-flex-flow: row wrap !important;
+			-moz-flex-flow: row wrap !important;
+			-ms-flex-flow: row wrap !important;
+			flex-flow: row wrap !important;
+		}
+
+		img{
+			width: 32%;
+			margin-left: 2%;
+
+			&:first-child{
+				margin-left: 0;
+			}
+		}
+	}
+
+}
+
+/**
+ * Medium Tablet
+ */
+@media screen and (min-width: 569px) and (max-width: 1000px){
+
+	.projects{
+		li{
+			width: 30%;
+			margin: 0 0 20px 2.5%;
+		}
+
+		img{
+			width: 100%;
+		}
 	}
 
 }

@@ -3,9 +3,11 @@
 
 	body, html {
 	  height: auto;
+	  	-webkit-overflow-scrolling: touch;
 	}
 
 	body{
+		font-size: 14px;
 		padding: 40px 0 0 0;
 	}
 
@@ -39,10 +41,6 @@
 			margin: 0;
 		}
 
-		&:hover .link-label{
-			display: none;
-		}
-
 		.home{
 			-webkit-flex: 1 0 0;
 			-moz-flex: 1 0 0;
@@ -58,6 +56,10 @@
 
 	.container{
 		width: 100%;
+
+		.landing &{
+			width: 90%;
+		}
 	}
 
 	.devices-info,
@@ -86,20 +88,46 @@
 		margin-right: 10%;
 	}
 
-	.projects li{
-		margin: 0;
+	.projects{
+		li{
+			margin: 0;
+		}
+
+		img{
+			width: 100%;
+		}
+
 	}
 
 	.posts-list{
 		a{
-			padding: 0.75em 5%;
+			padding: 1em 5%;
 			text-align: left;
 			font-size: 1.5em;
+		}
+
+		small{
+			margin-top: 0.5em;
+			font-style: normal;
 		}
 
 	}
 }
 
+@media screen and (max-width: 360px){
+
+	.projects{
+		-webkit-flex-flow: column nowrap;
+		-moz-flex-flow: column nowrap;
+		-ms-flex-flow: column nowrap;
+		flex-flow: column nowrap;
+
+		 li{
+		 	margin: 0;
+		 }
+	}
+
+}
 
 
 

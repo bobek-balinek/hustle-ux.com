@@ -10,23 +10,17 @@
 
 	margin: 0;
 	width: 100%;
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
+
+	@include display-flex;
 
 	-webkit-flex-flow: row nowrap;
 	-moz-flex-flow: row nowrap;
+	flex-flow: row nowrap;
 
 	-webkit-justify-content: center;
 	-moz-justify-content: center;
 
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
-
+	@include alter-box-sizing;
 }
 
 .devices li{
@@ -47,10 +41,7 @@
 	border-left: 1px solid $colour-grey-light;
 	color: #4C4C4C;
 
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
+	@include alter-box-sizing;
 
 	margin: 0;
 	display: block;
@@ -73,33 +64,13 @@
 	color: #ffffff;
 }
 
-.touch .devices{
-	display: none;
-}
-
-// .devices .desktop{
-// 	background: #BCBCBC;
-// }
-
-// .devices .motion{
-// 	background: #cccccc;
-// }
-
-// .devices .speech{
-// 	background: #E6E6E6;
-// }
-
-.devices,
-.devices li,
-.devices li a{
-
-	-webkit-transition: none;
-	-moz-transition: none;
-	-ms-transition: none;
-	-o-transition: none;
-	transition: none;
-}
-
 .devices a.active{
 	background: #364967;
+}
+
+/**
+ * Touch devices
+ */
+.touch .devices{
+	display: none;
 }

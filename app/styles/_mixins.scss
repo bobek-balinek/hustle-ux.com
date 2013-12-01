@@ -1,0 +1,18 @@
+/**
+ * Alters the box sizing to have an absolute width and height
+ */
+
+@mixin alter-box-sizing{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+@mixin display-flex{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}

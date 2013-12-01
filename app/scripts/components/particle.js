@@ -1,4 +1,4 @@
-if( !Modernizr.touch ){
+if( !Modernizr.touch && $('.homepage').length ){
 
 var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
 
@@ -20,7 +20,7 @@ var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
 
 		container = document.createElement( 'div' );
 		container.className = 'canvas';
-		document.body.appendChild( container );
+		document.getElementById('pageWrap').appendChild( container );
 
 		camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 		camera.position.z = 1000;
@@ -76,10 +76,6 @@ var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
 		// container.appendChild( stats.domElement );
 
 		document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-		document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-		document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-
-		//
 
 		window.addEventListener( 'resize', onWindowResize, false );
 
@@ -110,7 +106,7 @@ var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
 
 		if ( event.touches.length === 1 ) {
 
-			event.preventDefault();
+			// event.preventDefault();
 
 			window.mouseX = event.touches[ 0 ].pageX - windowHalfX;
 			window.mouseY = event.touches[ 0 ].pageY - windowHalfY;
@@ -123,7 +119,7 @@ var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
 
 		if ( event.touches.length === 1 ) {
 
-			event.preventDefault();
+			// event.preventDefault();
 
 			window.mouseX = event.touches[ 0 ].pageX - windowHalfX;
 			window.mouseY = event.touches[ 0 ].pageY - windowHalfY;

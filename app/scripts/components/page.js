@@ -36,7 +36,7 @@
 				});
 			}
 
-			app.get('slider').init();
+			app.get('slider') && app.get('slider').init();
 		};
 
 		var fingerCallback = function(frame){

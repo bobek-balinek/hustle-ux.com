@@ -11,62 +11,30 @@
 	z-index: 25;
 	overflow: hidden;
 
-	-webkit-transform: translate3d(100%,0,0);
-	-moz-transform: translate3d(100%,0,0);
-	transform: translate3d(100%,0,0);
+	@include translate3d(100%,0,0);
 
 	&.active{
-
-		-webkit-transform: translate3d(0,0,0);
-		-moz-transform: translate3d(0,0,0);
-		transform: translate3d(0,0,0);
+		@include translate3d(0,0,0);
 	}
 
 	li{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		display: block;
 		background: $colour-blue;
-
-		-webkit-transform: translate3d(100%,0,0);
-		-moz-transform: translate3d(100%,0,0);
-		transform: translate3d(100%,0,0);
+		@include translate3d(100%,0,0);
 
 		-webkit-transition: -webkit-transform 1s;
+		-moz-transition: -moz-transform 1s;
+		-ms-transition: -ms-transform 1s;
 		transition: transform 1s;
 
 		&.active{
-
-			-webkit-transform: translate3d(0,0,0);
-			-moz-transform: translate3d(0,0,0);
-			transform: translate3d(0,0,0);
-
-			// display: block;
+			@include translate3d(0,0,0);
 		}
 	}
 }
-
-.slide1{
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	display: block;
-	// background: red;
-}
-
-.slide2{
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	display: block;
-	// background: green;
-}
-
-.slide3{
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	display: block;
-	// background: blue;
-}
-
 
 
 /**
@@ -75,14 +43,14 @@
 .motion-intro{
 	font-size: 1em;
 	padding: 7em 0;
-}
 
-.motion-intro img{
-	width: 500px;
-	height: 240px;
-}
+	img{
+		width: 500px;
+		height: 240px;
+	}
 
-.motion-intro h2{
-	color: #ffffff;
-	font-weight: normal;
+	h2{
+		color: #ffffff;
+		font-weight: normal;
+	}
 }
