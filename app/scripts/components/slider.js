@@ -40,6 +40,7 @@
 
 	var sliderComponent = function(){
 		var options = {
+			mainElement: $('.slider-component'),
 			slideSelector: null,
 			element: null,
 			events: {},
@@ -52,10 +53,6 @@
 
 		var eneable = function(){
 			attachEvents();
-
-			getElement().addClass('active');
-
-			setActive(0);
 			console.log('enabled slider');
 		};
 
@@ -63,6 +60,8 @@
 			$.extend( options, optionsData );
 
 			detect() && eneable();
+
+			setActive(0);
 		};
 
 		var destroy = function(){
@@ -84,11 +83,32 @@
 		};
 
 		var attachEvents = function(){
+			unbindEvents();
+			console.log('pop');
+
+			$('.slider-component--link__prev', options.mainElement ).on('click', function(event){
+				event.preventDefault();
+				previousSlide();
+				return ;
+			});
+
+			$('.slider-component--link__next', options.mainElement ).on('click', function(event){
+				event.preventDefault();
+				nextSlide();
+				return ;
+			});
+
 			return getElement().bindMany(options.events);
 		};
 
 		var unbindEvents = function(){
+			$('.slider-component--link__prev', options.mainElement ).off('click');
+			$('.slider-component--link__next', options.mainElement ).off('click');
+		};
 
+		var activateComponent = function(){
+			options.element && options.mainElement.addClass('active');
+			return;
 		};
 
 		var resetActive = function(){
@@ -96,8 +116,17 @@
 		};
 
 		var setActive = function(index){
+			activateComponent();
+			getElement().addClass('active');
 			resetActive();
-			return getElement().find(options.slideSelector).eq(index).addClass('active');
+
+			return setTimeout(function(){
+
+				console.log(index);
+
+				getElement().find(options.slideSelector).eq(index).addClass('active');
+			},500);
+
 		};
 
 		var setSlide = function(index){
