@@ -27,6 +27,9 @@
 
 		var attachEvents = function(){
 
+			/**
+			 * Setup LeapMotion slider
+			 */
 			$('.motion', componentElement).on('click', function(event){
 				event.preventDefault();
 				resetSelected();
@@ -41,6 +44,9 @@
 
 			});
 
+			/**
+			 * Scroll down to the list of projects
+			 */
 			$('.desktop', componentElement).on('click', function(event){
 				event.preventDefault();
 				resetSelected();
@@ -51,7 +57,9 @@
 				$('.page-wrap').animate({'scrollTop': offset.top}, 400);
 			});
 
-
+			/**
+			 * Setup Voice recognition slider
+			 */
 			$('.speech', componentElement).on('click', function(event){
 				event.preventDefault();
 				resetSelected();

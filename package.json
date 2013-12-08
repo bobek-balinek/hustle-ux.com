@@ -22,7 +22,9 @@
     "grunt-svgmin": "~0.1.0",
     "grunt-contrib-imagemin": "~0.1.4",
     "grunt-contrib-jshint": "~0.4.3",
-    "grunt-mocha": "~0.3.4"
+    "grunt-mocha": "~0.3.4",
+    "browserify": "~2.36.1",
+    "grunt-browserify": "~1.2.11"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

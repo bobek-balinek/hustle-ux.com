@@ -112,30 +112,24 @@
 		};
 
 		/**
-		 * [swipeCallback description]
-		 * @param  {[type]} gesture [description]
-		 * @param  {[type]} frame   [description]
-		 * @return {[type]}         [description]
+		 * Connected & disconnected device callbacks
 		 */
 		var connectCallback = function(){
-
 			$('html').addClass('motion');
 			console.log('connected!');
 
+			return;
 		};
 
 		var disconnectCallback = function(){
-
 			$('html').removeClass('motion');
 			console.log('disconnected!');
 
+			return;
 		};
 
 		/**
 		 * Scrolling callback
-		 * @param  {[type]} frame   [description]
-		 * @param  {[type]} options [description]
-		 * @return {[type]}         [description]
 		 */
 		var scrollCallback = function(frame, options){
 			var pos = frame.pointables[0].stabilizedTipPosition;

@@ -1,4 +1,5 @@
-if( !Modernizr.touch && $('.homepage').length ){
+// if( !Modernizr.touch && $('.homepage').length ){
+if( true == false ){
 
 var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
 

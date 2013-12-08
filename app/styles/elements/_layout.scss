@@ -46,15 +46,20 @@ h2{
 	margin-top: 3em;
 }
 
-.canvas{
+// .canvas,
+#Layer_1{
 	width: 100%;
 	height: 100%;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	z-index: -1;
 	left: 0;
 }
 
+#Layer_1{
+	width: 100%;
+	height: 100%;
+}
 
 footer{
 	width: 25em;
