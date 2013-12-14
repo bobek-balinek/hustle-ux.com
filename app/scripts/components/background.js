@@ -19,7 +19,7 @@
 			// $('.page-wrap').append('<div id="bgd" class="canvas"></div>');
 
 			var s = Snap("#landing");
-			Snap.load("/images/new_background.svg", function (f) {
+			Snap.load("/images/new_background-project.svg", function (f) {
 
 		    var g = f.select("#phone");
 		    var circleline = f.select("#line01_circle");
