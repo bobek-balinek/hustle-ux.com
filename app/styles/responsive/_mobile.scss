@@ -4,7 +4,7 @@
 @media screen and (max-width: 723px){
 
 	body, html {
-	  height: auto;
+	  // height: 100%;
 	  	-webkit-overflow-scrolling: touch;
 	}
 
@@ -115,20 +115,12 @@
 
 	}
 
-	.canvas{
-		// overflow: hidden;
-	}
-
+	/**
+	 * SVG image
+	 */
 	svg{
-		// -webkit-transform-origin-y: 0%;
-		// -webkit-transform-origin-x: -50%;
 		width: 100% !important;
-		height: 100%%;
-	}
-
-	#landing{
-		// min-height: 0;
-		// height: 100%;
+		height: 100%;
 	}
 
 }

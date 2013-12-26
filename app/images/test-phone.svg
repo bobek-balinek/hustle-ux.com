@@ -35,7 +35,8 @@
 		<path fill="#FFFFFF" d="M358,375c0-2.762-2.238-5-5-5h-10c-2.762,0-5,2.238-5,5v10c0,2.762,2.238,5,5,5h10c2.762,0,5-2.238,5-5
 			V375z"/>
 	</g>
-	<text transform="matrix(1 0 0 1 54.1016 60)" fill="#D7EAF7" font-family="'Merriweather'" font-size="32">Clean, functional interfaces</text>
+	<text transform="matrix(1 0 0 1 54.1016 90.6665)" fill="#D7EAF7" font-family="'Merriweather'" font-size="32">Clean, functional interfaces</text>
+	<text transform="matrix(1 0 0 1 107.4487 543)" fill="#FFFFFF" font-family="'Merriweather'" font-size="21">Choose a device to explore with:</text>
 	<line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="191" y1="260.5" x2="360" y2="260.5"/>
 	<line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="191" y1="307.5" x2="360" y2="307.5"/>
 	<path fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" d="M252.749,217.689

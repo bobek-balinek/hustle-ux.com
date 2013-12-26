@@ -1,11 +1,5 @@
 /**
- * API Overview
- *
- * 1. Load the SVG file
- * 2. Setup Elements
- * 3. Kick off lines animations
- * 4. Kick off UI elements
- * 5. Interactive bits (circled sensors)
+ * SVG Animation library
  */
 
 (function(){
@@ -13,47 +7,25 @@
 	var backgroundComponent = function(){
 
 		var componentElement = $('.canvas');
+		var current_frame = 0;
+		var total_frames = 120;
+		var handle = 0;
 		var anims = [];
 		var dd = {};
 
+		var phoneLayers = [];
+		var pcLayers = [];
+
+		var layerOne, layerTwo;
+
 		var detect = function(){
-			return $('.homepage').length > 0;
+			return $('.homepage').length > 0 && Modernizr.svg;
 		};
 
 		var eneable = function(){
 			attachEvents();
 			console.log('enabled background!');
 		};
-
-		var bob = function(element, limit){
-
-			if(element){
-				element.attr('stroke-dashoffset', 0);
-				return element.animate({'stroke-dashoffset': limit}, 2000, function(){
-
-					return bob(element, limit);
-
-				});
-			}
-
-			return ;
-		};
-
-		var dispatch = function(obj, length, duration){
-			if(obj){
-				return setTimeout(function(){
-					obj.attr('stroke-dasharray', 200);
-					obj.attr('stroke-dashoffset', 0);
-
-					anims.push( bob( obj, length));
-				}, duration);
-			}
-
-		};
-
-		/**
-		 * Utils
-		 */
 
 		 /**
 		  * Get all paths from a context/layer
@@ -70,20 +42,14 @@
 		 * Phone offset
 		 * @type {Number}
 		 */
-		var current_frame = 0;
-		var total_frames = 120;
-		var handle = 0;
 
 		var init = function(){
 			detect() && eneable();
 
 			var s = Snap("#landing");
 			Snap.load("/images/test-phone.svg", function (f) {
-				var phoneLayers = [];
-				var pcLayers = [];
-
-				var layerOne = f.select('#Phone');
-				var layerTwo = f.select('#PC');
+				layerOne = f.select('#Phone');
+				layerTwo = f.select('#PC');
 				layerTwo.attr('display', 'none');
 
 
@@ -148,12 +114,11 @@
 
 				    	window.cancelAnimationFrame(handle);
 
-				    	setTimeout(function(){
-					    	current_frame = 0;
-								layerOne.attr('display', 'block');
-								layerTwo.attr('display', 'none');
-								drawPhoneForward();
-				    	},1000);
+				    	current_frame = 0;
+							layerOne.attr('display', 'block');
+							layerTwo.attr('display', 'none');
+							drawPhoneForward();
+
 				   } else {
 				    	current_frame++;
 							$.each(pcLayers, function(index, element){
