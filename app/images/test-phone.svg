@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1280px"
+	 height="700px" viewBox="0 0 1280 700" enable-background="new 0 0 1280 700" xml:space="preserve">
+<g id="Layer_4" display="none">
+	<rect x="-0.5" y="0.5" display="inline" stroke="#FFFFFF" stroke-miterlimit="10" width="1276" height="700"/>
+</g>
+<g id="Phone">
+	<path id="phone_button" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" d="M652.059,474.357
+		c0,8.041-6.518,14.559-14.558,14.559s-14.559-6.518-14.559-14.559c0-8.039,6.519-14.559,14.559-14.559
+		S652.059,466.318,652.059,474.357"/>
+	<path id="phone_outline" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" d="M737.692,196.047H537.308
+		l0.001,257.76v34.252c0,4.73,3.834,8.564,8.563,8.564h183.257c4.729,0,8.563-3.834,8.563-8.564V180.634
+		c0-4.729-3.834-8.563-8.563-8.563H545.872c-4.729,0-8.563,3.835-8.563,8.563v273.173c-0.001,0,200.384,0,200.384,0"/>
+</g>
+<g id="Layer_6">
+	<polygon id="pc_stand_bg" opacity="0.3" fill="#FFFFFF" points="595.227,325.818 617.984,286.997 662.984,287.179 685.226,326.182 
+		662.468,365.003 617.468,364.82 	"/>
+	<polygon id="pc_stand" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" points="595.227,325.818 
+		617.984,286.997 662.984,287.179 685.226,326.182 662.468,365.003 617.468,364.82 	"/>
+</g>
+<g id="PC">
+	<path id="pc_outline" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" d="M893.639,489.873
+		c0,4.758-3.858,8.611-8.613,8.611H394.973c-4.757,0-8.612-3.854-8.612-8.611v-309.19c0-4.757,3.855-8.612,8.612-8.612h490.052
+		c4.755,0,8.613,3.855,8.613,8.612V489.873z"/>
+	<polyline id="pc_inner" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" points="893.639,196.186 
+		893.639,455.424 386.361,455.424 386.361,196.186 893.639,196.186 	"/>
+	
+		<rect id="pc_button_2" x="847.994" y="467.48" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" width="30.142" height="18.086"/>
+	
+		<rect id="pc_button_1" x="828.183" y="467.48" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" width="15.503" height="18.086"/>
+	<path fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" d="M694.527,498.484c0,0,4.286,23.775,21.046,23.775
+		c16.758,0-152.315,0-152.315,0s17.07,0.781,21.747-23.775"/>
+</g>
+<g id="Layer_5" display="none">
+	
+		<circle id="phone_button_1_" display="inline" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="1069.994" cy="474.357" r="14.559"/>
+	<path id="phone_outline_1_" display="inline" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" d="
+		M1170.186,196.047H969.801l0.001,257.76v34.252c0,4.73,3.834,8.564,8.563,8.564h183.257c4.729,0,8.563-3.834,8.563-8.564V180.634
+		c0-4.729-3.834-8.563-8.563-8.563H978.365c-4.729,0-8.563,3.835-8.563,8.563v273.173c-0.001,0,200.384,0,200.384,0"/>
+</g>
+<g id="Nope" display="none">
+	<g display="inline">
+		<rect x="110.06" y="57.321" opacity="0.1" fill="#E27A7A" width="200" height="100"/>
+		<rect x="325.367" y="57.321" opacity="0.1" fill="#E27A7A" width="200" height="100"/>
+		<rect x="539.995" y="57.321" opacity="0.1" fill="#E27A7A" width="200" height="100"/>
+		<rect x="754.994" y="57.321" opacity="0.1" fill="#E27A7A" width="199.999" height="100"/>
+		<rect x="969.994" y="57.321" opacity="0.1" fill="#E27A7A" width="199.999" height="100"/>
+		<rect x="110.06" y="172.07" opacity="0.1" fill="#E27A7A" width="200" height="355.208"/>
+		<rect x="325.367" y="172.07" opacity="0.1" fill="#E27A7A" width="200" height="355.208"/>
+		<rect x="539.995" y="172.07" opacity="0.1" fill="#E27A7A" width="200" height="355.208"/>
+		<rect x="754.994" y="172.07" opacity="0.1" fill="#E27A7A" width="199.999" height="355.208"/>
+		<rect x="969.994" y="172.07" opacity="0.1" fill="#E27A7A" width="199.999" height="355.208"/>
+		<rect x="110.06" y="542.822" opacity="0.1" fill="#E27A7A" width="200" height="99.857"/>
+		<rect x="325.367" y="542.822" opacity="0.1" fill="#E27A7A" width="200" height="99.857"/>
+		<rect x="539.995" y="542.822" opacity="0.1" fill="#E27A7A" width="200" height="99.857"/>
+		<rect x="754.994" y="542.822" opacity="0.1" fill="#E27A7A" width="199.999" height="99.857"/>
+		<rect x="969.994" y="542.822" opacity="0.1" fill="#E27A7A" width="199.999" height="99.857"/>
+	</g>
+</g>
+</svg>

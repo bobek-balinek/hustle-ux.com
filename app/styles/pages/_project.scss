@@ -78,11 +78,11 @@
 	}
 }
 
-.project-section.project-section--double-caption{
+.project-section--double-caption{
 	min-height: 50%;
 
 	img{
-		order: 1;
+		order: 1 !important;
 		width: 390px;
 		margin-left: 20px;
 
@@ -94,8 +94,8 @@
 
 	figure{
 		figcaption{
-			order: 2;
-			text-align: left;
+			order: 2 !important;
+			text-align: left !important;
 		}
 	}
 }

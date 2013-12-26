@@ -1,8 +1,20 @@
+/**
+ * API Overview
+ *
+ * 1. Load the SVG file
+ * 2. Setup Elements
+ * 3. Kick off lines animations
+ * 4. Kick off UI elements
+ * 5. Interactive bits (circled sensors)
+ */
+
 (function(){
 
 	var backgroundComponent = function(){
 
 		var componentElement = $('.canvas');
+		var anims = [];
+		var dd = {};
 
 		var detect = function(){
 			return $('.homepage').length > 0;
@@ -13,79 +25,143 @@
 			console.log('enabled background!');
 		};
 
+		var bob = function(element, limit){
+
+			if(element){
+				element.attr('stroke-dashoffset', 0);
+				return element.animate({'stroke-dashoffset': limit}, 2000, function(){
+
+					return bob(element, limit);
+
+				});
+			}
+
+			return ;
+		};
+
+		var dispatch = function(obj, length, duration){
+			if(obj){
+				return setTimeout(function(){
+					obj.attr('stroke-dasharray', 200);
+					obj.attr('stroke-dashoffset', 0);
+
+					anims.push( bob( obj, length));
+				}, duration);
+			}
+
+		};
+
+		/**
+		 * Utils
+		 */
+
+		 /**
+		  * Get all paths from a context/layer
+		  */
+		var getPaths = function(context, layer){
+			if(layer){
+				return context.select(layer).selectAll('path');
+			}
+
+			return context.selectAll('path');
+		};
+
+		/**
+		 * Phone offset
+		 * @type {Number}
+		 */
+		var current_frame = 0;
+		var total_frames = 320;
+		var handle = 0;
+
 		var init = function(){
 			detect() && eneable();
 
-			// $('.page-wrap').append('<div id="bgd" class="canvas"></div>');
-
 			var s = Snap("#landing");
-			Snap.load("/images/new_background-project.svg", function (f) {
+			Snap.load("/images/test-phone.svg", function (f) {
+				var phoneLayers = [];
+				var pcLayers = [];
 
-		    var g = f.select("#phone");
-		    var circleline = f.select("#line01_circle");
-		    var circle = f.select("#line01");
+				var layerOne = f.select('#Phone');
+				var layerTwo = f.select('#PC');
+				layerTwo.attr('display', 'none');
 
-		    g.attr('stroke-dasharray', 1000);
-		    g.attr('stroke-dashoffset', 0);
 
-		    var anims = [];
-		    var dd = {};
+				$.each(getPaths(layerOne), function(index, element){
+					var length = element.getTotalLength();
 
-		    var bob = function(element, limit){
-		    	// console.log(element);
-		    	if(element){
-			    	element.attr('stroke-dashoffset', 0);
-				    return element.animate({'stroke-dashoffset': limit}, 2000, function(){
+					element.attr('stroke-dasharray', length + ' ' + length);
+					element.attr('stroke-dashoffset', length);
 
-				    	return bob(element, limit);
-				    	// console.log('after');
-				    });
-		    	}
-		    	// console.log('nope');
+					phoneLayers.push({ 'path': element, 'length': length });
+				});
 
-		    	return ;
-		    };
+				$.each(getPaths(layerTwo), function(index, element){
+					var length = element.getTotalLength();
 
-		    var dispatch = function(obj, length, duration){
-		    	if(obj){
-		    		return setTimeout(function(){
-					    obj.attr('stroke-dasharray', 200);
-					    obj.attr('stroke-dashoffset', 0);
+					element.attr('stroke-dasharray', length + ' ' + length);
+					element.attr('stroke-dashoffset', length);
 
-					    // setTimeout(function(){
-					    anims.push( bob( obj, length));
-		    		}, duration);
-		    	}
+					pcLayers.push({ 'path': element, 'length': length });
+				});
 
-		    };
+				var drawPC = function(){
+					layerOne.attr('display', 'none');
+					layerTwo.attr('display', 'block');
 
-		    for(var i=1; i < 12; i++){
-		    	dd['item'+i] = f.select("#icon"+i);
-		    	if(dd['item'+i]){
-		    		dispatch(dd['item'+i], 1000, (i*400));
-		    	}
-		    }
+					var progress = current_frame/total_frames;
 
-		    setTimeout(function(){
-		    	if(circleline){
-				    circleline.attr('stroke-dasharray', 1000);
-				    circleline.attr('stroke-dashoffset', 0);
+				   if (progress >= 1) {
 
-				    anims.push(bob(circleline, 2000));
-		    	}
-		    },1000);
+							$.each(pcLayers, function(index, element){
+								element.path.attr('stroke-dashoffset', 0 );
+							});
 
-		    setTimeout(function(){
-			    circle.attr('stroke-dasharray', 300);
-			    circle.attr('stroke-dashoffset', 0);
+				    	window.cancelAnimationFrame(handle);
 
-			    anims.push(bob(circle, 2000));
-		    },200);
+				    	setTimeout(function(){
+					    	current_frame = 0;
+								layerOne.attr('display', 'block');
+								layerTwo.attr('display', 'none');
+								drawPhone();
+				    	},1000);
+				   } else {
+				    	current_frame++;
+							$.each(pcLayers, function(index, element){
+								element.path.attr('stroke-dashoffset', Math.floor( element.length * (1 - progress) ) );
+							});
 
-		    anims.push(bob(g, 3000));
+				    	handle = window.requestAnimationFrame(drawPC);
+				   }
+				};
 
-		    s.append(f);
-		});
+				var drawPhone = function() {
+				   var progress = current_frame/total_frames;
+				   if (progress >= 1) {
+
+							$.each(phoneLayers, function(index, element){
+								element.path.attr('stroke-dashoffset', 0 );
+							});
+
+				    	window.cancelAnimationFrame(handle);
+
+				    	setTimeout(function(){
+								current_frame = 0;
+								drawPC();
+				    	},1000);
+				   } else {
+				    	current_frame++;
+							$.each(phoneLayers, function(index, element){
+								element.path.attr('stroke-dashoffset', Math.floor( element.length * (1 - progress) ) );
+							});
+
+				    	handle = window.requestAnimationFrame(drawPhone);
+				   }
+				};
+
+				drawPhone();
+				s.append(f);
+			});
 		};
 
 		var attachEvents = function(){

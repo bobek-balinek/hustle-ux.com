@@ -119,9 +119,15 @@
 		// overflow: hidden;
 	}
 
-	#Layer_1{
+	svg{
 		-webkit-transform-origin-y: 0%;
-		width: 100%;
+		// -webkit-transform-origin-x: -50%;
+		width: 100% !important;
+		height: 200%;
+	}
+
+	#landing{
+		min-height: 0;
 		height: auto;
 	}
 

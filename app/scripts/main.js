@@ -4,4 +4,8 @@
 
 	});
 
-})(jQuery, Modernizr, window);
+	window.addEventListener('load', function() {
+    FastClick.attach(document.body);
+	}, false);
+
+})(jQuery, Modernizr, FastClick, window);

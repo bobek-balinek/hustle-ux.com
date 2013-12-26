@@ -8,4 +8,9 @@
 	top: 0;
 	left: 0;
 	z-index: 80;
+
+	-webkit-transition: -webkit-transform 1s;
+	-moz-transition: -moz-transform 1s;
+	-ms-transition: -ms-transform 1s;
+	transition: transform 1s;
 }
