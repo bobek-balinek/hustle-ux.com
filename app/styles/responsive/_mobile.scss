@@ -120,15 +120,15 @@
 	}
 
 	svg{
-		-webkit-transform-origin-y: 0%;
+		// -webkit-transform-origin-y: 0%;
 		// -webkit-transform-origin-x: -50%;
 		width: 100% !important;
-		height: 200%;
+		height: 100%%;
 	}
 
 	#landing{
-		min-height: 0;
-		height: auto;
+		// min-height: 0;
+		// height: 100%;
 	}
 
 }

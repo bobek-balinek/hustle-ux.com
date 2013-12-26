@@ -71,7 +71,7 @@
 		 * @type {Number}
 		 */
 		var current_frame = 0;
-		var total_frames = 320;
+		var total_frames = 120;
 		var handle = 0;
 
 		var init = function(){
@@ -98,6 +98,7 @@
 
 				$.each(getPaths(layerTwo), function(index, element){
 					var length = element.getTotalLength();
+					console.log(element, length);
 
 					element.attr('stroke-dasharray', length + ' ' + length);
 					element.attr('stroke-dashoffset', length);
@@ -121,9 +122,7 @@
 
 				    	setTimeout(function(){
 					    	current_frame = 0;
-								layerOne.attr('display', 'block');
-								layerTwo.attr('display', 'none');
-								drawPhone();
+								drawPCBackward();
 				    	},1000);
 				   } else {
 				    	current_frame++;
@@ -135,7 +134,37 @@
 				   }
 				};
 
-				var drawPhone = function() {
+				var drawPCBackward = function(){
+					layerOne.attr('display', 'none');
+					layerTwo.attr('display', 'block');
+
+					var progress = current_frame/total_frames;
+
+				   if (progress >= 1) {
+
+							$.each(pcLayers, function(index, element){
+								element.path.attr('stroke-dashoffset', element.length );
+							});
+
+				    	window.cancelAnimationFrame(handle);
+
+				    	setTimeout(function(){
+					    	current_frame = 0;
+								layerOne.attr('display', 'block');
+								layerTwo.attr('display', 'none');
+								drawPhoneForward();
+				    	},1000);
+				   } else {
+				    	current_frame++;
+							$.each(pcLayers, function(index, element){
+								element.path.attr('stroke-dashoffset', (-1) * Math.floor( element.length * (progress) ) );
+							});
+
+				    	handle = window.requestAnimationFrame(drawPCBackward);
+				   }
+				};
+
+				var drawPhoneForward = function() {
 				   var progress = current_frame/total_frames;
 				   if (progress >= 1) {
 
@@ -144,22 +173,42 @@
 							});
 
 				    	window.cancelAnimationFrame(handle);
-
 				    	setTimeout(function(){
 								current_frame = 0;
-								drawPC();
-				    	},1000);
+								drawPhoneBackward();
+							},1000);
 				   } else {
 				    	current_frame++;
 							$.each(phoneLayers, function(index, element){
-								element.path.attr('stroke-dashoffset', Math.floor( element.length * (1 - progress) ) );
+								element.path.attr('stroke-dashoffset', (-1) * Math.floor( element.length * (1 - progress) ) );
 							});
 
-				    	handle = window.requestAnimationFrame(drawPhone);
+				    	handle = window.requestAnimationFrame(drawPhoneForward);
 				   }
 				};
 
-				drawPhone();
+				var drawPhoneBackward = function() {
+				   var progress = current_frame/total_frames;
+				   if (progress >= 1) {
+
+							$.each(phoneLayers, function(index, element){
+								element.path.attr('stroke-dashoffset', element.length );
+							});
+
+				    	window.cancelAnimationFrame(handle);
+							current_frame = 0;
+							drawPC();
+				   } else {
+				    	current_frame++;
+							$.each(phoneLayers, function(index, element){
+								element.path.attr('stroke-dashoffset', Math.floor( element.length * (progress) ) );
+							});
+
+				    	handle = window.requestAnimationFrame(drawPhoneBackward);
+				   }
+				};
+
+				drawPhoneForward();
 				s.append(f);
 			});
 		};
