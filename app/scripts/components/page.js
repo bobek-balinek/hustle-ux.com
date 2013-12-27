@@ -34,6 +34,19 @@
 					'ready': connectCallback,
 					'disconnect': disconnectCallback
 				});
+
+				if( $('body').hasClass('has-header-image') ){
+
+					$('.page-wrap').on('scroll', function(event){
+
+						if( $('.page-wrap').scrollTop() < $(window).height() ){
+							$('body').addClass('is-over-picture');
+						}else{
+							$('body').removeClass('is-over-picture');
+						}
+					});
+
+				}
 			}
 
 			app.get('slider') && app.get('slider').init();

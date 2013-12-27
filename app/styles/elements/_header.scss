@@ -41,6 +41,7 @@ header{
 
 		max-width: 40px;
 		max-height: 40px;
+		width: 40px;
 	}
 
 	.no-touch &:hover{
@@ -84,4 +85,10 @@ header{
 	display: none;
 	margin: 0 0 0 1em;
 	@include text-shadow( 1px 1px 0px rgba(255,255,255,0.3) );
+
+
+	.is-over-picture &{
+		color: #cccccc;
+		@include text-shadow( 1px 1px 0px rgba(0,0,0,0.3) );
+	}
 }
