@@ -69,11 +69,7 @@
 		/**
 		 * Event Dispatcher
 		 */
-		var dispatch = function(animations){
-			if(!animations){
-				var animations = anims;
-			}
-
+		function animationQueue(animations){
 			var current = 0;
 
 			var animationCallback = function(){
@@ -95,7 +91,6 @@
 				animation.handler = 0;
 
 				animation.draw = function(){
-
 					animation.progress = animation.current_frame/animation.duration;
 
 					if (animation.progress >= 1) {
@@ -119,26 +114,29 @@
 			});
 
 			return animations[current].draw();
+		};
 
+		function animation(name, duration, draw, end){
+			return {
+				'name': name,
+				'elements': [],
+				'current_frame': 0,
+				'duration': duration,
+				'handler': 0,
+				'progress': 0,
+				'drawCallback': draw,
+				'endCallback': end
+			};
 		};
 
 		/**
 		 * Animation to draw the phone forward
 		 */
-		var phoneForwardAnimation = {
-			name: 'phoneForward',
-			elements: [],
-			current_frame: 0,
-			duration: 90,
-			handler: 0,
-			progress: 0,
-			drawCallback: function(progress){
+		var phoneForwardAnimation = new animation('phoneForward', 90, function(progress){
 				return $.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', (-1) * Math.floor( element.length * (1 - progress) ) );
 				});
-
-			},
-			endCallback: function(callback){
+			},function(callback){
 				layerTwo.attr('display', 'none');
 
 				$.each(this.elements, function(index, element){
@@ -146,26 +144,17 @@
 				});
 
 				return callback();
-			}
-		};
+			});
 
 		/**
 		 * Animation to draw the phone backward
 		 */
-		var phoneBackwardAnimation = {
-			name: 'phoneBackward',
-			elements: [],
-			current_frame: 0,
-			duration: 90,
-			handler: 0,
-			progress: 0,
-			drawCallback: function(progress){
+		var phoneBackwardAnimation = new animation('phoneBackward', 90, function(progress){
 				return $.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', Math.floor( element.length * (progress) ) );
 				});
 
-			},
-			endCallback: function(callback){
+			}, function(callback){
 				layerOne.attr('display', 'none');
 				layerTwo.attr('display', 'block');
 
@@ -174,51 +163,33 @@
 				});
 
 				return callback();
-			}
-		};
+			});
 
 		/**
 		 * Animation to draw the monitor dorward
 		 */
-		var monitorForwardAnimation = {
-			name: 'monitorForward',
-			elements: [],
-			current_frame: 0,
-			duration: 90,
-			handler: 0,
-			progress: 0,
-			drawCallback: function(progress){
+		var monitorForwardAnimation = new animation('monitorForward', 90, function(progress){
 				return $.each(this.elements, function(index, element){
-					element.path.attr('stroke-dashoffset', Math.floor( element.length * (1- progress) ) );
+					element.path.attr('stroke-dashoffset', Math.floor( element.length * (1 - progress) ) );
 				});
 
-			},
-			endCallback: function(callback){
+			}, function(callback){
 				$.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', 0 );
 				});
 
 				return callback();
-			}
-		};
+			});
 
 		/**
 		 * Animation to draw the phone backward
 		 */
-		var monitorBackwardAnimation = {
-			name: 'monitorBackward',
-			elements: [],
-			current_frame: 0,
-			duration: 90,
-			handler: 0,
-			progress: 0,
-			drawCallback: function(progress){
+		var monitorBackwardAnimation = new animation('monitorBackward', 90, function(progress){
 				return $.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', (-1) * Math.floor( element.length * (progress) ) );
 				});
 
-			},
-			endCallback: function(callback){
+			}, function(callback){
 				layerOne.attr('display', 'block');
 				layerTwo.attr('display', 'none');
 
@@ -227,8 +198,7 @@
 				});
 
 				return callback();
-			}
-		};
+			});
 
 		/**
 		 * Initialise the component
@@ -236,10 +206,13 @@
 		var init = function(){
 			detect() && eneable();
 
+			if(!detect())
+				return;
+
 			/**
 			 * Load the SVG file in
 			 */
-			snap = Snap("#landing");
+			snap = Snap("#landing .container");
 			Snap.load("/images/test-phone.svg", function (f) {
 				layerOne = f.select('#Phone');
 				layerTwo = f.select('#PC');
@@ -278,7 +251,7 @@
 				/**
 				 * Start animations
 				 */
-				dispatch();
+				var mainAnimation = new animationQueue(anims);
 				snap.append(f);
 			});
 		};
@@ -298,7 +271,6 @@
 		init();
 
 		return {
-			'dispatch': dispatch,
 			'init': init,
 			'detect': detect,
 			'eneable': eneable,
