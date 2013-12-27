@@ -11,13 +11,12 @@
 	overflow: hidden;
 	@include translate3d(100%,0,0);
 
-	-webkit-transition: -webkit-transform 1s;
-	-moz-transition: -moz-transform 1s;
-	-ms-transition: -ms-transform 1s;
-	transition: transform 1s;
+	-webkit-transition: -webkit-transform 0.4s ease-out;
+	-moz-transition: -moz-transform 0.4s ease-out;
+	-ms-transition: -ms-transform 0.4s ease-out;
+	transition: transform 0.4s ease-out;
 
 	&.active{
-		// background: $colour-white;
 		@include translate3d(0,0,0);
 		display: block;
 	}
@@ -35,11 +34,10 @@
 	z-index: 25;
 	overflow: hidden;
 
-	-webkit-transition: -webkit-transform 1s;
-	-moz-transition: -moz-transform 1s;
-	-ms-transition: -ms-transform 1s;
-	transition: transform 1s;
-
+	-webkit-transition: -webkit-transform 0.4s ease-out;
+	-moz-transition: -moz-transform 0.4s ease-out;
+	-ms-transition: -ms-transform 0.4s ease-out;
+	transition: transform 0.4s ease-out;
 
 	&.active{
 	}
@@ -52,10 +50,10 @@
 		background: transparent;
 		@include translate3d(100%,0,0);
 
-		-webkit-transition: -webkit-transform 1s;
-		-moz-transition: -moz-transform 1s;
-		-ms-transition: -ms-transform 1s;
-		transition: transform 1s;
+		-webkit-transition: -webkit-transform 0.4s ease-out;
+		-moz-transition: -moz-transform 0.4s ease-out;
+		-ms-transition: -ms-transform 0.4s ease-out;
+		transition: transform 0.4s ease-out;
 
 		&.active{
 			@include translate3d(0,0,0);

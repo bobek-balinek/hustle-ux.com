@@ -38,12 +38,7 @@
 	var backgroundComponent = function(){
 
 		var componentElement = $('.canvas');
-		var current_frame = 0;
-		var total_frames = 120;
-		var handle = 0;
 		var anims = [];
-		var dd = {};
-
 		var layerOne, layerTwo, snap;
 
 		var detect = function(){
@@ -55,9 +50,9 @@
 			console.log('enabled background!');
 		};
 
-		 /**
-		  * Get all paths from a context/layer
-		  */
+		/**
+		 * Get all paths from a context/layer
+		 */
 		var getPaths = function(context, layer){
 			if(layer){
 				return context.select(layer).selectAll('path');
@@ -116,6 +111,9 @@
 			return animations[current].draw();
 		};
 
+		/**
+		 * Animation constructor
+		 */
 		function animation(name, duration, draw, end){
 			return {
 				'name': name,
@@ -128,6 +126,7 @@
 				'endCallback': end
 			};
 		};
+
 
 		/**
 		 * Animation to draw the phone forward
