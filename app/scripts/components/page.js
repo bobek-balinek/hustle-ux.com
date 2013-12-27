@@ -44,6 +44,9 @@
 						}else{
 							$('body').removeClass('is-over-picture');
 						}
+
+						var offset = 150 * ( $('.page-wrap').scrollTop() / $(window).height() );
+						// $('#landing').css('background-position')
 					});
 
 				}

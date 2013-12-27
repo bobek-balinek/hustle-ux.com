@@ -131,7 +131,7 @@
 		/**
 		 * Animation to draw the phone forward
 		 */
-		var phoneForwardAnimation = new animation('phoneForward', 90, function(progress){
+		var phoneForwardAnimation = new animation('phoneForward', 120, function(progress){
 				return $.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', (-1) * Math.floor( element.length * (1 - progress) ) );
 				});
@@ -148,7 +148,7 @@
 		/**
 		 * Animation to draw the phone backward
 		 */
-		var phoneBackwardAnimation = new animation('phoneBackward', 90, function(progress){
+		var phoneBackwardAnimation = new animation('phoneBackward', 120, function(progress){
 				return $.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', Math.floor( element.length * (progress) ) );
 				});
@@ -167,7 +167,7 @@
 		/**
 		 * Animation to draw the monitor dorward
 		 */
-		var monitorForwardAnimation = new animation('monitorForward', 90, function(progress){
+		var monitorForwardAnimation = new animation('monitorForward', 120, function(progress){
 				return $.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', Math.floor( element.length * (1 - progress) ) );
 				});
@@ -183,7 +183,7 @@
 		/**
 		 * Animation to draw the phone backward
 		 */
-		var monitorBackwardAnimation = new animation('monitorBackward', 90, function(progress){
+		var monitorBackwardAnimation = new animation('monitorBackward', 120, function(progress){
 				return $.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', (-1) * Math.floor( element.length * (progress) ) );
 				});
