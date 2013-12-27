@@ -125,16 +125,12 @@
 			activateComponent();
 
 			if(getElement().length){
-				console.log(getElement());
 
 				getElement().addClass('active');
 				$('#landing .container').addClass('off');
 				resetActive();
 
 				return setTimeout(function(){
-
-					console.log(index);
-
 					getElement().find(options.slideSelector).eq(index).addClass('active');
 				},500);
 
