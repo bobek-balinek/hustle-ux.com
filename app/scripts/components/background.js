@@ -181,7 +181,7 @@
 				/**
 				 * Forward animation
 				 */
-				var dn = new animation('2_button', 45, function(progress){
+				var dn = new animation('2_button', 30, function(progress){
 					var pixel_offset = 0;
 					var offset;
 					var right_elements = this.elements[0];
@@ -223,7 +223,7 @@
 				/**
 				 * Forward animation
 				 */
-				var dnn = new animation('2_button', 30, function(progress){
+				var dnn = new animation('2_button', 25, function(progress){
 					var pixel_offset = 150;
 					var offset;
 					var right_elements = this.elements[0];
