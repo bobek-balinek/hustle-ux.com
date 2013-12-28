@@ -68,17 +68,16 @@
 			var current = 0;
 
 			var animationCallback = function(){
-				if(animations[current + 1]){
+				if( animations[current + 1] ){
 					current++;
-					animations[current].progress = 0;
-					animations[current].current_frame = 0;
-					return animations[current].draw();
 				}else{
 					current = 0;
-					animations[current].progress = 0;
-					animations[current].current_frame = 0;
-					return animations[current].draw();
 				}
+
+				animations[current].progress = 0;
+				animations[current].handler = 0;
+				animations[current].current_frame = 0;
+				return animations[current].draw();
 			};
 
 			$.each(animations, function(index, animation){
@@ -89,14 +88,13 @@
 					animation.progress = animation.current_frame/animation.duration;
 
 					if (animation.progress >= 1) {
+						window.cancelAnimationFrame(animation.handler);
 
 						if(animation.endCallback){
 							animation.endCallback(animationCallback);
 						}else{
 							animationCallback();
 						}
-
-						window.cancelAnimationFrame(animation.handler);
 					}else{
 						animation.current_frame++;
 
@@ -164,66 +162,41 @@
 				return callback();
 			});
 
-				var equation = function(pox){
-					return (600 * ( Math.pow(pox, 2) ) - (600 * pox) + 150);
-				};
+		var equation = function(pox, pow){
+			var x = (2 * Math.PI) * pox;
+			var d = (1 + Math.cos( x ) );
+			return d * 15 * pow;
+			// return ((600 / pow) * ( Math.pow(pox, 2) ) - ((600 / pow) * pox) + 150);
+		};
 
 				/**
 				 * Forward animation
 				 */
-				var dn = new animation('2_button', 120, function(progress){
-					var pixel_offset = 150;
+				var dn = new animation('2_button', 240, function(progress){
+					var pixel_offset = 0;
 					var offset;
-					var offset2 = Math.floor(0 - (pixel_offset * progress));
+					var right_elements = this.elements[0];
+					var left_elements = this.elements[1];
 
-					// var bbox = this.elements[0][0].select('path').getBBox();
-					// var cx = bbox.x + (bbox.w / 2 );
-					// var cy = bbox.y + (bbox.h / 2 );
-					// this.elements[0][0] && this.elements[0][0].transform("s" + [(1.5- progress), cx, cy] );
+					for( var i = 0; i < right_elements.length; i++ ){
 
-					var els = this.elements[0];
-					for( var i = 0; i < els.length; i++ ){
-						// console.log(progress);
-						offset = equation( (progress * (1/ (i+1)) ) );
-						console.log(offset);
-						// offset2 = Math.floor(0 - (pixel_offset * progress * (1/i) ));
-						els[i].attr({
+						var prog = progress;
+						offset = (-1 * pixel_offset) + equation( prog, (i+1) );
+
+						right_elements[i].attr({
 							transform: "t"+offset+",0"
 						});
-
 					}
 
-				}, function(callback){
-					return callback();
-				});
+					for( var i = 0; i < left_elements.length; i++ ){
 
-				/**
-				 * Backward animation
-				 */
-				var dnn = new animation('2_button', 120, function(progress){
-					var pixel_offset = 150;
-					// var offset = Math.floor( pixel_offset - (pixel_offset * progress) );
-					// var offset2 = Math.floor((-pixel_offset) + (pixel_offset * progress));
+						var prog = progress;
+						offset = (pixel_offset) + ((-1) * equation( prog, (i+1) ) );
 
-					// var cx = this.elements[0][0].attr('cx');
-					// var cy = this.elements[0][0].attr('cy');
-
-					// this.elements[0][0] && this.elements[0][0].transform("s" + [(progress), cx, cy] );
-
-					var els = this.elements[0];
-					for( var i = 0; i < els.length; i++ ){
-
-						// offset2 = Math.floor((-pixel_offset * (1/i)) + (pixel_offset * progress * (1/i)));
-						els[i].attr({
-							transform: "t"+equation( (progress * (1/(i+1))) )+",0"
+						left_elements[i].attr({
+							transform: "t"+offset+",0"
 						});
-
 					}
-
-					// this.elements[1].attr({
-					// 	transform: "t"+offset2+",0"
-					// });
-
 
 				}, function(callback){
 					return callback();
@@ -272,24 +245,18 @@
 
 				dn.elements.push(btn);
 				dn.elements.push(ico);
-				dnn.elements.push(btn);
-				dnn.elements.push(ico);
-
-				// console.log(ico[0].select('circle').getBBox().x);
 
 				/**
 				 * Prepare animations
 				 */
 				anims.push(phoneForwardAnimation);
-				// anims.push(phoneBackwardAnimation);
 				anims.push(monitorForwardAnimation);
-				// anims.push(monitorBackwardAnimation);
 
 				/**
 				 * Start animations
 				 */
 				var mainAnimation = new animationQueue(anims);
-				var contentsAnimation = new animationQueue([dn]);
+				// var contentsAnimation = new animationQueue([dn]);
 				snap.append(f);
 			});
 		};
