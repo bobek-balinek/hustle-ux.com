@@ -209,7 +209,7 @@
 					for( var i = 0; i < separators.length; i++ ){
 
 						offset = (150) + ((-1) * equation( progress, (i+1) ) );
-						// console.log('bb',separators[i]);
+
 						separators[i].attr({
 							x1: (40 + offset),
 							x2: (515 - offset)
