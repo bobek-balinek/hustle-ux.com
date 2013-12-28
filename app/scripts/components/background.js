@@ -64,20 +64,26 @@
 		/**
 		 * Event Dispatcher
 		 */
-		function animationQueue(animations){
+		function animationQueue(animations, noLoop){
 			var current = 0;
 
 			var animationCallback = function(){
-				if( animations[current + 1] ){
-					current++;
-				}else{
-					current = 0;
+				if( !noLoop ){
+
+					if( animations[current + 1]){
+						current++;
+					}else{
+						current = 0;
+					}
+
+					animations[current].progress = 0;
+					animations[current].handler = 0;
+					animations[current].current_frame = 0;
+					return animations[current].draw();
+
 				}
 
-				animations[current].progress = 0;
-				animations[current].handler = 0;
-				animations[current].current_frame = 0;
-				return animations[current].draw();
+				return ;
 			};
 
 			$.each(animations, function(index, animation){
@@ -136,6 +142,8 @@
 				layerOne.attr('display', 'none');
 				layerTwo.attr('display', 'block');
 
+				var contentsAnimation = new animationQueue([dn], true);
+
 				$.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', element.length );
 				});
@@ -155,6 +163,8 @@
 				layerOne.attr('display', 'block');
 				layerTwo.attr('display', 'none');
 
+				var contentsAnimation = new animationQueue([dnn], true);
+
 				$.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', element.length );
 				});
@@ -162,26 +172,25 @@
 				return callback();
 			});
 
-		var equation = function(pox, pow){
-			var x = (2 * Math.PI) * pox;
-			var d = (1 + Math.cos( x ) );
-			return d * 15 * pow;
-			// return ((600 / pow) * ( Math.pow(pox, 2) ) - ((600 / pow) * pox) + 150);
-		};
+			var equation = function(pox, pow){
+				var x = ((Math.PI)/2) * pox;
+				var d = (1 + Math.sin( x ) );
+				return d * ((75*pox) );
+			};
 
 				/**
 				 * Forward animation
 				 */
-				var dn = new animation('2_button', 240, function(progress){
+				var dn = new animation('2_button', 45, function(progress){
 					var pixel_offset = 0;
 					var offset;
 					var right_elements = this.elements[0];
 					var left_elements = this.elements[1];
+					var separators = this.elements[2];
 
 					for( var i = 0; i < right_elements.length; i++ ){
 
-						var prog = progress;
-						offset = (-1 * pixel_offset) + equation( prog, (i+1) );
+						offset = (-pixel_offset) + equation( progress, (i+1) );
 
 						right_elements[i].attr({
 							transform: "t"+offset+",0"
@@ -190,11 +199,62 @@
 
 					for( var i = 0; i < left_elements.length; i++ ){
 
-						var prog = progress;
-						offset = (pixel_offset) + ((-1) * equation( prog, (i+1) ) );
+						offset = (pixel_offset) + ((-1) * equation( progress, (i+1) ) );
 
 						left_elements[i].attr({
 							transform: "t"+offset+",0"
+						});
+					}
+
+					for( var i = 0; i < separators.length; i++ ){
+
+						offset = (150) + ((-1) * equation( progress, (i+1) ) );
+						// console.log('bb',separators[i]);
+						separators[i].attr({
+							x1: (40 + offset),
+							x2: (515 - offset)
+						});
+					}
+
+				}, function(callback){
+					return callback();
+				});
+
+				/**
+				 * Forward animation
+				 */
+				var dnn = new animation('2_button', 30, function(progress){
+					var pixel_offset = 150;
+					var offset;
+					var right_elements = this.elements[0];
+					var left_elements = this.elements[1];
+					var separators = this.elements[2];
+
+					for( var i = 0; i < right_elements.length; i++ ){
+
+						offset = (pixel_offset) - equation( progress, (i+1) );
+
+						right_elements[i].attr({
+							transform: "t"+offset+",0"
+						});
+					}
+
+					for( var i = 0; i < left_elements.length; i++ ){
+
+						offset = (-pixel_offset) - ((-1) * equation( progress, (i+1) ) );
+
+						left_elements[i].attr({
+							transform: "t"+offset+",0"
+						});
+					}
+
+					for( var i = 0; i < separators.length; i++ ){
+
+						offset = (0) - ((-1) * equation( progress, (i+1) ) );
+
+						separators[i].attr({
+							x1: (40 + offset),
+							x2: (515 - offset)
 						});
 					}
 
@@ -242,9 +302,15 @@
 
 				var ico = f.selectAll('#header_ico, #line_1_ico, #line_2_ico, #line_3_ico');
 				var btn = f.selectAll('#header_btn1, #header_btn2, #line_1_btn, #line_2_btn, #line_3_btn');
+				var lines = f.selectAll('#separator_1, #separator_2, #separator_3, #separator_4');
 
 				dn.elements.push(btn);
 				dn.elements.push(ico);
+				dn.elements.push(lines);
+
+				dnn.elements.push(btn);
+				dnn.elements.push(ico);
+				dnn.elements.push(lines);
 
 				/**
 				 * Prepare animations
@@ -256,7 +322,6 @@
 				 * Start animations
 				 */
 				var mainAnimation = new animationQueue(anims);
-				// var contentsAnimation = new animationQueue([dn]);
 				snap.append(f);
 			});
 		};
