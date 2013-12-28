@@ -68,7 +68,7 @@
 			var current = 0;
 
 			var animationCallback = function(){
-				if(animations[current+ 1]){
+				if(animations[current + 1]){
 					current++;
 					animations[current].progress = 0;
 					animations[current].current_frame = 0;
@@ -127,33 +127,14 @@
 			};
 		};
 
-
 		/**
 		 * Animation to draw the phone forward
 		 */
-		var phoneForwardAnimation = new animation('phoneForward', 120, function(progress){
+		var phoneForwardAnimation = new animation('phoneForward', 240, function(progress){
 				return $.each(this.elements, function(index, element){
-					element.path.attr('stroke-dashoffset', (-1) * Math.floor( element.length * (1 - progress) ) );
+					element.path.attr('stroke-dashoffset', (-1) * Math.floor( (2 * element.length) * (0.5 - progress) ) );
 				});
 			},function(callback){
-				layerTwo.attr('display', 'none');
-
-				$.each(this.elements, function(index, element){
-					element.path.attr('stroke-dashoffset', 0 );
-				});
-
-				return callback();
-			});
-
-		/**
-		 * Animation to draw the phone backward
-		 */
-		var phoneBackwardAnimation = new animation('phoneBackward', 120, function(progress){
-				return $.each(this.elements, function(index, element){
-					element.path.attr('stroke-dashoffset', Math.floor( element.length * (progress) ) );
-				});
-
-			}, function(callback){
 				layerOne.attr('display', 'none');
 				layerTwo.attr('display', 'block');
 
@@ -167,25 +148,9 @@
 		/**
 		 * Animation to draw the monitor dorward
 		 */
-		var monitorForwardAnimation = new animation('monitorForward', 120, function(progress){
+		var monitorForwardAnimation = new animation('monitorForward', 240, function(progress){
 				return $.each(this.elements, function(index, element){
-					element.path.attr('stroke-dashoffset', Math.floor( element.length * (1 - progress) ) );
-				});
-
-			}, function(callback){
-				$.each(this.elements, function(index, element){
-					element.path.attr('stroke-dashoffset', 0 );
-				});
-
-				return callback();
-			});
-
-		/**
-		 * Animation to draw the phone backward
-		 */
-		var monitorBackwardAnimation = new animation('monitorBackward', 120, function(progress){
-				return $.each(this.elements, function(index, element){
-					element.path.attr('stroke-dashoffset', (-1) * Math.floor( element.length * (progress) ) );
+					element.path.attr('stroke-dashoffset', Math.floor( (2 * element.length) * (0.5 - progress) ) );
 				});
 
 			}, function(callback){
@@ -198,6 +163,71 @@
 
 				return callback();
 			});
+
+				var equation = function(pox){
+					return (600 * ( Math.pow(pox, 2) ) - (600 * pox) + 150);
+				};
+
+				/**
+				 * Forward animation
+				 */
+				var dn = new animation('2_button', 120, function(progress){
+					var pixel_offset = 150;
+					var offset;
+					var offset2 = Math.floor(0 - (pixel_offset * progress));
+
+					// var bbox = this.elements[0][0].select('path').getBBox();
+					// var cx = bbox.x + (bbox.w / 2 );
+					// var cy = bbox.y + (bbox.h / 2 );
+					// this.elements[0][0] && this.elements[0][0].transform("s" + [(1.5- progress), cx, cy] );
+
+					var els = this.elements[0];
+					for( var i = 0; i < els.length; i++ ){
+						// console.log(progress);
+						offset = equation( (progress * (1/ (i+1)) ) );
+						console.log(offset);
+						// offset2 = Math.floor(0 - (pixel_offset * progress * (1/i) ));
+						els[i].attr({
+							transform: "t"+offset+",0"
+						});
+
+					}
+
+				}, function(callback){
+					return callback();
+				});
+
+				/**
+				 * Backward animation
+				 */
+				var dnn = new animation('2_button', 120, function(progress){
+					var pixel_offset = 150;
+					// var offset = Math.floor( pixel_offset - (pixel_offset * progress) );
+					// var offset2 = Math.floor((-pixel_offset) + (pixel_offset * progress));
+
+					// var cx = this.elements[0][0].attr('cx');
+					// var cy = this.elements[0][0].attr('cy');
+
+					// this.elements[0][0] && this.elements[0][0].transform("s" + [(progress), cx, cy] );
+
+					var els = this.elements[0];
+					for( var i = 0; i < els.length; i++ ){
+
+						// offset2 = Math.floor((-pixel_offset * (1/i)) + (pixel_offset * progress * (1/i)));
+						els[i].attr({
+							transform: "t"+equation( (progress * (1/(i+1))) )+",0"
+						});
+
+					}
+
+					// this.elements[1].attr({
+					// 	transform: "t"+offset2+",0"
+					// });
+
+
+				}, function(callback){
+					return callback();
+				});
 
 		/**
 		 * Initialise the component
@@ -226,7 +256,6 @@
 					element.attr('stroke-dashoffset', length);
 
 					phoneForwardAnimation.elements.push({ 'path': element, 'length': length });
-					phoneBackwardAnimation.elements.push({ 'path': element, 'length': length });
 				});
 
 				$.each(getPaths(layerTwo), function(index, element){
@@ -236,21 +265,31 @@
 					element.attr('stroke-dashoffset', length);
 
 					monitorForwardAnimation.elements.push({ 'path': element, 'length': length });
-					monitorBackwardAnimation.elements.push({ 'path': element, 'length': length });
 				});
+
+				var ico = f.selectAll('#header_ico, #line_1_ico, #line_2_ico, #line_3_ico');
+				var btn = f.selectAll('#header_btn1, #header_btn2, #line_1_btn, #line_2_btn, #line_3_btn');
+
+				dn.elements.push(btn);
+				dn.elements.push(ico);
+				dnn.elements.push(btn);
+				dnn.elements.push(ico);
+
+				// console.log(ico[0].select('circle').getBBox().x);
 
 				/**
 				 * Prepare animations
 				 */
 				anims.push(phoneForwardAnimation);
-				anims.push(phoneBackwardAnimation);
+				// anims.push(phoneBackwardAnimation);
 				anims.push(monitorForwardAnimation);
-				anims.push(monitorBackwardAnimation);
+				// anims.push(monitorBackwardAnimation);
 
 				/**
 				 * Start animations
 				 */
 				var mainAnimation = new animationQueue(anims);
+				var contentsAnimation = new animationQueue([dn]);
 				snap.append(f);
 			});
 		};
