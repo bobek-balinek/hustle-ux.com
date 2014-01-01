@@ -47,6 +47,43 @@ module.exports = function (grunt) {
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
+            },
+            assemble:{
+                files: ['<%= yeoman.app %>/**/*.hbs'],
+                tasks: ['assemble:server']
+            }
+        },
+        assemble: {
+            options: {
+                layout: 'default.hbs',
+                assets: '<%= yeoman.app %>',
+                data: ['<%= yeoman.app %>/data/{,*/}*.{json,yml}'],
+                layoutdir: '<%= yeoman.app %>/layouts/',
+                partials: ['<%= yeoman.app %>/partials/**/*.hbs'],
+                helpers: ['<%= yeoman.app %>/helpers/**/*.js']
+            },
+            server: {
+                options: {
+                    flatten: false
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>/',
+                        src: ['**/*.hbs', '!**/layouts/**/*.hbs', '!**/partials/**/*.hbs'],
+                        dest: '.tmp/'
+                    }
+                ]
+            },
+            dist: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>/',
+                        src: ['**/*.hbs', '!**/layouts/**/*.hbs', '!**/partials/**/*.hbs'],
+                        dest: '<%= yeoman.dist %>'
+                    }
+                ]
             }
         },
         connect: {
@@ -166,9 +203,10 @@ module.exports = function (grunt) {
         },
         // not used since Uglify task does concat,
         // but still available if needed
-        /*concat: {
-            dist: {}
-        },*/
+        // concat: {
+        //     dist: {
+        //     }
+        // },
         // not enabled since usemin task does concat and uglify
         // check index.html to edit your build targets
         // enable this task if you prefer defining your build targets here
@@ -189,16 +227,17 @@ module.exports = function (grunt) {
         },
         useminPrepare: {
             options: {
+                root: '<%= yeoman.app %>',
                 dest: '<%= yeoman.dist %>'
             },
-            html: '<%= yeoman.app %>/index.html'
+            html: ['<%= yeoman.dist %>/index.html']
         },
         usemin: {
             options: {
                 dirs: ['<%= yeoman.dist %>']
             },
             html: ['<%= yeoman.dist %>/{,*/}*.html'],
-            css: ['<%= yeoman.dist %>/styles/{,*/}*.css']
+            css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
         },
         imagemin: {
             dist: {
@@ -299,6 +338,8 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('assemble');
+
     grunt.registerTask('server', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
@@ -306,6 +347,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'assemble',
             'concurrent:server',
             'connect:livereload',
             'open',
@@ -322,6 +364,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
+        'assemble:dist',
         'useminPrepare',
         'concurrent:dist',
         'concat',

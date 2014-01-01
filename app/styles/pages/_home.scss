@@ -4,7 +4,9 @@
 
 .landing{
 	overflow: hidden;
-	background: url('/images/bg-img.jpg') no-repeat center center fixed;
+	background: url('/images/bg-img.jpg');
+	background-repeat: no-repeat;
+	background-position: center center;
 	-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

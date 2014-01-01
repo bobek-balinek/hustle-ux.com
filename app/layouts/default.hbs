@@ -1,0 +1,82 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Bobby Bobak - UI/UX Designer based in Manchester</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css({.tmp,app}) styles/main.css -->
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:300,700,300italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="styles/font-awesome.css">
+        <link rel="stylesheet" href="styles/animate.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+        <!-- build:js({.tmp,app}) scripts/modernizr.js -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+    </head>
+    <body class="homepage is-over-picture has-header-image">
+        <div class="tip"></div>
+
+        <div class="top-bar">
+            <!--[if lt IE 9]>
+                <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            <![endif]-->
+        </div>
+
+        <header>
+            <nav>
+                <ul>
+                    <li class="home"><a href="index.html"><img src="images/btn_logotype.png" alt=""></a> <strong class="link-label">HUSTLE</strong></li>
+                    <li class="hidden"><a href="#speech"><span class="fa fa-microphone"></span></a> <strong class="link-label">Speak a command</strong></li>
+                    <li><a href="#"><span class="fa fa-envelope"></span></a> <strong class="link-label">Message me</strong></li>
+                    <li><a href="#"><span class="fa fa-twitter"></span></a> <strong class="link-label">@bobek_balinek</strong></li>
+                    <li><a href="#profile"><span class="fa fa-user"></span></a> <strong class="link-label">Profile</strong></li>
+                </ul>
+            </nav>
+        </header>
+
+    <div class="page-wrap" id="pageWrap">
+        {{> body}}
+
+        <footer>End.</footer>
+    </div>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+
+        <script src="//js.leapmotion.com/0.2.1/leap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r61/three.min.js"></script>
+        <script src="//cdn.jsdelivr.net/snap.svg/0.1.0/snap.svg-min.js"></script>
+
+        <!-- build:js({.tmp,app}) scripts/vendors.js -->
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/hammerjs/dist/hammer.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script type='application/javascript' src='bower_components/fastclick/lib/fastclick.js'></script>
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/main.js -->
+        <script src="scripts/app.js"></script>
+
+        <script src="scripts/components/background.js"></script>
+        <script src="scripts/components/mobile.js"></script>
+        <script src="scripts/components/motion.js"></script>
+        <script src="scripts/components/speech.js"></script>
+        <script src="scripts/components/slider.js"></script>
+        <script src="scripts/components/devices.js"></script>
+        <script src="scripts/components/page.js"></script>
+
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

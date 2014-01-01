@@ -24,7 +24,8 @@
     "grunt-contrib-jshint": "~0.4.3",
     "grunt-mocha": "~0.3.4",
     "browserify": "~2.36.1",
-    "grunt-browserify": "~1.2.11"
+    "grunt-browserify": "~1.2.11",
+    "assemble": "~0.4.33"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
