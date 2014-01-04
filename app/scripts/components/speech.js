@@ -33,12 +33,22 @@
 			return isEnabled;
 		};
 
+		var stop = function(){
+			console.log('STOP', window.recognizing);
+			window.recognizing = false;
+			return options.recognition.stop();
+		};
+
 		var start = function(){
-			console.log(window.recognizing, options.recognition);
+			console.log('START', window.recognizing);
 			if (window.recognizing) {
 				options.recognition.stop();
 				return;
 			}
+
+			stop();
+
+			console.log('HERE',options.recognition);
 
 			if(options.recognition){
 				options.recognition.start();
@@ -52,7 +62,7 @@
 				detect(data) && enable();
 
 				options.recognition = new webkitSpeechRecognition();
-				// options.recognition.continuous = true;
+				options.recognition.continuous = true;
 				options.recognition.interimResults = true;
 				options.recognition.lang = 'en-GB';
 
@@ -92,6 +102,7 @@
 		return {
 			'init': init,
 			'start': start,
+			'stop': stop,
 			'detect': detect,
 			'enable': enable,
 			'disable': disable,
@@ -136,8 +147,8 @@ app.get('speech').attachEvents({
 	// }
   },
   'onend': function(ev) {
-	window.recognizing = false;
-	console.log('END', window.final_transcript);
+	// window.recognizing = false;
+	// app.get('speech').stop();
 
 	// console.log(window.final_transcript);
 	$('.speech_output').text(window.final_transcript);
@@ -163,7 +174,8 @@ app.get('speech').attachEvents({
   },
   'onresult': function(event) {
 	console.log('RESULT', event);
-
+	// window.recognizing = false;
+	app.get('speech').stop();
 	$('.speech_output').text('Processing...');
 
 	var interim_transcript = '';
@@ -176,7 +188,7 @@ app.get('speech').attachEvents({
 	  }
 	}
 
-
+	app.get('speech').stop();
 	// window.final_transcript = capitalize(window.final_transcript);
 	// final_span.innerHTML = linebreak(window.final_transcript);
 	// interim_span.innerHTML = linebreak(interim_transcript);
@@ -189,8 +201,13 @@ app.get('speech').attachEvents({
 
 window.final_transcript = '';
 
-$('footer').on('click', function(event){
-	app.get('speech').start();
+$('.speech-on').on('click', function(event){
+	if( window.recognizing ){
+		app.get('speech').stop();
+	}else{
+		app.get('speech').start();
+	}
+
 });
 
 }

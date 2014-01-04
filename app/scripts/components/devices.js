@@ -64,6 +64,8 @@
 				event.preventDefault();
 				resetSelected();
 
+				$('.speech-on').removeClass('hidden');
+
 				app.get('slider').destroy();
 			});
 
