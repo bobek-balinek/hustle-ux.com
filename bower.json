@@ -3,8 +3,12 @@
   "version": "0.0.0",
   "dependencies": {
     "modernizr": "~2.6.2",
-    "jquery": "~1.9.1",
-    "fastclick": "~0.6.10"
+    "jquery": "~2.0.3",
+    "fastclick": "~0.6.10",
+    "Snap.svg": "~0.2.0",
+    "hammerjs": "~1.0.6",
+    "underscore": "~1.5.2",
+    "leapjs": "~0.2.2"
   },
   "devDependencies": {}
 }

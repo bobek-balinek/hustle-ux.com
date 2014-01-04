@@ -62,6 +62,10 @@ module.exports = function (grunt) {
                 partials: ['<%= yeoman.app %>/partials/**/*.hbs'],
                 helpers: ['<%= yeoman.app %>/helpers/**/*.js']
             },
+
+            /**
+             * Config for dev/build
+             */
             server: {
                 options: {
                     flatten: false

@@ -41,6 +41,8 @@
 		text-decoration: none;
 
 		&:visited,
+		&:focus,
+		&:link,
 		&:active{
 			color: #000000;
 		}
