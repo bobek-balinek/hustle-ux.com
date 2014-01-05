@@ -63,6 +63,14 @@
 			$('.speech', componentElement).on('click', function(event){
 				event.preventDefault();
 				resetSelected();
+				markSelected();
+
+				$(this).toggleClass('active');
+
+				app.get('slider').init({
+					element: $('.slider-speech'),
+					slideSelector: 'li'
+				});
 
 				$('.speech-on').removeClass('hidden');
 
