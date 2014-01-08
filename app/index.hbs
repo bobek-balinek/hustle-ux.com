@@ -3,46 +3,10 @@ title: "Bobby Bobak - UI/UX Designer based in Manchester"
 body_class: "homepage is-over-picture has-header-image"
 ---
 <section class="page-section landing" id="landing">
-        {{> slides }}
-{{!--     <div class="slider-component">
-
-        <ul class="slider slider-motion slider-component--slides slider-component--slides__motion">
-           <li class="slides__single-slide slide1">
-                <section class="motion-intro">
-                    <article class="screen1">
-                        <img src="images/motion-plug-in.png" alt="">
-                        <h2>Plug-in your Leap Motion device now...</h2>
-                        <strong>or watch it in action <a href="#">here.</a></strong>
-                    </article>
-                </section>
-           </li>
-           <li class="slides__single-slide slide2">Slide 2</li>
-           <li class="slides__single-slide slide3">Slide 3</li>
-        </ul>
-
-        <ul class="slider slider-speech slider-component--slides slider-component--slides__speech">
-           <li class="slides__single-slide slide1">
-                <section class="motion-intro">
-                    <article class="screen1">
-                        <img src="images/motion-plug-in.png" alt="">
-                        <h2>Your browser does support speech.</h2>
-                        <strong>or watch it in action <a href="#">here.</a></strong>
-                    </article>
-                </section>
-           </li>
-           <li class="slides__single-slide slide2">Slide 2</li>
-           <li class="slides__single-slide slide3">Slide 3</li>
-        </ul>
-
-        <a href="#" class="slider-component--link slider-component--link__prev"><span class="fa fa-chevron-left"></span></a>
-        <a href="#" class="slider-component--link slider-component--link__next"><span class="fa fa-chevron-right"></span></a>
-    </div> --}}
+    {{> slides }}
 
     <article class="container">
         <!-- SVG GOES HERE -->
-        {{!-- <svg width="600" height="600">
-            <path id="arc1" fill="none" stroke="#446688" stroke-width="20" />
-        </svg> --}}
     </article>
 
     {{> devices}}
@@ -52,48 +16,7 @@ body_class: "homepage is-over-picture has-header-image"
     <article class="container">
         <h1>Recent projects</h1>
 
-        <ul class="projects">
-            <li>
-                <a href="/projects/adobe.html">
-                    <img src="/images/thumb1.png" alt="Adobe Reel Cut">
-                    <h4>Adobe Reel Cut</h4>
-                </a>
-            </li>
-            <li>
-                <a href="/projects/bbc.html">
-                    <img src="/images/thumb4.png" alt="BBC Family Hub">
-                    <h4>BBC Family Hub</h4>
-                </a>
-            </li>
-            <li>
-                <a href="/projects/enrll.html">
-                    <img src="/images/thumb3.png" alt="Enrll - Learn from people">
-                    <h4>Enrll - Learn from people</h4>
-                </a>
-            </li>
-        </ul>
-
-        <ul class="projects">
-            <li>
-                <a href="/projects/adidas.html">
-                    <img src="/images/thumb5.png" alt="Adidas Sync">
-                    <h4>Adidas Sync</h4>
-                </a>
-            </li>
-            <li>
-                <a href="/projects/learn-the-slr.html">
-                    <img src="/images/thumb2.png" alt="Learn the SLR app">
-                    <h4>Learn the SLR app</h4>
-                </a>
-            </li>
-            <li>
-                <a href="/projects/apple.html">
-                    <img src="/images/thumb6.png" alt="Apple - Think Different Think iPad">
-                    <h4>Apple - Think Different Think iPad</h4>
-                </a>
-            </li>
-        </ul>
-
+        {{> recent-projects}}
     </article>
 </section>
 
