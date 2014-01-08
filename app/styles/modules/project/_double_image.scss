@@ -1,0 +1,50 @@
+/**
+ * Two images + one caption box
+ */
+
+.project-section--double-image{
+	@extend .project-section;
+
+	min-height: 50%;
+
+	img{
+		width: 390px;
+
+		&:first-child{
+			margin-right: 20px;
+		}
+	}
+
+	/**
+	 * Media query: 1200px
+	 */
+	@media screen and (max-width: $mq-level1){
+
+		img{
+			width: 316px;
+		}
+	}
+
+	/**
+	 * Media query: 1000px
+	 */
+	@media screen and (max-width: $mq-level2){
+
+		img{
+			flex-flow: row;
+			width: 50%;
+			flex: 1 auto;
+
+			&:first-child{
+				margin-bottom: 1em;
+			}
+		}
+
+		figcaption{
+			flex-flow: column;
+			flex: 2 0 0;
+		}
+
+	}
+
+}

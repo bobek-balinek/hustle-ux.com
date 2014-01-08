@@ -40,7 +40,7 @@
 
 	var sliderComponent = function(){
 		var options = {
-			mainElement: $('.slider-component'),
+			mainElement: $('.slider'),
 			slideSelector: null,
 			element: null,
 			events: {},
@@ -87,13 +87,13 @@
 		var attachEvents = function(){
 			unbindEvents();
 
-			$('.slider-component--link__prev', options.mainElement ).on('click', function(event){
+			$('.slider__controls--prev', options.mainElement ).on('click', function(event){
 				event.preventDefault();
 				previousSlide();
 				return ;
 			});
 
-			$('.slider-component--link__next', options.mainElement ).on('click', function(event){
+			$('.slider__controls--next', options.mainElement ).on('click', function(event){
 				event.preventDefault();
 				nextSlide();
 				return ;
@@ -103,8 +103,8 @@
 		};
 
 		var unbindEvents = function(){
-			$('.slider-component--link__prev', options.mainElement ).off('click');
-			$('.slider-component--link__next', options.mainElement ).off('click');
+			$('.slider__controls--prev', options.mainElement ).off('click');
+			$('.slider__controls--next', options.mainElement ).off('click');
 		};
 
 		var activateComponent = function(){

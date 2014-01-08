@@ -13,30 +13,6 @@
 		padding: 1em 0;
 	}
 
-	figure,
-	.project-section:nth-child(even) figure{
-		-webkit-flex-flow: column wrap;
-		-moz-flex-flow: column wrap;
-		-ms-flex-flow: column wrap;
-		flex-flow: column wrap;
-		order: 1;
-	}
-
-	figure img{
-		order: 1;
-		margin: 0;
-		width: 100%;
-	}
-
-	figure figcaption,
-	.project-section:nth-child(even) figcaption{
-		text-align: left;
-		margin: 1em 5%;
-		width: 90%;
-		order: 2;
-	}
-
-
 	/**
 	 * Section with two images and one caption box
 	 */
@@ -88,6 +64,31 @@
 
 		img{
 			width: 100%;
+		}
+	}
+
+	.project-section{
+		figure{
+			-webkit-flex-flow: column wrap;
+			-moz-flex-flow: column wrap;
+			-ms-flex-flow: column wrap;
+			flex-flow: column wrap;
+			order: 1;
+		}
+
+		figure img,
+		iframe{
+			order: 1;
+			margin: 5% 0;
+			// margin-right: 0;
+			width: 100%;
+		}
+
+		figure figcaption{
+			text-align: left;
+			margin: 1em 5%;
+			width: 90%;
+			order: 2;
 		}
 	}
 

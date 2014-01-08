@@ -19,6 +19,18 @@ $colour-grey: #666666;
 $colour-white: #ffffff;
 $colour-black: #333;
 
+/**
+ * Responsive Media Queries
+ */
+$mq-level1: 1200px;
+$mq-level2: 1000px;
+$mq-level3: 725px;
+$mq-level4: 580px;
+$mq-level5: 360px;
+
+/**
+ * Font-face
+ */
 @font-face {
   font-family: 'din_blackregular';
   src: url( $fonts-directory + '/din-black-webfont.eot');

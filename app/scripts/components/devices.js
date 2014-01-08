@@ -2,7 +2,7 @@
 
 	var devicesComponent = function(){
 
-		var componentElement = $('.devices');
+		var componentElement = $('.devices-list');
 
 		var detect = function(){
 			return componentElement.length > 0;
@@ -38,7 +38,7 @@
 				$(this).toggleClass('active');
 
 				app.get('slider').init({
-					element: $('.slider-motion'),
+					element: $('.slider__collection--motion'),
 					slideSelector: 'li'
 				});
 

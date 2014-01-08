@@ -8,20 +8,30 @@
  * UI elements
  */
 @import "elements/header";
-@import "elements/devices";
+// @import "elements/devices";
+// @import "elements/slides";
 @import "elements/figure";
-@import "elements/slides";
 @import "elements/projects";
 @import "elements/posts";
 @import "elements/top-bar";
 @import "elements/tip";
 
 /**
+ * Modules
+ */
+
+// Project page sections
+@import "modules/project/project";
+// List of interaction options
+@import "modules/devices-list/devices-list";
+// Sliders
+@import "modules/slider/slider";
+
+/**
  * Pages of the website
  */
 @import "pages/standard";
 @import "pages/home";
-@import "pages/project";
 @import "pages/post";
 
 /**

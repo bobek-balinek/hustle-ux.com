@@ -1,0 +1,22 @@
+/**
+ * Module Name: Devices list
+ *
+ * List of different devices available to interact with
+ */
+
+// Dependencies
+@import "compass";
+@import "../../variables";
+@import "../../mixins";
+
+// Base style
+@import "base";
+
+// Collection of slides
+@import "collection";
+
+// Single slide
+@import "slide";
+
+// Controls
+@import "controls";

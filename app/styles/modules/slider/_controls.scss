@@ -1,0 +1,25 @@
+// Controls
+
+.slider_controls{
+	color: white;
+	display: block;
+	padding: 2em;
+	background: #364967;
+	position: absolute;
+	top: 50%;
+	width: 3em;
+	margin-top: -2em;
+	z-index: 26;
+}
+
+.slider__controls--prev{
+	@extend .slider_controls;
+
+	left: 0;
+}
+
+.slider__controls--next{
+	@extend .slider_controls;
+
+	right: 0;
+}

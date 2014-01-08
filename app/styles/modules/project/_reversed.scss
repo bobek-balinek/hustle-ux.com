@@ -1,0 +1,17 @@
+/**
+ * Reversed order
+ */
+
+.project-section--reversed{
+	@extend .project-section;
+
+	figcaption{
+		text-align: right;
+		margin: 0 2em 0 0;
+		order: 1;
+	}
+
+	img{
+		order: 2;
+	}
+}

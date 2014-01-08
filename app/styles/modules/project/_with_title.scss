@@ -1,0 +1,25 @@
+/**
+ * One image + Title
+ */
+
+.project-section--with-title{
+	@extend .project-section;
+
+	h1{
+		padding: 0;
+		margin-top: 0;
+		text-align: center;
+		line-height: 1.5;
+		margin-bottom: 1em;
+		border-bottom: 1px solid #f0f0f0;
+	}
+
+	small{
+		color: #A6a6a6;
+		font-style: italic;
+		display: block;
+		font-size: 0.5em;
+		line-height: 3;
+		margin: 0 5%;
+	}
+}

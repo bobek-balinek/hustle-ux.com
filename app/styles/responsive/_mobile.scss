@@ -6,10 +6,11 @@
 	body, html {
 	  // height: 100%;
 	  	-webkit-overflow-scrolling: touch;
+	  	-webkit-text-size-adjust: none;
 	}
 
 	body{
-		font-size: 14px;
+		font-size: 12px;
 		padding: 40px 0 0 0;
 	}
 
@@ -123,13 +124,46 @@
 		height: 100%;
 	}
 
+
+	.project-section{
+		figure{
+			-webkit-flex-flow: column wrap;
+			-moz-flex-flow: column wrap;
+			-ms-flex-flow: column wrap;
+			flex-flow: column wrap;
+			order: 1;
+		}
+
+		figure img,
+		iframe{
+			order: 1;
+			margin: 3% 0;
+			// margin-right: 0;
+			width: 100%;
+		}
+
+		iframe{
+			height: 240px;
+		}
+
+		figure figcaption{
+			text-align: left;
+			margin: 1em 5%;
+			width: 90%;
+			order: 2;
+		}
+	}
+
 }
 
 /**
  * Portrait devices
- * @type {[type]}
  */
 @media screen and (max-width: 360px){
+
+	body{
+		font-size: 12px;
+	}
 
 	.projects{
 		-webkit-flex-flow: column nowrap;

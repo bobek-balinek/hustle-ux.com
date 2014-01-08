@@ -1,0 +1,28 @@
+/**
+ * Module Name: Project Section
+ *
+ * Different media object sections for the project page
+ */
+
+// Dependencies
+@import "compass";
+@import "../../variables";
+@import "../../mixins";
+
+// Base style
+@import "base";
+
+// Reversed order
+@import "reversed";
+
+// Header title
+@import "with_title";
+
+// Two columns of text
+@import "double_caption";
+
+// Two images and one column of text
+@import "double_image";
+
+// Three images only
+@import "triple_image";

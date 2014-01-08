@@ -1,0 +1,30 @@
+/**
+ * Three images + no caption box
+ */
+
+.project-section--triple-image{
+	@extend .project-section;
+
+	min-height: 50%;
+
+	img{
+		width: 340px;
+		margin-left: 20px;
+
+		&:first-child{
+			margin-left: 0;
+		}
+	}
+
+	/**
+	 * Media query: 1200px
+	 */
+	@media screen and (max-width: $mq-level1){
+		min-height: 50%;
+
+		img{
+			width: 285px;
+			margin-left: 42px;
+		}
+	}
+}

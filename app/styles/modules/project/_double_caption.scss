@@ -1,0 +1,25 @@
+/**
+ * One image + two captions
+ */
+
+.project-section--double-caption{
+	@extend .project-section;
+
+	min-height: 50%;
+
+	img{
+		order: 1 !important;
+		width: 390px;
+		margin-left: 20px;
+
+		&:first-child{
+			margin-left: 0;
+			margin-right: 20px;
+		}
+	}
+
+	figcaption{
+		order: 2 !important;
+		text-align: left !important;
+	}
+}
