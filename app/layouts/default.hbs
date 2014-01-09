@@ -21,32 +21,14 @@
         <!-- endbuild -->
     </head>
     <body class="{{body_class}}">
-        <div class="tip"></div>
+        {{> header}}
 
-        <div class="top-bar">
-            <p class="speech_output"></p>
-            <!--[if lt IE 9]>
-                <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-            <![endif]-->
+        <div class="page-wrap" id="pageWrap">
+            {{> body}}
+
+            {{> footer}}
         </div>
 
-        <header>
-            <nav>
-                <ul>
-                    <li class="home"><a href="/"><img src="/images/btn_logotype.png" alt=""></a> <strong class="link-label">HUSTLE</strong></li>
-                    <li><a href="#"><span class="fa fa-envelope"></span></a> <strong class="link-label">Message me</strong></li>
-                    <li><a href="#"><span class="fa fa-twitter"></span></a> <strong class="link-label">@bobek_balinek</strong></li>
-                    <li><a href="/#profile"><span class="fa fa-user"></span></a> <strong class="link-label">Profile</strong></li>
-                    <li class="speech-on hidden"><a href="#speech"><span class="fa fa-microphone"></span></a> <strong class="link-label">Speak a command</strong></li>
-                </ul>
-            </nav>
-        </header>
-
-    <div class="page-wrap" id="pageWrap">
-        {{> body}}
-
-        <footer>End.</footer>
-    </div>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

@@ -1,0 +1,47 @@
+.posts-list{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.posts-list__item{
+	margin: 0;
+	position: relative;
+	border-top: 1px solid #E6E6E6;
+
+	&:first-child{
+		border-top: none;
+	}
+
+	&:hover{
+		background: #f0f0f0;
+
+		.posts-list__icon{
+			color: $colour-grey;
+		}
+	}
+}
+
+.posts-list__link{
+	display: block;
+	color: #3C8FCD;
+	font-size: 2em;
+	font-weight: bold;
+	padding: 2em 0;
+	text-decoration: none;
+	line-height: 1.5;
+}
+
+.posts-list__date{
+	color: $colour-grey;
+	font-style: italic;
+	display: block;
+	font-size: 0.6em;
+}
+
+.posts-list__icon{
+	color: #E6E6E6;
+	position: absolute;
+	right: 20px;
+	top: 45%;
+}

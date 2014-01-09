@@ -7,12 +7,14 @@
 /**
  * UI elements
  */
-@import "elements/header";
+// @import "elements/header";
 @import "elements/figure";
-@import "elements/posts";
 @import "elements/top-bar";
 @import "elements/tip";
 
+
+// Header
+@import "modules/header/header";
 
 // Project page sections
 @import "modules/project/project";
@@ -24,7 +26,7 @@
 @import "modules/projects-list/projects-list";
 
 // List of recent posts
-// @import "modules/posts-list/posts-list";
+@import "modules/posts-list/posts-list";
 
 // Sliders
 @import "modules/slider/slider";
