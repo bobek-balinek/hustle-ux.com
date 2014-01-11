@@ -26,6 +26,7 @@
 		};
 
 		var attachEvents = function(){
+			var offset = $('section.work').offset();
 
 			/**
 			 * Setup LeapMotion slider
@@ -53,8 +54,7 @@
 
 				app.get('slider').destroy();
 
-				var offset = $('section.work').offset();
-				$('.page-wrap').animate({'scrollTop': offset.top}, 400);
+				offset && $('.page-wrap').animate({'scrollTop': offset.top}, 400);
 			});
 
 			/**
