@@ -28,7 +28,6 @@
 			if( !Modernizr.touch ){
 				app.get('motion').attachEvents({
 					'1fingers': fingerCallback,
-					// 'screenTap': tapCallback,
 					'3fingers': backgroundCallback,
 					'5fingers': scrollCallback,
 					'ready': connectCallback,
@@ -44,12 +43,9 @@
 						}else{
 							$('body').removeClass('is-over-picture');
 						}
-
-						var offset = 150 * ( $('.page-wrap').scrollTop() / $(window).height() );
-						// $('#landing').css('background-position')
 					});
-
 				}
+
 			}
 
 			app.get('slider') && app.get('slider').init();
@@ -116,41 +112,18 @@
 		};
 
 		/**
-		 * Example of Tap to select
-		 */
-		var tapCallback = function(gesture, frame){
-			var cords = app.get('motion').leapToScene(frame, gesture.position, $(window).width(), $(window).height());
-
-			setTimeout(function(){
-				var element = document.elementFromPoint( ( cords[0] + 44), (cords[1] + 44));
-				var old = 1;
-
-				if( $(element).prop('tagName') !== 'HTML' || $(element).prop('tagName') !== 'BODY' ){
-
-					$(element).css('-webkit-transform','scale(0.9)');
-					setTimeout(function(){
-						$(element).css('-webkit-transform','scale(1)');
-					},400);
-				}
-
-			},200);
-
-			return ;
-		};
-
-		/**
 		 * Connected & disconnected device callbacks
 		 */
 		var connectCallback = function(){
 			$('html').addClass('motion');
-			console.log('connected!');
+			console.log('LeapMotion connected!');
 
 			return;
 		};
 
 		var disconnectCallback = function(){
 			$('html').removeClass('motion');
-			console.log('disconnected!');
+			console.log('LeapMotion disconnected!');
 
 			return;
 		};
@@ -172,7 +145,7 @@
 
 			}
 
-			return ;
+			return;
 		};
 
 
