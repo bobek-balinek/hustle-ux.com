@@ -343,6 +343,7 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('assemble');
+    grunt.loadNpmTasks('grunt-browserify');
 
     grunt.registerTask('server', function (target) {
         if (target === 'dist') {

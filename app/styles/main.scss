@@ -7,10 +7,8 @@
 /**
  * UI elements
  */
-// @import "elements/header";
 @import "elements/figure";
 @import "elements/top-bar";
-@import "elements/tip";
 
 
 // Header
@@ -30,6 +28,12 @@
 
 // Sliders
 @import "modules/slider/slider";
+
+
+// Interaction parts
+
+// Motion UI
+@import "modules/motion/motion";
 
 /**
  * Pages of the website

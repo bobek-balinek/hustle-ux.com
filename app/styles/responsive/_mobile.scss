@@ -24,38 +24,7 @@
 		position: fixed;
 	}
 
-	header{
-		top: 0;
-		left: 0;
-		width: 100%;
 
-		li{
-			margin: 0;
-		}
-
-		ul{
-			top: 0;
-			width: 100%;
-			-webkit-flex-flow: row wrap;
-			-moz-flex-flow: row wrap;
-		}
-
-		a{
-			margin: 0;
-		}
-
-		.home{
-			-webkit-flex: 1 0 0;
-			-moz-flex: 1 0 0;
-			-ms-flex: 1 0 0;
-			flex: 1 0 0;
-
-			.link-label{
-				color: #ffffff;
-				display: inline-block;
-			}
-		}
-	}
 
 	.container{
 		width: 100%;

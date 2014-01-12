@@ -1,0 +1,46 @@
+// @ 724px
+
+@media screen and (max-width: $mq-level3){
+
+
+	.header{
+		top: 0;
+		left: 0;
+		width: 100%;
+
+		.no-touch &:hover{
+			.header__label{
+				display: none;
+			}
+		}
+	}
+
+	.header__item{
+		margin: 0;
+	}
+
+	.header__list{
+		top: 0;
+		width: 100%;
+		-webkit-flex-flow: row wrap;
+		-moz-flex-flow: row wrap;
+		flex-flow: row wrap;
+	}
+
+	.header__link{
+		margin: 0;
+	}
+
+	.header__item--home{
+		-webkit-flex: 1 0 0;
+		-moz-flex: 1 0 0;
+		-ms-flex: 1 0 0;
+		flex: 1 0 0;
+
+		.header__label{
+			color: #ffffff;
+			display: inline-block;
+		}
+	}
+
+}

@@ -23,8 +23,10 @@
 
 	-webkit-flex-flow: column wrap;
 	-moz-flex-flow: column wrap;
+	flex-flow: column wrap;
 	-webkit-justify-content: top;
 	-moz-justify-content: top;
+	justify-content: top;
 }
 
 .header__item{

@@ -76,14 +76,25 @@
 				var gammaY = Math.abs(frame.fingers[0].tipVelocity[1]);
 				var gammaZ = Math.abs(frame.fingers[0].tipVelocity[2]);
 
-
 				if(gammaX < 2 && gammaY < 2 && gammaZ < 2){
 
-					$(defaultOptions.fingerTipElement).addClass('animated pulse');
+					$(defaultOptions.fingerTipElement).addClass('animated');
 
-					window.tt = setTimeout(function(){
-						$(defaultOptions.fingerTipElement).removeClass('animated pulse');
-					},1000);
+					if(!window.tt){
+							var element = document.elementFromPoint( deltaX, deltaY );
+
+							if( $(element).length && $(element).prop('tagName') !== 'HTML' && $(element).prop('tagName') !== 'BODY'){
+
+								// Initialize click event
+								initTip(function(){
+									$(defaultOptions.fingerTipElement).removeClass('animated');
+									setTimeout(function(){
+											$(element)[0] && $(element)[0].click();
+									},0);
+								});
+
+							}
+					}
 				}
 			}
 		};
@@ -183,3 +194,48 @@
 	app.register('page', pageComponent);
 
 })(jQuery, Modernizr, app);
+
+
+function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+  var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+
+  return {
+    x: centerX + (radius * Math.cos(angleInRadians)),
+    y: centerY + (radius * Math.sin(angleInRadians))
+  };
+}
+
+function describeArc(x, y, radius, startAngle, endAngle){
+
+    var start = polarToCartesian(x, y, radius, endAngle);
+    var end = polarToCartesian(x, y, radius, startAngle);
+
+    var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+
+    var d = [
+        "M", start.x, start.y,
+        "A", radius, radius, 0, arcSweep, 0, end.x, end.y
+    ].join(" ");
+
+    return d;
+}
+
+function initTip(callback){
+		window.tt = true;
+    var progress = 0;
+    var dn = document.getElementById("arc1");
+
+    var timer = setInterval(function(){
+        if(progress <= 100){
+            var angle = (progress * 3.6);
+            dn.setAttribute("d", describeArc(32,32 , 28, 0, angle));
+            progress += 1;
+        }else{
+						clearTimeout(timer);
+	        	window.tt = false;
+            progress = 0;
+            callback();
+        }
+    },15);
+}
+

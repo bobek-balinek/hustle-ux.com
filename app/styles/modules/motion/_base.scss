@@ -41,8 +41,8 @@
 	transition: none;
 }
 
-@-webkit-keyframes lololo {
-  0%   { -webkit-transform: translateY(-30px); }
-  50%   { -webkit-transform: translateY(30px); }
-  100%   { -webkit-transform: translateY(-30px); }
+.tip__arc {
+  position: absolute;
+  top: -8px;
+  left: -8px;
 }
