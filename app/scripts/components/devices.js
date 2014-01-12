@@ -3,6 +3,7 @@
 	var devicesComponent = function(){
 
 		var componentElement = $('.devices-list');
+		var screenOffset = 0;
 
 		var detect = function(){
 			return componentElement.length > 0;
@@ -14,6 +15,8 @@
 
 		var init = function(){
 			detect() && eneable();
+
+			screenOffset = $('section.work').offset() ? $('section.work').offset().top : 0;
 		};
 
 		var markSelected = function(){
@@ -25,58 +28,59 @@
 			componentElement.find('a').removeClass('active');
 		};
 
+		/**
+		 * Scroll down to the list of projects
+		 */
+		var desktopClick = function(event){
+			event.preventDefault();
+			resetSelected();
+
+			app.get('slider').destroy();
+
+			$('.page-wrap').animate({'scrollTop': screenOffset}, 400);
+		};
+
+		/**
+		 * Setup LeapMotion slider
+		 */
+		var motionClick = function(event){
+			event.preventDefault();
+			resetSelected();
+			markSelected();
+
+			$(this).toggleClass('active');
+
+			app.get('slider').init({
+				element: $('.slider__collection--motion'),
+				slideSelector: 'li'
+			});
+		};
+
+		/**
+		 * Setup Voice recognition slider
+		 */
+		var speechClick = function(event){
+			event.preventDefault();
+			resetSelected();
+			markSelected();
+
+			$(this).toggleClass('active');
+
+			app.get('slider').init({
+				element: $('.slider-speech'),
+				slideSelector: 'li'
+			});
+
+			$('.speech-on').removeClass('hidden');
+
+			app.get('slider').destroy();
+		};
+
+		// Attach Events
 		var attachEvents = function(){
-			var offset = $('section.work').offset();
-
-			/**
-			 * Setup LeapMotion slider
-			 */
-			$('.motion', componentElement).on('click', function(event){
-				event.preventDefault();
-				resetSelected();
-				markSelected();
-
-				$(this).toggleClass('active');
-
-				app.get('slider').init({
-					element: $('.slider__collection--motion'),
-					slideSelector: 'li'
-				});
-
-			});
-
-			/**
-			 * Scroll down to the list of projects
-			 */
-			$('.desktop', componentElement).on('click', function(event){
-				event.preventDefault();
-				resetSelected();
-
-				app.get('slider').destroy();
-
-				offset && $('.page-wrap').animate({'scrollTop': offset.top}, 400);
-			});
-
-			/**
-			 * Setup Voice recognition slider
-			 */
-			$('.speech', componentElement).on('click', function(event){
-				event.preventDefault();
-				resetSelected();
-				markSelected();
-
-				$(this).toggleClass('active');
-
-				app.get('slider').init({
-					element: $('.slider-speech'),
-					slideSelector: 'li'
-				});
-
-				$('.speech-on').removeClass('hidden');
-
-				app.get('slider').destroy();
-			});
-
+			$('.motion', componentElement).on('click', motionClick);
+			$('.desktop', componentElement).on('click', desktopClick);
+			$('.speech', componentElement).on('click', speechClick);
 		};
 
 		var unbindEvents = function(){
