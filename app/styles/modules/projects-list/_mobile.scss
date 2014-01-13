@@ -1,0 +1,25 @@
+/**
+ * Projects list - up to 768px
+ *
+ * 	$mq-level1: 1200px;
+ *	$mq-level2: 1000px;
+ *	$mq-level3: 725px;
+ *	$mq-level4: 580px;
+ *	$mq-level5: 360px;
+ */
+
+@media screen and (max-width: $mq-level4){
+	.projects-list{
+		-webkit-flex-flow: column wrap;
+		-moz-flex-flow: column wrap;
+		-ms-flex-flow: column wrap;
+		flex-flow: column wrap;
+
+		font-size: 1.250em;
+	}
+
+	.projects-list__item{
+		width: 100%;
+		margin: 0 0 20px;
+	}
+}

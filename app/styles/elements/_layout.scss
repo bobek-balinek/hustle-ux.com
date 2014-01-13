@@ -3,15 +3,23 @@
  * #3C8FCD - Blue colour
  */
 
+html{
+	font-size: 100%;
+}
+
 body {
 	background: #ffffff;
 	font-family: $fonts-family-base;
-	font-size: 100%;
 	font-size: 14px;
 	line-height: 1.5;
 	color: #333;
 	margin: 0;
 	padding: 5px 0 0;
+
+	// This only over 768px
+	&.is-over-picture{
+		padding: 0;
+	}
 }
 
 body, html {
@@ -23,7 +31,6 @@ body, html {
 h1,h2,h3,h4,h5,h6{
 	font-family: $fonts-family-base;
 }
-
 
 .container{
 	width: 1060px;
@@ -65,3 +72,4 @@ footer{
 .speech_output{
 	margin: 0;
 }
+

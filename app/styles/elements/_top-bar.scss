@@ -13,4 +13,8 @@
 	-moz-transition: -moz-transform 1s;
 	-ms-transition: -ms-transform 1s;
 	transition: transform 1s;
+
+	.is-over-picture &{
+		min-height: 0;
+	}
 }
