@@ -19,6 +19,8 @@
 	&.active{
 		@include translate3d(0,0,0);
 		display: block;
+
+		background: rgba(0,0,0,0.35);
 	}
 }
 
@@ -36,44 +38,3 @@
 		font-weight: normal;
 	}
 }
-
-// .slider{
-
-
-// 	&.active{
-// 	}
-
-// 	li{
-
-// 	}
-// }
-
-
-/**
- * Motion open
- */
-
-
-/**
- * Slider Controls
- */
-
-// .slider-component__link{
-// 	color: white;
-// 	display: block;
-// 	padding: 2em;
-// 	background: #364967;
-// 	position: absolute;
-// 	top: 50%;
-// 	width: 3em;
-// 	margin-top: -2em;
-// 	z-index: 26;
-// }
-
-// .slider-component__link--prev{
-// 	left: 0;
-// }
-
-// .slider-component__link--next{
-// 	right: 0;
-// }

@@ -67,13 +67,11 @@
 			$(this).toggleClass('active');
 
 			app.get('slider').init({
-				element: $('.slider-speech'),
+				element: $('.slider__collection--speech'),
 				slideSelector: 'li'
 			});
 
 			$('.speech-on').removeClass('hidden');
-
-			app.get('slider').destroy();
 		};
 
 		// Attach Events

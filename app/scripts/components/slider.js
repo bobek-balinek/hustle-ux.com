@@ -29,7 +29,7 @@
 	var sliderComponent = function(){
 		var options = {
 			mainElement: $('.slider'),
-			slideSelector: null,
+			slideSelector: 'li',
 			element: null,
 			events: {},
 			currentIndex: 0
@@ -48,6 +48,7 @@
 			$.extend( options, optionsData );
 
 			detect() && eneable();
+			destroy();
 
 			setActive(0);
 		};
@@ -55,6 +56,7 @@
 		var destroy = function(){
 			resetActive();
 			$('#landing .container').removeClass('off');
+			options.mainElement.find('[class^=slider__collection]').removeClass('active').find(options.slideSelector).removeClass('active');
 			getElement().removeClass('active');
 			deactivateComponent();
 		};
