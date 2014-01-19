@@ -168,6 +168,7 @@
 			'detect': detect,
 			'eneable': eneable,
 			'destroy': destroy,
+			'setActive': setActive,
 			'nextSlide': nextSlide,
 			'setElement': setElement,
 			'getElement': getElement,

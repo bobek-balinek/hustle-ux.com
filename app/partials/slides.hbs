@@ -23,7 +23,7 @@
             <section class="slider__item-container">
                 <article class="screen3">
                     {{> svg.motion.step3 }}
-                    <h2>Extend your palm and move up and down to scroll the page</h2>
+                    <h2>Extend your palm and move up and down to scroll the page.</h2>
                     <strong>Keep all of your 5 fingers out.</strong>
                 </article>
             </section>
@@ -33,17 +33,31 @@
     <ul class="slider__collection--speech">
        <li class="slider__item">
             <section class="slider__item-container">
-
                 <article class="screen1">
-                    <img src="images/motion-plug-in.png" alt="">
-                    <h2>Your browser does support speech.</h2>
-                    <strong>or watch it in action <a href="#">here.</a></strong>
+                    {{> svg.speech.step1.ok }}
+                    <h2>Great, your browser does support speech recognition!</h2>
+                    <strong>Continue to the next slide, or watch it in action <a href="#">here.</a></strong>
                 </article>
-
             </section>
        </li>
-       <li class="slider__item">Slide 2</li>
-       <li class="slider__item">Slide 3</li>
+       <li class="slider__item">
+            <section class="slider__item-container">
+                <article class="screen1">
+                    {{> svg.speech.step2 }}
+                    <h2>To start, click the microphone button and start speaking.</h2>
+                    <strong>Make sure you speak fairly loud.</strong>
+                </article>
+            </section>
+       </li>
+       <li class="slider__item">
+            <section class="slider__item-container">
+                <article class="screen1">
+                    {{> svg.speech.step3 }}
+                    <h2>The key commands and keywords are highlighted across the site.</h2>
+                    <strong>You can speak them at any point. Enjoy!</strong>
+                </article>
+            </section>
+       </li>
     </ul>
 
     <a href="#" class="slider__controls--prev"><span class="fa fa-chevron-left"></span></a>

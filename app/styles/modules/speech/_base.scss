@@ -1,0 +1,17 @@
+/**
+ * Base styling
+ */
+
+.speech .keyword{
+	color: $colour-navy !important;
+	text-decoration: underline;
+}
+
+.keyword--hidden{
+	@extend .keyword;
+	display: none;
+
+	.speech &{
+		display: inline;
+	}
+}

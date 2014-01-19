@@ -116,6 +116,14 @@
 		 */
 		var connectCallback = function(){
 			$('html').addClass('motion');
+
+			// $('html, body').scrollTop(0);
+
+			$('.devices-list .motion').trigger('click');
+
+			setTimeout(function(){
+				app.get('slider').nextSlide(1);
+			},500);
 			console.log('LeapMotion connected!');
 
 			return;

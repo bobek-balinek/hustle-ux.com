@@ -25,7 +25,7 @@
 }
 
 .slider__item-container{
-	font-size: 1em;
+	font-size: 1.25em;
 	padding: 7em 0;
 
 	img{
@@ -35,6 +35,12 @@
 
 	h2{
 		color: #ffffff;
+		font-size: 1.5em;
 		font-weight: normal;
+	}
+
+	a{
+		color: $colour-blue;
+		text-decoration: none;
 	}
 }

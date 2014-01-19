@@ -21,6 +21,7 @@
 
 		var enable = function(){
 			options.isEnabled = true;
+			$('html').addClass('speech');
 			attachEvents();
 		};
 
