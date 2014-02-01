@@ -10,27 +10,30 @@ figure{
 	-moz-flex-flow: row wrap;
 	-webkit-justify-content: center;
 	-moz-justify-content: center;
-}
 
-figure img{
-	width: 800px;
-	height: auto;
-	order: 1;
-}
+	-webkit-align-items: flex-start;
+  align-items: flex-start;
 
-figure figcaption{
-	text-align: left;
-	font-size: 1em;
-	width: 160px;
-	margin-left: 2em;
-	-webkit-flex: 1 0 0;
-	-moz-flex: 1 0 0;
-	-ms-flex: 1 0 0;
-	flex: 1 0 0;
-	order: 2;
-}
+  img{
+		width: 800px;
+		height: auto;
+		order: 1;
+  }
 
-figcaption > .title{
-	margin: 0 0 1em;
-	font-size: 1.75em;
+  figcaption{
+		text-align: left;
+		font-size: 1em;
+		width: 160px;
+		margin-left: 2em;
+		-webkit-flex: 1 0 0;
+		-moz-flex: 1 0 0;
+		-ms-flex: 1 0 0;
+		flex: 1 0 0;
+		order: 2;
+
+		& > .title{
+			margin: 0 0 1em;
+			font-size: 1.75em;
+		}
+	}
 }
