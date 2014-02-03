@@ -45,7 +45,7 @@
                 $.each(options.events, function(key, eventBinding){
                      var type = key.split(' ');
 
-                    $(type[1]).hammer(options.touchSettings).on(type[0], eventBinding);
+                    $(type[1]).on(type[0], eventBinding);
                 });
                 return true;
             }
@@ -59,7 +59,7 @@
                 $.each(results, function(key, eventBinding){
                      var type = key.split(' ');
 
-                    $(type[1]).hammer(options.touchSettings).off(type[0]);
+                    $(type[1]).off(type[0]);
                 });
 
                 _.remove(options.events, data);
@@ -81,4 +81,4 @@
 
     app.register('mobile', mobileComponent);
 
-})(app, jQuery, Modernizr, Hammer);
+})(app, jQuery, Modernizr);
