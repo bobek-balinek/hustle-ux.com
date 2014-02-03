@@ -22,15 +22,47 @@
 				interimResults : true,
 				lang : 'en-GB'
 			},
-			events: {},
+			events: {
+				start: [],
+				error: [],
+				end: [],
+				result: [],
+				resultMatch: [],
+				resultNoMatch: [],
+				errorNetwork: [],
+				errorPermissionBlocked: [],
+				errorPermissionDenied: []
+			},
 			commands: {}
 		};
 
+		/**
+		 * Speech Recognition callbacks
+		 *
+		 * onstart, onend, onerror, onresult, unsupported
+		 */
+
+		var onStart = function(event){
+			return invokeCallbacks(options.events.start, event);
+		};
+
+		var onEnd = function(event){
+			return invokeCallbacks(options.events.end, event);
+		};
+
+		var onError = function(event){
+			return invokeCallbacks(options.events.error, event);
+		};
+
+		var onResult = function(event){
+			return invokeCallbacks(options.events.result, event);
+		};
+
+		/**
+		 * Component methods
+		 */
 		var detect = function(){
-			/**
-			 * TODO: use different method of detecting (prefix compliant) *
-			 */
-			return options.recognitionObject !== 'undefined';
+			return options.recognitionObject !== undefined;
 		};
 
 		var enable = function(){
@@ -51,13 +83,12 @@
 		};
 
 		var stop = function(){
-			console.log('STOP', window.recognizing);
 			window.recognizing = false;
 			return options.recognition.stop();
 		};
 
 		var start = function(){
-			console.log('START', window.recognizing);
+
 			if (window.recognizing) {
 				options.recognition.stop();
 				return;
@@ -65,11 +96,15 @@
 
 			stop();
 
-			console.log('HERE',options.recognition);
-
 			if(options.recognition){
 				options.recognition.start();
 			}
+		};
+
+		var invokeCallbacks = function(callbacks, data){
+			_.each(callbacks, function(callback){
+				return callback && callback(data);
+			});
 		};
 
 		var init = function(data, optionsData){
@@ -81,14 +116,22 @@
 		};
 
 		var attachEvents = function(data){
-			data && _.extend(options.events, data);
 
-			var keys = _.keys(options.events);
-			_.each(keys, function(event_key){
-				options.recognition[event_key] = options.events[event_key];
-			});
+			/** Process provided callbacks **/
+			if(data){
+				var keys = _.keys(data);
+				_.each(keys, function(key){
+					options.events[key].push(data[key]);
+				});
+			}
 
-			return false;
+			/** Apply native callbacks **/
+			options.recognition['onstart'] = onStart;
+			options.recognition['onend'] = onEnd;
+			options.recognition['onerror'] = onError;
+			options.recognition['onresult'] = onResult;
+
+			return true;
 		};
 
 		/**
@@ -121,8 +164,8 @@
 
 				_.remove(options.events, data);
 				return true;
-
 			}
+
 			return false;
 		};
 
@@ -144,21 +187,20 @@
 })(app, jQuery, window, _);
 
 
-/**
- * TODO: Incorporate these back into the component.
- */
+
 if( !Modernizr.touch ){
 
 	app.get('speech').attachEvents({
-	 'onstart': function() {
+	 'start': function() {
 			window.recognizing = true;
 			window.final_transcript = '';
 			// showInfo('info_speak_now');
 			// start_img.src = 'mic-animate.gif';
 			// console.log('started');
 			$('.speech_output').text('Listening...');
+
 	  },
-	  'onerror': function(event) {
+	  'error': function(event) {
 			console.log('ERROR', event);
 			// if (event.error == 'no-speech') {
 			//   start_img.src = 'mic.gif';
@@ -179,7 +221,7 @@ if( !Modernizr.touch ){
 			//   ignore_onend = true;
 			// }
 	  },
-	  'onend': function(ev) {
+	  'end': function(ev) {
 			// window.recognizing = false;
 			// app.get('speech').stop();
 
@@ -205,7 +247,7 @@ if( !Modernizr.touch ){
 			//   createEmail();
 			// }
 	  },
-	  'onresult': function(event) {
+	  'result': function(event) {
 			console.log('RESULT', event);
 			// window.recognizing = false;
 			app.get('speech').stop();
