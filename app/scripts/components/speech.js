@@ -1,8 +1,7 @@
 /**
  * Speech component
  *
- * List of events
- *
+ * List of events:
  * onstart, onend, onerror, onresult, unsupported
  */
 
@@ -11,19 +10,35 @@
 	var speechComponent = function(){
 
 		var options = {
+			recognitionObject: (window.SpeechRecognition ||
+                          window.webkitSpeechRecognition ||
+                          window.mozSpeechRecognition ||
+                          window.msSpeechRecognition ||
+                          window.oSpeechRecognition),
 			recognition: null,
 			isEnabled: false,
-			events: {}
+			recognitionOptions: {
+				continuous : true,
+				interimResults : true,
+				lang : 'en-GB'
+			},
+			events: {},
+			commands: {}
 		};
 
 		var detect = function(){
-			return ('webkitSpeechRecognition' in window);
+			/**
+			 * TODO: use different method of detecting (prefix compliant) *
+			 */
+			return options.recognitionObject !== 'undefined';
 		};
 
 		var enable = function(){
+			options.recognition = new webkitSpeechRecognition();
+			_.extend(options.recognition, options.recognitionOptions);
+
 			options.isEnabled = true;
 			$('html').addClass('speech');
-			attachEvents();
 		};
 
 		var disable = function(){
@@ -60,14 +75,7 @@
 		var init = function(data, optionsData){
 			if( detect() ){
 				_.extend(options, optionsData);
-
-				detect(data) && enable();
-
-				options.recognition = new webkitSpeechRecognition();
-				options.recognition.continuous = true;
-				options.recognition.interimResults = true;
-				options.recognition.lang = 'en-GB';
-
+				enable();
 				attachEvents();
 			}
 		};
@@ -83,10 +91,28 @@
 			return false;
 		};
 
+		/**
+		 * Add a new set of commands
+		 */
+		var addCommand = function(name, callback){
+			if(!name)
+				return;
+
+			if( _.isObject(name) ){
+				_.extend(options.commands, name);
+			}else{
+				options.commands[name] = callback;
+			}
+
+			return true;
+		};
+
+		var removeCommand = function(name){
+			return _.remove(options.commands, name);
+		};
+
 		var unbindEvents = function(data){
 			if( options.isEnabled ){
-
-				var results = _.filter()
 
 				var keys = _.keys(options.events);
 				_.each(keys, function(event_key){
@@ -117,6 +143,10 @@
 
 })(app, jQuery, window, _);
 
+
+/**
+ * TODO: Incorporate these back into the component.
+ */
 if( !Modernizr.touch ){
 
 	app.get('speech').attachEvents({
@@ -187,6 +217,7 @@ if( !Modernizr.touch ){
 			  if (event.results[i].isFinal) {
 					window.final_transcript = event.results[i][0].transcript;
 					$('.speech_output').text(window.final_transcript);
+
 			  } else {
 					window.final_transcript = event.results[i][0].transcript;
 			  }
@@ -199,7 +230,6 @@ if( !Modernizr.touch ){
 			// if (window.final_transcript || interim_transcript) {
 			//   showButtons('inline-block');
 			// }
-
 	  }
 	});
 
