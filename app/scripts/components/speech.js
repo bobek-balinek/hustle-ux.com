@@ -54,6 +54,7 @@
 			return invokeCallbacks(options.events.error, event);
 		};
 
+		/** TODO: INVOKE CALLBACKS WITH RESULT MATCH **/
 		var onResult = function(event){
 			var interim_transcript = '';
 
