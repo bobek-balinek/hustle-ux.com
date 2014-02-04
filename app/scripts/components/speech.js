@@ -55,6 +55,19 @@
 		};
 
 		var onResult = function(event){
+			var interim_transcript = '';
+
+			for (var i = event.resultIndex; i < event.results.length; ++i) {
+			  if (event.results[i].isFinal) {
+					window.final_transcript = event.results[i][0].transcript;
+					$('.speech_output').text(window.final_transcript);
+					matchCommand(window.final_transcript, event);
+
+			  } else {
+					window.final_transcript = event.results[i][0].transcript;
+			  }
+			}
+
 			return invokeCallbacks(options.events.result, event);
 		};
 
@@ -142,9 +155,19 @@
 				return;
 
 			if( _.isObject(name) ){
+
 				_.extend(options.commands, name);
+
 			}else{
-				options.commands[name] = callback;
+
+				if( _.isArray(name) ){
+					_.each(name, function(command){
+						options.commands[command] = callback;
+					});
+
+				}else{
+					options.commands[name] = callback;
+				}
 			}
 
 			return true;
@@ -152,6 +175,20 @@
 
 		var removeCommand = function(name){
 			return _.remove(options.commands, name);
+		};
+
+		var getCommands = function(){
+			return options.commands;
+		};
+
+		var matchCommand = function(query, event){
+			if( options.commands[query] ){
+				options.commands[query](event);
+
+				invokeCallbacks(options.events.resultMatch, event);
+			}
+
+			invokeCallbacks(options.events.resultNoMatch, event);
 		};
 
 		var unbindEvents = function(data){
@@ -178,6 +215,9 @@
 			'detect': detect,
 			'enable': enable,
 			'disable': disable,
+			'getCommands': getCommands,
+			'addCommand': addCommand,
+			'removeCommand': removeCommand,
 			'attachEvents': attachEvents
 		};
 	};
@@ -187,9 +227,53 @@
 })(app, jQuery, window, _);
 
 
-
 if( !Modernizr.touch ){
 
+	/**
+	 * When a user says projects, locate the user to the projects screen
+	 */
+	app.get('speech').addCommand('projects', function(){
+		window.location.href = '#projects';
+	});
+
+	app.get('speech').addCommand('project', function(){
+		window.location.href = '#projects';
+	});
+
+	/** First project - Adobe Reel Cut **/
+	app.get('speech').addCommand(['project 1', 'project one', 'one', 'first project', 'adobe', 'reel cut'], function(){
+		window.location.href = '/projects/adobe.html';
+	});
+
+	/** Second project - BBC **/
+	app.get('speech').addCommand(['project 2', 'project two', 'two', '2', 'second project', 'bbc', 'family hub'], function(){
+		window.location.href = '/projects/bbc.html';
+	});
+
+	/** Third project - Enrll **/
+	app.get('speech').addCommand(['project 3', 'project three', 'three', '3', 'third project', 'enroll'], function(){
+		window.location.href = '/projects/bbc.html';
+	});
+
+	/** Fourth project - Adidas Sync **/
+	app.get('speech').addCommand(['project 4', 'project four', 'four', '4', 'fourth project', 'adidas', 'sync'], function(){
+		window.location.href = '/projects/adidas.html';
+	});
+
+	/** Fith project - Learn the slr **/
+	app.get('speech').addCommand(['project 5', 'project five', 'five', '5', 'fifth project', 'learn', 'camera', 'slr', 'photography'], function(){
+		window.location.href = '/projects/learn-the-slr.html';
+	});
+
+	/** Sixth project - Learn the slr **/
+	app.get('speech').addCommand(['project 6', 'project six', 'six', '6', 'fifth project', 'apple', 'school', 'science', 'ipad'], function(){
+		window.location.href = '/projects/apple.html';
+	});
+
+
+	/**
+	 * Standard API events
+	 */
 	app.get('speech').attachEvents({
 	 'start': function() {
 			window.recognizing = true;
