@@ -155,20 +155,13 @@
 			if(!name)
 				return;
 
-			if( _.isObject(name) ){
-
-				_.extend(options.commands, name);
-
-			}else{
-
-				if( _.isArray(name) ){
+			if( _.isArray(name) ){
 					_.each(name, function(command){
 						options.commands[command] = callback;
 					});
 
-				}else{
-					options.commands[name] = callback;
-				}
+			}else{
+				options.commands[name] = callback;
 			}
 
 			return true;
@@ -233,12 +226,16 @@ if( !Modernizr.touch ){
 	/**
 	 * When a user says projects, locate the user to the projects screen
 	 */
-	app.get('speech').addCommand('projects', function(){
+	app.get('speech').addCommand(['project', 'projects', 'show me your work', 'your work', 'what do you do'], function(){
 		window.location.href = '#projects';
 	});
 
-	app.get('speech').addCommand('project', function(){
-		window.location.href = '#projects';
+	app.get('speech').addCommand(['profile', 'about you', 'who are you', 'what is hustle', 'who is hustle', 'about hustle', 'about us'], function(){
+		window.location.href = '#profile';
+	});
+
+	app.get('speech').addCommand(['top', 'go top', 'go to top', 'go back to the top'], function(){
+		window.location.href = '#top';
 	});
 
 	/** First project - Adobe Reel Cut **/
