@@ -108,3 +108,13 @@
 		@include text-shadow( 1px 1px 0px rgba(0,0,0,0.3) );
 	}
 }
+
+.header__item--speech{
+	display: none;
+}
+
+.speech{
+	.header__item--speech{
+		display: block;
+	}
+}
