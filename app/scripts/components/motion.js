@@ -10,7 +10,11 @@
  *
  */
 (function(){
+	'use strict';
 
+	/**
+	 * TODO: InvokeCallbacks method
+	 */
 	var motionComponent = function(){
 
 		var options = {
@@ -46,11 +50,9 @@
 
 			attachEvents(data);
 			listen();
-
-			detect(data) && enable();
 		};
 
-		var listen = function(callback){
+		var listen = function(){
 			options.controller.loop(controllerLoop);
 		};
 
@@ -66,31 +68,38 @@
 
 		var leapToScene = function(frame, leapPos, width, height ){
 
-			  var iBox = frame.interactionBox;
+			var iBox = frame.interactionBox;
 
-			  var left = iBox.center[0] - iBox.size[0]/2;
-			  var top = iBox.center[1] + iBox.size[1]/2;
+			var left = iBox.center[0] - iBox.size[0]/2;
+			var top = iBox.center[1] + iBox.size[1]/2;
 
-			  var x = leapPos[0] - left;
-			  var y = leapPos[1] - top;
+			var x = leapPos[0] - left;
+			var y = leapPos[1] - top;
 
-			  x /= iBox.size[0];
-			  y /= iBox.size[1];
+			x /= iBox.size[0];
+			y /= iBox.size[1];
 
-			  x *= width;
-			  y *= height;
+			x *= width;
+			y *= height;
 
-			  return [ x , -y ];
+			return [ x , -y ];
 		};
 
 		var controllerLoop = function(frame) {
 			if(!options.lastFrame){
 				options.lastFrame = frame;
 			}
-			options.events['frame'] && options.events['frame'](frame);
+
+			/** TODO: invokeCallbacks **/
+			if(options.events.frame){
+				options.events.frame(frame);
+			}
 
 			if( frame.fingers.length === options.lastFrame.fingers.length && frame.fingers.length > 0 ){
-				options.events[frame.fingers.length+'fingers'] && options.events[frame.fingers.length+'fingers'](frame, options);
+				/** invokeCallbacks here **/
+				if(options.events[frame.fingers.length+'fingers']){
+					options.events[frame.fingers.length+'fingers'](frame, options);
+				}
 			}
 
 			if(frame.gestures[0]){
@@ -112,14 +121,16 @@
 
 				if(options.events.hasOwnProperty(eventType)){
 					console.log(eventType + ' attached');
-					options.controller.on(eventType, options.events[eventType])
+					options.controller.on(eventType, options.events[eventType]);
 				}
-			};
+			}
 
-			/** First Attachment **/
+			/**
+			 * First Attachment
+			 */
 			if(!data){
 				options.controller.on('ready', function() {
-					console.log("ready");
+					console.log('ready');
 					options.isEnabled = true;
 				});
 			}
@@ -168,6 +179,7 @@
 			'addTimeout': addTimeout,
 			'removeTimeout': removeTimeout,
 			'leapToScene': leapToScene,
+			'getState': state,
 			'attachEvents': attachEvents,
 			'unbindEvents': unbindEvents
 		};
