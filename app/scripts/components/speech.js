@@ -58,12 +58,12 @@
 		var onResult = function(event){
 			for ( var i = event.resultIndex; i < event.results.length; ++i ) {
 				if (event.results[i].isFinal) {
-					window.final_transcript = event.results[i][0].transcript;
-					$('.speech_output').text(window.final_transcript);
-					matchCommand(window.final_transcript, event);
+					window.finalTranscript = event.results[i][0].transcript;
+					$('.speech_output').text(window.finalTranscript);
+					matchCommand(window.finalTranscript, event);
 
 				} else {
-					window.final_transcript = event.results[i][0].transcript;
+					window.finalTranscript = event.results[i][0].transcript;
 				}
 			}
 
@@ -192,8 +192,8 @@
 			if( options.isEnabled ){
 
 				var keys = _.keys(options.events);
-				_.each(keys, function(event_key){
-					options.recognition[event_key] = options.events[event_key];
+				_.each(keys, function(eventKey){
+					options.recognition[eventKey] = options.events[eventKey];
 				});
 
 				_.remove(options.events, data);

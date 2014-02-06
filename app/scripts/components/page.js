@@ -20,7 +20,7 @@
 		var init = function(){
 			window.tt = null;
 			window.clickedElement = false;
-			window.final_transcript = '';
+			window.finalTranscript = '';
 
 			if(!detect()){
 				return;
@@ -92,7 +92,7 @@
 				app.get('speech').attachEvents({
 					start: function() {
 						window.recognizing = true;
-						window.final_transcript = '';
+						window.finalTranscript = '';
 						// showInfo('info_speak_now');
 						// start_img.src = 'mic-animate.gif';
 						// console.log('started');
@@ -127,13 +127,13 @@
 						// window.recognizing = false;
 						// app.get('speech').stop();
 
-						// console.log(window.final_transcript);
-						$('.speech_output').text(window.final_transcript);
+						// console.log(window.finalTranscript);
+						$('.speech_output').text(window.finalTranscript);
 						// if (ignore_onend) {
 						//   return;
 						// }
 						// start_img.src = 'mic.gif';
-						// if (!final_transcript) {
+						// if (!finalTranscript) {
 						//   showInfo('info_start');
 						//   return;
 						// }
@@ -157,19 +157,19 @@
 
 						for (var i = event.resultIndex; i < event.results.length; ++i) {
 							if (event.results[i].isFinal) {
-								window.final_transcript = event.results[i][0].transcript;
-								$('.speech_output').text(window.final_transcript);
+								window.finalTranscript = event.results[i][0].transcript;
+								$('.speech_output').text(window.finalTranscript);
 
 							} else {
-								window.final_transcript = event.results[i][0].transcript;
+								window.finalTranscript = event.results[i][0].transcript;
 							}
 						}
 
 						app.get('speech').stop();
-						// window.final_transcript = capitalize(window.final_transcript);
-						// final_span.innerHTML = linebreak(window.final_transcript);
+						// window.finalTranscript = capitalize(window.finalTranscript);
+						// final_span.innerHTML = linebreak(window.finalTranscript);
 						// interim_span.innerHTML = linebreak(interim_transcript);
-						// if (window.final_transcript || interim_transcript) {
+						// if (window.finalTranscript || interim_transcript) {
 						//   showButtons('inline-block');
 						// }
 					}

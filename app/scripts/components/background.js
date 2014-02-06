@@ -53,7 +53,7 @@
 
 					animations[current].progress = 0;
 					animations[current].handler = 0;
-					animations[current].current_frame = 0;
+					animations[current].currentFrame = 0;
 					return animations[current].draw();
 
 				}
@@ -62,11 +62,11 @@
 			};
 
 			$.each(animations, function(index, animation){
-				animation.current_frame = 0;
+				animation.currentFrame = 0;
 				animation.handler = 0;
 
 				animation.draw = function(){
-					animation.progress = animation.current_frame/animation.duration;
+					animation.progress = animation.currentFrame/animation.duration;
 
 					if (animation.progress >= 1) {
 						window.cancelAnimationFrame(animation.handler);
@@ -77,7 +77,7 @@
 							animationCallback();
 						}
 					}else{
-						animation.current_frame++;
+						animation.currentFrame++;
 
 						if(animation.drawCallback){
 							animation.drawCallback(animation.progress);
@@ -100,7 +100,7 @@
 			return {
 				'name': name,
 				'elements': [],
-				'current_frame': 0,
+				'currentFrame': 0,
 				'duration': duration,
 				'handler': 0,
 				'progress': 0,
@@ -160,27 +160,27 @@
 		 * Forward animation
 		 */
 		var dn = new Animation('2_button', 30, function(progress){
-			var pixel_offset = 0;
+			var pixelOffset = 0;
 			var offset;
-			var right_elements = this.elements[0];
-			var left_elements = this.elements[1];
+			var rightElements = this.elements[0];
+			var leftElements = this.elements[1];
 			var separators = this.elements[2];
 			var i = 0;
 
-			for( i = 0; i < right_elements.length; i++ ){
+			for( i = 0; i < rightElements.length; i++ ){
 
-				offset = (-pixel_offset) + equation( progress );
+				offset = (-pixelOffset) + equation( progress );
 
-				right_elements[i].attr({
+				rightElements[i].attr({
 					transform: 't'+offset+',0'
 				});
 			}
 
-			for( i = 0; i < left_elements.length; i++ ){
+			for( i = 0; i < leftElements.length; i++ ){
 
-				offset = (pixel_offset) + ((-1) * equation( progress ) );
+				offset = (pixelOffset) + ((-1) * equation( progress ) );
 
-				left_elements[i].attr({
+				leftElements[i].attr({
 					transform: 't'+offset+',0'
 				});
 			}
@@ -203,27 +203,27 @@
 		 * Forward animation
 		 */
 		var dnn = new Animation('2_button', 25, function(progress){
-			var pixel_offset = 150;
+			var pixelOffset = 150;
 			var offset;
-			var right_elements = this.elements[0];
-			var left_elements = this.elements[1];
+			var rightElements = this.elements[0];
+			var leftElements = this.elements[1];
 			var separators = this.elements[2];
 			var i = 0;
 
-			for( i = 0; i < right_elements.length; i++ ){
+			for( i = 0; i < rightElements.length; i++ ){
 
-				offset = (pixel_offset) - equation( progress, (i+1) );
+				offset = (pixelOffset) - equation( progress, (i+1) );
 
-				right_elements[i].attr({
+				rightElements[i].attr({
 					transform: 't'+offset+',0'
 				});
 			}
 
-			for( i = 0; i < left_elements.length; i++ ){
+			for( i = 0; i < leftElements.length; i++ ){
 
-				offset = (-pixel_offset) - ((-1) * equation( progress, (i+1) ) );
+				offset = (-pixelOffset) - ((-1) * equation( progress, (i+1) ) );
 
-				left_elements[i].attr({
+				leftElements[i].attr({
 					transform: 't'+offset+',0'
 				});
 			}
