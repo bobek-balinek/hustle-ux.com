@@ -41,7 +41,6 @@
 		 *
 		 * onstart, onend, onerror, onresult, unsupported
 		 */
-
 		var onStart = function(event){
 			return invokeCallbacks(options.events.start, event);
 		};
@@ -133,10 +132,12 @@
 
 			/** Process provided callbacks **/
 			if(data){
+
 				var keys = _.keys(data);
 				_.each(keys, function(key){
 					options.events[key].push(data[key]);
 				});
+
 			}
 
 			/** Apply native callbacks **/
@@ -219,157 +220,3 @@
 	app.register('speech', speechComponent);
 
 })(app, jQuery, window, _);
-
-
-if( !Modernizr.touch ){
-
-	/**
-	 * When a user says projects, locate the user to the projects screen
-	 */
-	app.get('speech').addCommand(['project', 'projects', 'show me your work', 'your work', 'what do you do'], function(){
-		window.location.href = '#projects';
-	});
-
-	app.get('speech').addCommand(['profile', 'about you', 'who are you', 'what is hustle', 'who is hustle', 'about hustle', 'about us'], function(){
-		window.location.href = '#profile';
-	});
-
-	app.get('speech').addCommand(['top', 'go top', 'go to top', 'go back to the top'], function(){
-		window.location.href = '#top';
-	});
-
-	/** First project - Adobe Reel Cut **/
-	app.get('speech').addCommand(['project 1', 'project one', 'one', 'first project', 'adobe', 'reel cut'], function(){
-		window.location.href = '/projects/adobe.html';
-	});
-
-	/** Second project - BBC **/
-	app.get('speech').addCommand(['project 2', 'project two', 'two', '2', 'second project', 'bbc', 'family hub'], function(){
-		window.location.href = '/projects/bbc.html';
-	});
-
-	/** Third project - Enrll **/
-	app.get('speech').addCommand(['project 3', 'project three', 'three', '3', 'third project', 'enroll'], function(){
-		window.location.href = '/projects/bbc.html';
-	});
-
-	/** Fourth project - Adidas Sync **/
-	app.get('speech').addCommand(['project 4', 'project four', 'four', '4', 'fourth project', 'adidas', 'sync'], function(){
-		window.location.href = '/projects/adidas.html';
-	});
-
-	/** Fith project - Learn the slr **/
-	app.get('speech').addCommand(['project 5', 'project five', 'five', '5', 'fifth project', 'learn', 'camera', 'slr', 'photography'], function(){
-		window.location.href = '/projects/learn-the-slr.html';
-	});
-
-	/** Sixth project - Learn the slr **/
-	app.get('speech').addCommand(['project 6', 'project six', 'six', '6', 'fifth project', 'apple', 'school', 'science', 'ipad'], function(){
-		window.location.href = '/projects/apple.html';
-	});
-
-
-	/**
-	 * Standard API events
-	 */
-	app.get('speech').attachEvents({
-	 'start': function() {
-			window.recognizing = true;
-			window.final_transcript = '';
-			// showInfo('info_speak_now');
-			// start_img.src = 'mic-animate.gif';
-			// console.log('started');
-			$('.speech_output').text('Listening...');
-
-	  },
-	  'error': function(event) {
-			console.log('ERROR', event);
-			// if (event.error == 'no-speech') {
-			//   start_img.src = 'mic.gif';
-			//   showInfo('info_no_speech');
-			//   ignore_onend = true;
-			// }
-			// if (event.error == 'audio-capture') {
-			//   start_img.src = 'mic.gif';
-			//   showInfo('info_no_microphone');
-			//   ignore_onend = true;
-			// }
-			// if (event.error == 'not-allowed') {
-			//   if (event.timeStamp - start_timestamp < 100) {
-			//     showInfo('info_blocked');
-			//   } else {
-			//     showInfo('info_denied');
-			//   }
-			//   ignore_onend = true;
-			// }
-	  },
-	  'end': function(ev) {
-			// window.recognizing = false;
-			// app.get('speech').stop();
-
-			// console.log(window.final_transcript);
-			$('.speech_output').text(window.final_transcript);
-			// if (ignore_onend) {
-			//   return;
-			// }
-			// start_img.src = 'mic.gif';
-			// if (!final_transcript) {
-			//   showInfo('info_start');
-			//   return;
-			// }
-			// showInfo('');
-			// if (window.getSelection) {
-			//   window.getSelection().removeAllRanges();
-			//   var range = document.createRange();
-			//   range.selectNode(document.getElementById('final_span'));
-			//   window.getSelection().addRange(range);
-			// }
-			// if (create_email) {
-			//   create_email = false;
-			//   createEmail();
-			// }
-	  },
-	  'result': function(event) {
-			console.log('RESULT', event);
-			// window.recognizing = false;
-			app.get('speech').stop();
-			$('.speech_output').text('Processing...');
-
-			var interim_transcript = '';
-
-			for (var i = event.resultIndex; i < event.results.length; ++i) {
-			  if (event.results[i].isFinal) {
-					window.final_transcript = event.results[i][0].transcript;
-					$('.speech_output').text(window.final_transcript);
-
-			  } else {
-					window.final_transcript = event.results[i][0].transcript;
-			  }
-			}
-
-			app.get('speech').stop();
-			// window.final_transcript = capitalize(window.final_transcript);
-			// final_span.innerHTML = linebreak(window.final_transcript);
-			// interim_span.innerHTML = linebreak(interim_transcript);
-			// if (window.final_transcript || interim_transcript) {
-			//   showButtons('inline-block');
-			// }
-	  }
-	});
-
-	window.final_transcript = '';
-
-	/**
-	 * Click speech recognition
-	 */
-	$('.speech-on').on('click', function(event){
-
-		if( window.recognizing ){
-			app.get('speech').stop();
-		}else{
-			app.get('speech').start();
-		}
-
-	});
-
-}

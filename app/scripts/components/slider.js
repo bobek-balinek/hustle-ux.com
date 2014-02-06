@@ -1,27 +1,5 @@
 /**
  * Slider component
- *
- * What is needs:
- * - Main element
- * - Child selector (slide)
- * - Current index
- * - List of content elements
- * - List of events for next/prev
- *
- * Methods:
- * - currentIndex()
- * - nextSlide()
- * - previousSlide()
- * - close()
- * - open()
- *
- * app.get('slider').setElement( $('.bobby-slider') );
- *
- * app.get('slider').init( $('.motion li') , {
- * 	'click .bob': fn(),
- * 	'click .not': fn()
- * });
- *
  */
 
 (function(){

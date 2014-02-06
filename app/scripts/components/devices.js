@@ -29,12 +29,20 @@
 		};
 
 		/**
+		 * Toggle given link to be active
+		 */
+		var itemClick = function(event){
+			event.preventDefault();
+			resetSelected();
+			markSelected();
+
+			$(this).toggleClass('active');
+		};
+
+		/**
 		 * Scroll down to the list of projects
 		 */
 		var desktopClick = function(event){
-			event.preventDefault();
-			resetSelected();
-
 			app.get('slider').destroy();
 
 			$('.page-wrap').animate({'scrollTop': screenOffset}, 400);
@@ -44,12 +52,6 @@
 		 * Setup LeapMotion slider
 		 */
 		var motionClick = function(event){
-			event.preventDefault();
-			resetSelected();
-			markSelected();
-
-			$(this).toggleClass('active');
-
 			app.get('slider').init({
 				element: $('.slider__collection--motion'),
 				slideSelector: 'li'
@@ -60,22 +62,18 @@
 		 * Setup Voice recognition slider
 		 */
 		var speechClick = function(event){
-			event.preventDefault();
-			resetSelected();
-			markSelected();
-
-			$(this).toggleClass('active');
-
 			app.get('slider').init({
 				element: $('.slider__collection--speech'),
 				slideSelector: 'li'
 			});
-
-			$('.speech-on').removeClass('hidden');
 		};
 
-		// Attach Events
+		/**
+		 * Attach events
+		 */
 		var attachEvents = function(){
+			$('.devices-list__link', componentElement).on('click', itemClick);
+
 			$('.motion', componentElement).on('click', motionClick);
 			$('.desktop', componentElement).on('click', desktopClick);
 			$('.speech', componentElement).on('click', speechClick);
