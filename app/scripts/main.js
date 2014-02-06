@@ -1,33 +1,33 @@
 (function(){
+	'use strict';
 
 	/**
 	 * Animation Shim
 	 */
 	(function() {
-			var lastTime = 0;
-			var vendors = ['ms', 'moz', 'webkit', 'o'];
-			for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-					window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-					window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
-																		 || window[vendors[x]+'CancelRequestAnimationFrame'];
-			}
+		var lastTime = 0;
+		var vendors = ['ms', 'moz', 'webkit', 'o'];
+		for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+			window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+			window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+		}
 
-			if (!window.requestAnimationFrame){
-				window.requestAnimationFrame = function(callback, element) {
-						var currTime = new Date().getTime();
-						var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-						var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-							timeToCall);
-						lastTime = currTime + timeToCall;
-						return id;
-				};
-			}
+		if (!window.requestAnimationFrame){
+			window.requestAnimationFrame = function(callback) {
+				var currTime = new Date().getTime();
+				var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+				var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+					timeToCall);
+				lastTime = currTime + timeToCall;
+				return id;
+			};
+		}
 
-			if (!window.cancelAnimationFrame){
-				window.cancelAnimationFrame = function(id) {
-						clearTimeout(id);
-				};
-			}
+		if (!window.cancelAnimationFrame){
+			window.cancelAnimationFrame = function(id) {
+				clearTimeout(id);
+			};
+		}
 	}());
 
 	// Add jQuery .bindMany events
@@ -47,7 +47,7 @@
 	 * Initialise FastClick
 	 */
 	window.addEventListener('load', function() {
-		FastClick.attach(document.body);
+		return FastClick && FastClick.attach(document.body);
 	}, false);
 
 	/**
@@ -64,17 +64,16 @@
 
 	function describeArc(x, y, radius, startAngle, endAngle){
 
-			var start = polarToCartesian(x, y, radius, endAngle);
-			var end = polarToCartesian(x, y, radius, startAngle);
+		var start = polarToCartesian(x, y, radius, endAngle);
+		var end = polarToCartesian(x, y, radius, startAngle);
+		var arcSweep = endAngle - startAngle <= 180 ? '0' : '1';
 
-			var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+		var d = [
+			'M', start.x, start.y,
+			'A', radius, radius, 0, arcSweep, 0, end.x, end.y
+		].join(' ');
 
-			var d = [
-					"M", start.x, start.y,
-					"A", radius, radius, 0, arcSweep, 0, end.x, end.y
-			].join(" ");
-
-			return d;
+		return d;
 	}
 
 	/**
@@ -83,12 +82,12 @@
 	function initTip(callback){
 		window.tt = true;
 		var progress = 0;
-		var dn = document.getElementById("arc1");
+		var dn = document.getElementById('arc1');
 
 		var timer = setInterval(function(){
 			if(progress <= 100){
 				var angle = (progress * 3.6);
-				dn.setAttribute("d", describeArc(32,32 , 28, 0, angle));
+				dn.setAttribute('d', describeArc(32,32 , 28, 0, angle));
 				progress += 1;
 			}else{
 				clearTimeout(timer);
@@ -98,6 +97,5 @@
 			}
 		},15);
 	}
-
 
 })(jQuery, Modernizr, FastClick, window);

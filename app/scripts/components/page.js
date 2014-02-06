@@ -1,8 +1,7 @@
 (function(){
+	'use strict';
 
 	var pageComponent = function(){
-
-		var componentElement = $('.selector');
 		var defaultOptions = {
 			fingerTipElement: document.querySelector('.tip'),
 			width: $(window).width(),
@@ -21,8 +20,13 @@
 		var init = function(){
 			window.tt = null;
 			window.clickedElement = false;
+			window.final_transcript = '';
 
-			detect() && eneable();
+			if(!detect()){
+				return;
+			}
+
+			eneable();
 		};
 
 		var attachEvents = function(){
@@ -40,8 +44,6 @@
 				});
 
 				/** Attach Events for Speech **/
-				window.final_transcript = '';
-
 				app.get('speech').addCommand(['project', 'projects', 'show me your work', 'your work', 'what do you do'], function(){
 					window.location.href = '#projects';
 				});
@@ -88,7 +90,7 @@
 				 * Standard API events
 				 */
 				app.get('speech').attachEvents({
-				 'start': function() {
+					start: function() {
 						window.recognizing = true;
 						window.final_transcript = '';
 						// showInfo('info_speak_now');
@@ -96,29 +98,32 @@
 						// console.log('started');
 						$('.speech_output').text('Listening...');
 
-				  },
-				  'error': function(event) {
+					},
+					error: function(event) {
 						console.log('ERROR', event);
-						// if (event.error == 'no-speech') {
-						//   start_img.src = 'mic.gif';
-						//   showInfo('info_no_speech');
-						//   ignore_onend = true;
-						// }
-						// if (event.error == 'audio-capture') {
-						//   start_img.src = 'mic.gif';
-						//   showInfo('info_no_microphone');
-						//   ignore_onend = true;
-						// }
-						// if (event.error == 'not-allowed') {
-						//   if (event.timeStamp - start_timestamp < 100) {
-						//     showInfo('info_blocked');
-						//   } else {
-						//     showInfo('info_denied');
-						//   }
-						//   ignore_onend = true;
-						// }
-				  },
-				  'end': function(ev) {
+						if (event.error === 'no-speech') {
+							console.log('ERROR', 'no-speech', event);
+						  // start_img.src = 'mic.gif';
+						  // showInfo('info_no_speech');
+						  // ignore_onend = true;
+						}
+						if (event.error === 'audio-capture') {
+							console.log('ERROR','audio-capture', event);
+						  // start_img.src = 'mic.gif';
+						  // showInfo('info_no_microphone');
+						  // ignore_onend = true;
+						}
+						if (event.error === 'not-allowed') {
+							console.log('ERROR','not-allowed', event);
+						  // if (event.timeStamp - start_timestamp < 100) {
+						  //   showInfo('info_blocked');
+						  // } else {
+						  //   showInfo('info_denied');
+						  // }
+						  // ignore_onend = true;
+						}
+					},
+					end: function() {
 						// window.recognizing = false;
 						// app.get('speech').stop();
 
@@ -143,23 +148,21 @@
 						//   create_email = false;
 						//   createEmail();
 						// }
-				  },
-				  'result': function(event) {
+					},
+					result: function(event) {
 						console.log('RESULT', event);
 						// window.recognizing = false;
 						app.get('speech').stop();
 						$('.speech_output').text('Processing...');
 
-						var interim_transcript = '';
-
 						for (var i = event.resultIndex; i < event.results.length; ++i) {
-						  if (event.results[i].isFinal) {
+							if (event.results[i].isFinal) {
 								window.final_transcript = event.results[i][0].transcript;
 								$('.speech_output').text(window.final_transcript);
 
-						  } else {
+							} else {
 								window.final_transcript = event.results[i][0].transcript;
-						  }
+							}
 						}
 
 						app.get('speech').stop();
@@ -169,7 +172,7 @@
 						// if (window.final_transcript || interim_transcript) {
 						//   showButtons('inline-block');
 						// }
-				  }
+					}
 				});
 
 				/**
@@ -177,7 +180,7 @@
 				 */
 				if( $('body').hasClass('has-header-image') ){
 
-					$('.page-wrap').on('scroll', function(event){
+					$('.page-wrap').on('scroll', function(){
 
 						if( $('.page-wrap').scrollTop() < $(window).height() ){
 							$('body').addClass('is-over-picture');
@@ -192,6 +195,7 @@
 				 * Click speech recognition
 				 */
 				$('.speech-on').on('click', function(event){
+					event.preventDefault();
 
 					if( window.recognizing ){
 						app.get('speech').stop();
@@ -204,7 +208,7 @@
 			}
 
 			/** Initialise the Slider **/
-			app.get('slider') && app.get('slider').init();
+			app.get('slider').init();
 		};
 
 		/**
@@ -236,22 +240,26 @@
 					$(defaultOptions.fingerTipElement).addClass('animated');
 
 					if(!window.tt){
-							var element = document.elementFromPoint( deltaX, deltaY );
+						var element = document.elementFromPoint( deltaX, deltaY );
 
-							if( $(element).length && $(element).prop('tagName') !== 'HTML' && $(element).prop('tagName') !== 'BODY'){
+						if( $(element).length && $(element).prop('tagName') !== 'HTML' && $(element).prop('tagName') !== 'BODY'){
 
-								// Initialize click event
-								/**
-								 * TODO: 'idle' callback
-								 */
-								initTip(function(){
-									$(defaultOptions.fingerTipElement).removeClass('animated');
-									setTimeout(function(){
-											$(element)[0] && $(element)[0].click();
-									},0);
-								});
+							// Initialize click event
+							/**
+							 * TODO: 'idle' callback
+							 */
+							initTip(function(){
+								$(defaultOptions.fingerTipElement).removeClass('animated');
 
-							}
+								/** Execute the click event **/
+								setTimeout(function(){
+									if( $(element)[0] ) {
+										$(element)[0].click();
+									}
+								},0);
+							});
+
+						}
 					}
 				}
 			}
@@ -261,19 +269,19 @@
 		 * TODO: This may not be needed - three fingerss - maybe going back / forth in the projects ??
 		 */
 		var backgroundCallback = function(frame){
-				var pos = frame.fingers[0].stabilizedTipPosition;
-				var poss = app.get('motion').leapToScene(frame, pos, defaultOptions.width, defaultOptions.height);
+			var pos = frame.fingers[0].stabilizedTipPosition;
+			var poss = app.get('motion').leapToScene(frame, pos, defaultOptions.width, defaultOptions.height);
 
-				var velocX = Math.abs(frame.fingers[0].tipVelocity[0]);
-				var velocY = Math.abs(frame.fingers[0].tipVelocity[1]);
+			var velocX = Math.abs(frame.fingers[0].tipVelocity[0]);
+			var velocY = Math.abs(frame.fingers[0].tipVelocity[1]);
 
-				var deltaX = poss[0] + 44;
-				var deltaY = poss[1] + 44;
+			var deltaX = poss[0] + 44;
+			var deltaY = poss[1] + 44;
 
-				window.mouseX = deltaX * (velocX/ 100);
-				window.mouseY = deltaY * (velocY / 100);
+			window.mouseX = deltaX * (velocX/ 100);
+			window.mouseY = deltaY * (velocY / 100);
 
-				return;
+			return;
 		};
 
 		/**

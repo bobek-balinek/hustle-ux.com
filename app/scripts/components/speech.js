@@ -6,15 +6,16 @@
  */
 
 (function(){
+	'use strict';
 
 	var speechComponent = function(){
+		var RecognitionObject = (window.SpeechRecognition ||
+													window.webkitSpeechRecognition ||
+													window.mozSpeechRecognition ||
+													window.msSpeechRecognition ||
+													window.oSpeechRecognition);
 
 		var options = {
-			recognitionObject: (window.SpeechRecognition ||
-                          window.webkitSpeechRecognition ||
-                          window.mozSpeechRecognition ||
-                          window.msSpeechRecognition ||
-                          window.oSpeechRecognition),
 			recognition: null,
 			isEnabled: false,
 			recognitionOptions: {
@@ -55,17 +56,15 @@
 
 		/** TODO: INVOKE CALLBACKS WITH RESULT MATCH **/
 		var onResult = function(event){
-			var interim_transcript = '';
-
-			for (var i = event.resultIndex; i < event.results.length; ++i) {
-			  if (event.results[i].isFinal) {
+			for ( var i = event.resultIndex; i < event.results.length; ++i ) {
+				if (event.results[i].isFinal) {
 					window.final_transcript = event.results[i][0].transcript;
 					$('.speech_output').text(window.final_transcript);
 					matchCommand(window.final_transcript, event);
 
-			  } else {
+				} else {
 					window.final_transcript = event.results[i][0].transcript;
-			  }
+				}
 			}
 
 			return invokeCallbacks(options.events.result, event);
@@ -79,7 +78,7 @@
 		};
 
 		var enable = function(){
-			options.recognition = new webkitSpeechRecognition();
+			options.recognition = new RecognitionObject();
 			_.extend(options.recognition, options.recognitionOptions);
 
 			options.isEnabled = true;
@@ -121,11 +120,13 @@
 		};
 
 		var init = function(data, optionsData){
-			if( detect() ){
-				_.extend(options, optionsData);
-				enable();
-				attachEvents();
+			if( !detect() ){
+				return;
 			}
+
+			_.extend(options, optionsData);
+			enable();
+			attachEvents();
 		};
 
 		var attachEvents = function(data){
@@ -141,10 +142,10 @@
 			}
 
 			/** Apply native callbacks **/
-			options.recognition['onstart'] = onStart;
-			options.recognition['onend'] = onEnd;
-			options.recognition['onerror'] = onError;
-			options.recognition['onresult'] = onResult;
+			options.recognition.onstart = onStart;
+			options.recognition.onend = onEnd;
+			options.recognition.onerror = onError;
+			options.recognition.onresult = onResult;
 
 			return true;
 		};
@@ -153,13 +154,14 @@
 		 * Add a new set of commands
 		 */
 		var addCommand = function(name, callback){
-			if(!name)
+			if(!name){
 				return;
+			}
 
 			if( _.isArray(name) ){
-					_.each(name, function(command){
-						options.commands[command] = callback;
-					});
+				_.each(name, function(command){
+					options.commands[command] = callback;
+				});
 
 			}else{
 				options.commands[name] = callback;
@@ -210,6 +212,7 @@
 			'detect': detect,
 			'enable': enable,
 			'disable': disable,
+			'getState': state,
 			'getCommands': getCommands,
 			'addCommand': addCommand,
 			'removeCommand': removeCommand,

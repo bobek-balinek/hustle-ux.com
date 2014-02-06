@@ -2,17 +2,17 @@
  * SVG Animation library
  *
  * TODO: - Separate animationQueue into a separate component
- * 			 - Separate Landing page animations into its own component
+ * TODO: - Separate Landing page animations into its own component
  */
 (function(){
+	'use strict';
 
-	function precise_round(num,decimals){
-		return Math.round(num*Math.pow(10,decimals))/Math.pow(10,decimals);
-	}
+	// function precise_round(num,decimals){
+	// 	return Math.round(num*Math.pow(10,decimals))/Math.pow(10,decimals);
+	// }
 
 	var backgroundComponent = function(){
 
-		var componentElement = $('.canvas');
 		var anims = [];
 		var layerOne, layerTwo, snap;
 
@@ -39,7 +39,7 @@
 		/**
 		 * Event Dispatcher
 		 */
-		function animationQueue(animations, noLoop){
+		function AnimationQueue(animations, noLoop){
 			var current = 0;
 
 			var animationCallback = function(){
@@ -79,7 +79,10 @@
 					}else{
 						animation.current_frame++;
 
-						animation.drawCallback && animation.drawCallback(animation.progress);
+						if(animation.drawCallback){
+							animation.drawCallback(animation.progress);
+						}
+
 						animation.handler = window.requestAnimationFrame(animation.draw);
 					}
 
@@ -88,12 +91,12 @@
 			});
 
 			return animations[current].draw();
-		};
+		}
 
 		/**
 		 * Animation constructor
 		 */
-		function animation(name, duration, draw, end){
+		function Animation(name, duration, draw, end){
 			return {
 				'name': name,
 				'elements': [],
@@ -104,12 +107,12 @@
 				'drawCallback': draw,
 				'endCallback': end
 			};
-		};
+		}
 
 		/**
 		 * Animation to draw the phone forward
 		 */
-		var phoneForwardAnimation = new animation('phoneForward', 240, function(progress){
+		var phoneForwardAnimation = new Animation('phoneForward', 240, function(progress){
 				return $.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', (-1) * Math.floor( (2 * element.length) * (0.5 - progress) ) );
 				});
@@ -117,7 +120,7 @@
 				layerOne.attr('display', 'none');
 				layerTwo.attr('display', 'block');
 
-				var contentsAnimation = new animationQueue([dn], true);
+				var contentsAnimation = new AnimationQueue([dn], true);
 
 				$.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', element.length );
@@ -129,130 +132,133 @@
 		/**
 		 * Animation to draw the monitor dorward
 		 */
-		var monitorForwardAnimation = new animation('monitorForward', 240, function(progress){
-				return $.each(this.elements, function(index, element){
-					element.path.attr('stroke-dashoffset', Math.floor( (2 * element.length) * (0.5 - progress) ) );
-				});
-
-			}, function(callback){
-				layerOne.attr('display', 'block');
-				layerTwo.attr('display', 'none');
-
-				var contentsAnimation = new animationQueue([dnn], true);
-
-				$.each(this.elements, function(index, element){
-					element.path.attr('stroke-dashoffset', element.length );
-				});
-
-				return callback();
+		var monitorForwardAnimation = new Animation('monitorForward', 240, function(progress){
+			return $.each(this.elements, function(index, element){
+				element.path.attr('stroke-dashoffset', Math.floor( (2 * element.length) * (0.5 - progress) ) );
 			});
 
-			var equation = function(pox, pow){
-				var x = ((Math.PI)/2) * pox;
-				var d = (1 + Math.sin( x ) );
-				return d * ((75*pox) );
-			};
+		}, function(callback){
+			layerOne.attr('display', 'block');
+			layerTwo.attr('display', 'none');
 
-				/**
-				 * Forward animation
-				 */
-				var dn = new animation('2_button', 30, function(progress){
-					var pixel_offset = 0;
-					var offset;
-					var right_elements = this.elements[0];
-					var left_elements = this.elements[1];
-					var separators = this.elements[2];
+			var contentsAnimation = new AnimationQueue([dnn], true);
 
-					for( var i = 0; i < right_elements.length; i++ ){
+			$.each(this.elements, function(index, element){
+				element.path.attr('stroke-dashoffset', element.length );
+			});
 
-						offset = (-pixel_offset) + equation( progress, (i+1) );
+			return callback();
+		});
 
-						right_elements[i].attr({
-							transform: "t"+offset+",0"
-						});
-					}
+		var equation = function(pox){
+			var x = ((Math.PI)/2) * pox;
+			var d = (1 + Math.sin( x ) );
+			return d * ((75*pox) );
+		};
 
-					for( var i = 0; i < left_elements.length; i++ ){
+		/**
+		 * Forward animation
+		 */
+		var dn = new Animation('2_button', 30, function(progress){
+			var pixel_offset = 0;
+			var offset;
+			var right_elements = this.elements[0];
+			var left_elements = this.elements[1];
+			var separators = this.elements[2];
+			var i = 0;
 
-						offset = (pixel_offset) + ((-1) * equation( progress, (i+1) ) );
+			for( i = 0; i < right_elements.length; i++ ){
 
-						left_elements[i].attr({
-							transform: "t"+offset+",0"
-						});
-					}
+				offset = (-pixel_offset) + equation( progress );
 
-					for( var i = 0; i < separators.length; i++ ){
-
-						offset = (150) + ((-1) * equation( progress, (i+1) ) );
-
-						separators[i].attr({
-							x1: (40 + offset),
-							x2: (515 - offset)
-						});
-					}
-
-				}, function(callback){
-					return callback();
+				right_elements[i].attr({
+					transform: 't'+offset+',0'
 				});
+			}
 
-				/**
-				 * Forward animation
-				 */
-				var dnn = new animation('2_button', 25, function(progress){
-					var pixel_offset = 150;
-					var offset;
-					var right_elements = this.elements[0];
-					var left_elements = this.elements[1];
-					var separators = this.elements[2];
+			for( i = 0; i < left_elements.length; i++ ){
 
-					for( var i = 0; i < right_elements.length; i++ ){
+				offset = (pixel_offset) + ((-1) * equation( progress ) );
 
-						offset = (pixel_offset) - equation( progress, (i+1) );
-
-						right_elements[i].attr({
-							transform: "t"+offset+",0"
-						});
-					}
-
-					for( var i = 0; i < left_elements.length; i++ ){
-
-						offset = (-pixel_offset) - ((-1) * equation( progress, (i+1) ) );
-
-						left_elements[i].attr({
-							transform: "t"+offset+",0"
-						});
-					}
-
-					for( var i = 0; i < separators.length; i++ ){
-
-						offset = (0) - ((-1) * equation( progress, (i+1) ) );
-
-						separators[i].attr({
-							x1: (40 + offset),
-							x2: (515 - offset)
-						});
-					}
-
-				}, function(callback){
-					return callback();
+				left_elements[i].attr({
+					transform: 't'+offset+',0'
 				});
+			}
+
+			for( i = 0; i < separators.length; i++ ){
+
+				offset = (150) + ((-1) * equation( progress ) );
+
+				separators[i].attr({
+					x1: (40 + offset),
+					x2: (515 - offset)
+				});
+			}
+
+		}, function(callback){
+			return callback();
+		});
+
+		/**
+		 * Forward animation
+		 */
+		var dnn = new Animation('2_button', 25, function(progress){
+			var pixel_offset = 150;
+			var offset;
+			var right_elements = this.elements[0];
+			var left_elements = this.elements[1];
+			var separators = this.elements[2];
+			var i = 0;
+
+			for( i = 0; i < right_elements.length; i++ ){
+
+				offset = (pixel_offset) - equation( progress, (i+1) );
+
+				right_elements[i].attr({
+					transform: 't'+offset+',0'
+				});
+			}
+
+			for( i = 0; i < left_elements.length; i++ ){
+
+				offset = (-pixel_offset) - ((-1) * equation( progress, (i+1) ) );
+
+				left_elements[i].attr({
+					transform: 't'+offset+',0'
+				});
+			}
+
+			for( i = 0; i < separators.length; i++ ){
+
+				offset = (0) - ((-1) * equation( progress, (i+1) ) );
+
+				separators[i].attr({
+					x1: (40 + offset),
+					x2: (515 - offset)
+				});
+			}
+
+		}, function(callback){
+			return callback();
+		});
 
 		/**
 		 * Initialise the component
 		 */
 		var init = function(){
-			detect() && eneable();
-
-			if(!detect())
+			if(!detect()){
 				return;
+			}
+
+			eneable();
 
 			/**
 			 * Load the SVG file in
 			 *
 			 * TODO: EMBEDD the SVG
 			 */
-			snap = Snap("#landing .container");
-			Snap.load("/images/test-phone.svg", function (f) {
+			snap = new Snap('#landing .container');
+			Snap.load('/images/test-phone.svg', function (f) {
 				layerOne = f.select('#Phone');
 				layerTwo = f.select('#PC');
 
@@ -298,7 +304,7 @@
 				/**
 				 * Start animations
 				 */
-				var mainAnimation = new animationQueue(anims);
+				var mainAnimation = new AnimationQueue(anims);
 				snap.append(f);
 			});
 		};

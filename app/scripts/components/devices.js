@@ -1,7 +1,7 @@
 (function(){
+	'use strict';
 
 	var devicesComponent = function(){
-
 		var componentElement = $('.devices-list');
 		var screenOffset = 0;
 
@@ -14,8 +14,11 @@
 		};
 
 		var init = function(){
-			detect() && eneable();
+			if( !detect() ){
+				return;
+			}
 
+			eneable();
 			screenOffset = $('section.work').offset() ? $('section.work').offset().top : 0;
 		};
 
@@ -42,7 +45,7 @@
 		/**
 		 * Scroll down to the list of projects
 		 */
-		var desktopClick = function(event){
+		var desktopClick = function(){
 			app.get('slider').destroy();
 
 			$('.page-wrap').animate({'scrollTop': screenOffset}, 400);
@@ -51,7 +54,7 @@
 		/**
 		 * Setup LeapMotion slider
 		 */
-		var motionClick = function(event){
+		var motionClick = function(){
 			app.get('slider').init({
 				element: $('.slider__collection--motion'),
 				slideSelector: 'li'
@@ -61,7 +64,7 @@
 		/**
 		 * Setup Voice recognition slider
 		 */
-		var speechClick = function(event){
+		var speechClick = function(){
 			app.get('slider').init({
 				element: $('.slider__collection--speech'),
 				slideSelector: 'li'

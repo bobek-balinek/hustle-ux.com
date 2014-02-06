@@ -1,8 +1,8 @@
 /**
  * Slider component
  */
-
 (function(){
+	'use strict';
 
 	var sliderComponent = function(){
 		var options = {
@@ -17,17 +17,19 @@
 			return true;
 		};
 
-		var eneable = function(){
+		var enable = function(){
 			attachEvents();
 			console.log('enabled slider');
 		};
 
 		var init = function(optionsData){
+			if( !detect() ){
+				return;
+			}
+
+			enable();
 			$.extend( options, optionsData );
-
-			detect() && eneable();
 			destroy();
-
 			setActive(0);
 		};
 
@@ -76,13 +78,11 @@
 		};
 
 		var activateComponent = function(){
-			options.element && options.mainElement.addClass('active');
-			return;
+			return options.mainElement.addClass('active');
 		};
 
 		var deactivateComponent = function(){
-			options.element && options.mainElement.removeClass('active');
-			return;
+			return options.mainElement.removeClass('active');
 		};
 
 		var resetActive = function(){
@@ -137,14 +137,17 @@
 			}
 		};
 
-		var getCurrentSlide = function(name){
+		/**
+		 * TODO: Narrow down to active slider
+		 */
+		var getCurrentSlide = function(){
 			return getElement().find(options.slideSelector).eq(options.currentIndex);
 		};
 
 		return {
 			'init': init,
 			'detect': detect,
-			'eneable': eneable,
+			'enable': enable,
 			'destroy': destroy,
 			'setActive': setActive,
 			'nextSlide': nextSlide,
