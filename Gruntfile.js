@@ -149,12 +149,7 @@ module.exports = function (grunt) {
             options: {
                 jshintrc: '.jshintrc'
             },
-            all: [
-                'Gruntfile.js',
-                '<%= yeoman.app %>/scripts/{,*/}*.js',
-                '!<%= yeoman.app %>/scripts/vendor/*',
-                'test/spec/{,*/}*.js'
-            ]
+            all: ['<%= yeoman.app %>/scripts/{,*/}*.js']
         },
         mocha: {
             all: {
@@ -385,4 +380,6 @@ module.exports = function (grunt) {
         'test',
         'build'
     ]);
+
+    grunt.registerTask('hint', ['jshint']);
 };
