@@ -59,12 +59,7 @@
 		var onResult = function(event){
 			for ( var i = event.resultIndex; i < event.results.length; ++i ) {
 				if (event.results[i].isFinal) {
-					window.finalTranscript = event.results[i][0].transcript;
-					// $('.speech_output').text(window.finalTranscript);
-					matchCommand(window.finalTranscript, event);
-
-				} else {
-					// window.finalTranscript = event.results[i][0].transcript;
+					matchCommand(event.results[i][0].transcript, event);
 				}
 			}
 
