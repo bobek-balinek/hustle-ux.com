@@ -44,3 +44,25 @@
 		text-decoration: none;
 	}
 }
+
+/**
+ * Custom contents of the slider
+ */
+
+#speechSuccess,
+#speechSuccessText{
+	display: none;
+
+	.speech &{
+		display: block;
+	}
+}
+
+#speechError,
+#speechErrorText{
+	display: block;
+
+	.speech &{
+		display: none;
+	}
+}

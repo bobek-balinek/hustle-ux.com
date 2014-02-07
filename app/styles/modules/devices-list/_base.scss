@@ -1,6 +1,13 @@
 
 // Main container element
 .devices-list{
+	@include flexbox;
+	@include flex-flow(row nowrap);
+	@include justify-content(center);
+	@include align-items(flex-start);
+
+	@include alter-box-sizing;
+
 	padding: 0;
 	margin: 0;
 	list-style: none;
@@ -9,24 +16,11 @@
 	left: 0;
 	width: 100%;
 	z-index: 30;
-
-	@include display-flex;
-
-	-webkit-flex-flow: row nowrap;
-	-moz-flex-flow: row nowrap;
-	flex-flow: row nowrap;
-
-	-webkit-justify-content: center;
-	-moz-justify-content: center;
-
-	@include alter-box-sizing;
 }
 
 // List item
 .devices-list__item{
-	-webkit-flex: 1 1 0;
-	-moz-flex: 1 1 0;
-	flex: 1 1 0;
+	@include flex(1 1 0);
 }
 
 // Links inside first list item

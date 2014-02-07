@@ -14,12 +14,12 @@ body {
 	line-height: 1.5;
 	color: #333;
 	margin: 0;
-	padding: 5px 0 0;
+	padding: 0 0 0;
 
 	// This only over 768px
-	&.is-over-picture{
-		padding: 0;
-	}
+	// &.is-over-picture{
+	// 	padding: 0;
+	// }
 }
 
 body, html {
@@ -83,9 +83,7 @@ footer{
 }
 
 .profile-picture__image{
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
+	@include border-radius(50%);
 
 	border: 20px solid #fcfcfc;
 }

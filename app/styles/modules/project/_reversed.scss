@@ -8,10 +8,10 @@
 	figcaption{
 		text-align: right;
 		margin: 0 2em 0 0;
-		order: 1;
+		@include order(1);
 	}
 
 	img{
-		order: 2;
+		@include order(2);
 	}
 }

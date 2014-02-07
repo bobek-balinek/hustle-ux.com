@@ -31,9 +31,9 @@
 	@media screen and (max-width: $mq-level2){
 
 		img{
-			flex-flow: row;
+			@include flex-direction(row);
+			@include flex(1 auto);
 			width: 50%;
-			flex: 1 auto;
 
 			&:first-child{
 				margin-bottom: 1em;
@@ -41,8 +41,8 @@
 		}
 
 		figcaption{
-			flex-flow: column;
-			flex: 2 0 0;
+			@include flex-direction(column);
+			@include flex(2 0 0);
 		}
 
 	}

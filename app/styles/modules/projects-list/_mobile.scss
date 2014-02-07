@@ -10,10 +10,8 @@
 
 @media screen and (max-width: $mq-level4){
 	.projects-list{
-		-webkit-flex-flow: column wrap;
-		-moz-flex-flow: column wrap;
-		-ms-flex-flow: column wrap;
-		flex-flow: column wrap;
+		@include flex-direction(column);
+		@include flex-wrap(wrap);
 
 		font-size: 1.250em;
 	}

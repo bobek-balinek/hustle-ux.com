@@ -22,9 +22,7 @@
 	.header__list{
 		top: 0;
 		width: 100%;
-		-webkit-flex-flow: row wrap;
-		-moz-flex-flow: row wrap;
-		flex-flow: row wrap;
+		@include flex-direction(row);
 	}
 
 	.header__link{
@@ -32,10 +30,7 @@
 	}
 
 	.header__item--home{
-		-webkit-flex: 1 0 0;
-		-moz-flex: 1 0 0;
-		-ms-flex: 1 0 0;
-		flex: 1 0 0;
+		@include flex(1 0 0);
 
 		.header__label{
 			color: #ffffff;

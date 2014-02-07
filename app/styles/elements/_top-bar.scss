@@ -5,11 +5,9 @@
 	width: 100%;
 	// position: fixed;
 	text-align: center;
-	// top: 0;
+	top: 0;
 	// left: 0;
 	z-index: 80;
-
-	@include transition(height 1s);
 
 	.is-over-picture &{
 		min-height: 0;

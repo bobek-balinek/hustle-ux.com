@@ -14,7 +14,8 @@
 	var backgroundComponent = function(){
 
 		var anims = [];
-		var layerOne, layerTwo, snap;
+		var animationQueues = [];
+		var layerOne, layerTwo, f;
 
 		var detect = function(){
 			return $('.homepage').length > 0 && Modernizr.svg;
@@ -121,6 +122,7 @@
 				layerTwo.attr('display', 'block');
 
 				var contentsAnimation = new AnimationQueue([dn], true);
+				animationQueues.push(contentsAnimation);
 
 				$.each(this.elements, function(index, element){
 					element.path.attr('stroke-dashoffset', element.length );
@@ -142,6 +144,7 @@
 			layerTwo.attr('display', 'none');
 
 			var contentsAnimation = new AnimationQueue([dnn], true);
+			animationQueues.push(contentsAnimation);
 
 			$.each(this.elements, function(index, element){
 				element.path.attr('stroke-dashoffset', element.length );
@@ -254,63 +257,60 @@
 
 			/**
 			 * Load the SVG file in
-			 *
-			 * TODO: EMBEDD the SVG
 			 */
-			snap = new Snap('#landing .container');
-			Snap.load('/images/test-phone.svg', function (f) {
-				layerOne = f.select('#Phone');
-				layerTwo = f.select('#PC');
+			f = Snap.select('#Landing_1');
+			layerOne = f.select('#Phone');
+			layerTwo = f.select('#PC');
 
-				/**
-				 * Get elements and put them in specific animations
-				 */
-				$.each(getPaths(layerOne), function(index, element){
-					var length = element.getTotalLength();
+			/**
+			 * Get elements and put them in specific animations
+			 */
+			$.each(getPaths(layerOne), function(index, element){
+				var length = element.getTotalLength();
 
-					element.attr('stroke-dasharray', length + ' ' + length);
-					element.attr('stroke-dashoffset', length);
+				element.attr('stroke-dasharray', length + ' ' + length);
+				element.attr('stroke-dashoffset', length);
 
-					phoneForwardAnimation.elements.push({ 'path': element, 'length': length });
-				});
-
-				$.each(getPaths(layerTwo), function(index, element){
-					var length = element.getTotalLength();
-
-					element.attr('stroke-dasharray', length + ' ' + length);
-					element.attr('stroke-dashoffset', length);
-
-					monitorForwardAnimation.elements.push({ 'path': element, 'length': length });
-				});
-
-				var ico = f.selectAll('#header_ico, #line_1_ico, #line_2_ico, #line_3_ico');
-				var btn = f.selectAll('#header_btn1, #header_btn2, #line_1_btn, #line_2_btn, #line_3_btn');
-				var lines = f.selectAll('#separator_1, #separator_2, #separator_3, #separator_4');
-
-				dn.elements.push(btn);
-				dn.elements.push(ico);
-				dn.elements.push(lines);
-
-				dnn.elements.push(btn);
-				dnn.elements.push(ico);
-				dnn.elements.push(lines);
-
-				/**
-				 * Prepare animations
-				 */
-				anims.push(phoneForwardAnimation);
-				anims.push(monitorForwardAnimation);
-
-				/**
-				 * Start animations
-				 */
-				var mainAnimation = new AnimationQueue(anims);
-				snap.append(f);
+				phoneForwardAnimation.elements.push({ 'path': element, 'length': length });
 			});
+
+			$.each(getPaths(layerTwo), function(index, element){
+				var length = element.getTotalLength();
+
+				element.attr('stroke-dasharray', length + ' ' + length);
+				element.attr('stroke-dashoffset', length);
+
+				monitorForwardAnimation.elements.push({ 'path': element, 'length': length });
+			});
+
+			var ico = f.selectAll('#header_ico, #line_1_ico, #line_2_ico, #line_3_ico');
+			var btn = f.selectAll('#header_btn1, #header_btn2, #line_1_btn, #line_2_btn, #line_3_btn');
+			var lines = f.selectAll('#separator_1, #separator_2, #separator_3, #separator_4');
+
+			dn.elements.push(btn);
+			dn.elements.push(ico);
+			dn.elements.push(lines);
+
+			dnn.elements.push(btn);
+			dnn.elements.push(ico);
+			dnn.elements.push(lines);
+
+			/**
+			 * Prepare animations
+			 */
+			anims.push(phoneForwardAnimation);
+			anims.push(monitorForwardAnimation);
+
+			/**
+			 * Start animations
+			 */
+			var mainAnimation = new AnimationQueue(anims);
+
+			animationQueues.push(mainAnimation);
 		};
 
 		var getElement = function(){
-			return snap;
+			return f;
 		};
 
 		var attachEvents = function(){

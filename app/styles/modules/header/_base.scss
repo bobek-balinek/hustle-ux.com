@@ -19,22 +19,19 @@
 	padding: 0;
 	margin: 0;
 
-	@include display-flex;
-	display: flexbox;
-
-	-webkit-flex-flow: column wrap;
-	-moz-flex-flow: column wrap;
-	flex-flow: column wrap;
-
-	-webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-
-	-webkit-justify-content: top;
-	-moz-justify-content: top;
-	justify-content: top;
+	@include flexbox;
+	@include flex-direction(column);
+	@include flex-wrap(wrap);
+	@include justify-content(top);
+	@include align-items(flex-start);
+	@include box-orient(vertical);
 }
 
 .header__item{
+  @include order(0);
+  @include flex(0 1 auto);
+  @include align-self(auto);
+
 	list-style: none;
 	margin-bottom: 20px;
 }
