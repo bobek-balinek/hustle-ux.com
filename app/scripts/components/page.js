@@ -61,8 +61,12 @@
 				});
 
 				/** Attach Events for Speech **/
-				app.get('speech').addCommand(['home', 'home page', 'root', 'get back', 'get back to the home page', 'back to home page'], function(){
+				app.get('speech').addCommand(['home', 'homepage', 'home page', 'root', 'back to home', 'get back to the home page', 'back to home page'], function(){
 					navigateToPage('/');
+				});
+
+				app.get('speech').addCommand(['back', 'go back', 'get back', 'back to previous page', 'previous page'], function(){
+					window.history.back();
 				});
 
 				app.get('speech').addCommand(['project', 'projects', 'show me your work', 'your work', 'what do you do'], function(){

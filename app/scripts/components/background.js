@@ -307,6 +307,9 @@
 			var mainAnimation = new AnimationQueue(anims);
 
 			animationQueues.push(mainAnimation);
+
+			// Reveal the object
+			$('#Landing_1').removeAttr('class');
 		};
 
 		var getElement = function(){
