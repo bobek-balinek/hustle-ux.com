@@ -29,6 +29,23 @@
 			eneable();
 		};
 
+		/**
+		 * Navigate to page with a given hash
+		 */
+		var navigateToPage = function(page, hash){
+			if(!hash){
+				var hash = '';
+			}
+
+			if( window.location.pathname === page || page === '*' ){
+				return window.location.href = hash;
+			}
+
+			return window.location.href = page + hash;
+
+			return;
+		};
+
 		var attachEvents = function(){
 
 			/** Desktop only **/
@@ -44,46 +61,50 @@
 				});
 
 				/** Attach Events for Speech **/
+				app.get('speech').addCommand(['home', 'home page', 'root', 'get back', 'get back to the home page', 'back to home page'], function(){
+					navigateToPage('/');
+				});
+
 				app.get('speech').addCommand(['project', 'projects', 'show me your work', 'your work', 'what do you do'], function(){
-					window.location.href = '#projects';
+					navigateToPage('/', '#projects');
 				});
 
 				app.get('speech').addCommand(['profile', 'about you', 'who are you', 'what is hustle', 'who is hustle', 'about hustle', 'about us'], function(){
-					window.location.href = '#profile';
+					navigateToPage('/', '#profile');
 				});
 
 				app.get('speech').addCommand(['top', 'go top', 'go to top', 'go back to the top'], function(){
-					window.location.href = '#top';
+					navigateToPage('*', '#top');
 				});
 
 				/** First project - Adobe Reel Cut **/
 				app.get('speech').addCommand(['project 1', 'project one', 'one', 'first project', 'adobe', 'reel cut'], function(){
-					window.location.href = '/projects/adobe.html';
+					navigateToPage('/projects/adobe.html', '');
 				});
 
 				/** Second project - BBC **/
 				app.get('speech').addCommand(['project 2', 'project two', 'two', '2', 'second project', 'bbc', 'family hub'], function(){
-					window.location.href = '/projects/bbc.html';
+					navigateToPage('/projects/bbc.html', '');
 				});
 
 				/** Third project - Enrll **/
 				app.get('speech').addCommand(['project 3', 'project three', 'three', '3', 'third project', 'enroll'], function(){
-					window.location.href = '/projects/bbc.html';
+					navigateToPage('http://enrll.com', '');
 				});
 
 				/** Fourth project - Adidas Sync **/
 				app.get('speech').addCommand(['project 4', 'project four', 'four', '4', 'fourth project', 'adidas', 'sync'], function(){
-					window.location.href = '/projects/adidas.html';
+					navigateToPage('/projects/adidas.html', '');
 				});
 
 				/** Fith project - Learn the slr **/
 				app.get('speech').addCommand(['project 5', 'project five', 'five', '5', 'fifth project', 'learn', 'camera', 'slr', 'photography'], function(){
-					window.location.href = '/projects/learn-the-slr.html';
+					navigateToPage('/projects/learn-the-slr.html', '');
 				});
 
 				/** Sixth project - Learn the slr **/
 				app.get('speech').addCommand(['project 6', 'project six', 'six', '6', 'fifth project', 'apple', 'school', 'science', 'ipad'], function(){
-					window.location.href = '/projects/apple.html';
+					navigateToPage('/projects/apple.html', '');
 				});
 
 				/**
