@@ -4,6 +4,12 @@
 
 .speech .keyword{
 	color: $colour-navy !important;
+
+	&:hover{
+		&:after{
+			/** TODO: Add Microphone icon **/
+		}
+	}
 }
 
 .keyword--hidden{
