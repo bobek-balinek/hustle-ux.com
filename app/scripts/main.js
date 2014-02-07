@@ -96,6 +96,8 @@
 				callback();
 			}
 		},15);
+
+		return timer;
 	}
 
 })(jQuery, Modernizr, FastClick, window);
