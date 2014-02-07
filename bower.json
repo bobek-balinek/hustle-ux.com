@@ -6,7 +6,6 @@
     "jquery": "~2.0.3",
     "fastclick": "~0.6.10",
     "Snap.svg": "~0.2.0",
-    "hammerjs": "~1.0.6",
     "underscore": "~1.5.2",
     "leapjs": "~0.2.2"
   },
