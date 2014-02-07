@@ -1,0 +1,21 @@
+/**
+ * @ 724px
+ */
+
+@media screen and (max-width: $mq-level3){
+
+	.devices-list__link{
+		padding: 20px 0 20px;
+	}
+
+	.devices-list__item{
+		text-align: center;
+	}
+
+	.devices-list__item-icon{
+		text-align: center;
+		display: block;
+		margin: 0 0 10px;
+	}
+
+}

@@ -1,0 +1,17 @@
+/**
+ * @ 724px
+ */
+
+@media screen and (max-width: $mq-level3){
+
+	.slider__item-container{
+		padding: 1em 15%;
+		font-size: 1em;
+	}
+
+	.slider_controls{
+		width: 1.5em;
+		padding: 2em 0.5em;
+	}
+
+}
