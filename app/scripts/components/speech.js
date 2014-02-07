@@ -33,7 +33,9 @@
 				resultNoMatch: [],
 				errorNetwork: [],
 				errorPermissionBlocked: [],
-				errorPermissionDenied: []
+				errorPermissionDenied: [],
+				supported: [],
+				unsupported: []
 			},
 			commands: {}
 		};
@@ -117,7 +119,10 @@
 
 		var init = function(data, optionsData){
 			if( !detect() ){
+				invokeCallbacks(options.events.unsupported);
 				return;
+			}else{
+				invokeCallbacks(options.events.supported);
 			}
 
 			_.extend(options, optionsData);

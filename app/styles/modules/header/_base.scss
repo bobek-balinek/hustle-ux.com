@@ -111,6 +111,13 @@
 
 .header__item--speech{
 	display: none;
+
+	&.active{
+		.header__link{
+			color: #ffffff;
+			background: #666666;
+		}
+	}
 }
 
 .speech{

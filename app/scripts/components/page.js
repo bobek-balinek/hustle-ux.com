@@ -96,7 +96,7 @@
 						// showInfo('info_speak_now');
 						// start_img.src = 'mic-animate.gif';
 						console.log('started');
-						$('.speech_output').addClass('active');
+						$('.speech_output, .header__item--speech').addClass('active');
 						$('.speech_output__text').text('Listening...');
 
 					},
@@ -129,6 +129,7 @@
 						// app.get('speech').stop();
 
 						// console.log(window.finalTranscript);
+						$('.header__item--speech').removeClass('active');
 						$('.speech_output__text').text(window.finalTranscript);
 						// if (ignore_onend) {
 						//   return;
