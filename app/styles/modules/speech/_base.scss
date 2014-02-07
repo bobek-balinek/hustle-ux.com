@@ -4,7 +4,6 @@
 
 .speech .keyword{
 	color: $colour-navy !important;
-	// text-decoration: underline;
 }
 
 .keyword--hidden{
@@ -13,5 +12,31 @@
 
 	.speech &{
 		display: inline;
+	}
+}
+
+.speech_output{
+	@include clearfix;
+	display: none;
+	padding: 10px 0;
+	border-bottom: 3px solid $colour-navy;
+
+	&.active{
+		display: block;
+	}
+}
+
+.speech_output__text{
+	margin: 0 20px;
+	text-align: center;
+}
+
+.speech_output__retry-link{
+	color: #ffffff;
+	@include opacity(0.3);
+
+	&:hover,
+	&:active{
+		@include opacity(1);
 	}
 }

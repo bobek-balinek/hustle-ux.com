@@ -15,6 +15,7 @@
 													window.msSpeechRecognition ||
 													window.oSpeechRecognition);
 
+		var componentElement = $('.speech_output');
 		var options = {
 			recognition: null,
 			isEnabled: false,
@@ -59,11 +60,11 @@
 			for ( var i = event.resultIndex; i < event.results.length; ++i ) {
 				if (event.results[i].isFinal) {
 					window.finalTranscript = event.results[i][0].transcript;
-					$('.speech_output').text(window.finalTranscript);
+					// $('.speech_output').text(window.finalTranscript);
 					matchCommand(window.finalTranscript, event);
 
 				} else {
-					window.finalTranscript = event.results[i][0].transcript;
+					// window.finalTranscript = event.results[i][0].transcript;
 				}
 			}
 
@@ -142,10 +143,20 @@
 			}
 
 			/** Apply native callbacks **/
+			if(!options.recognition){
+				enable();
+			}
+
 			options.recognition.onstart = onStart;
 			options.recognition.onend = onEnd;
 			options.recognition.onerror = onError;
 			options.recognition.onresult = onResult;
+
+			/** Retry button **/
+			$('.speech_output__retry-link', componentElement).on('click', function(event){
+				event.preventDefault();
+				start();
+			});
 
 			return true;
 		};
@@ -216,7 +227,10 @@
 			'getCommands': getCommands,
 			'addCommand': addCommand,
 			'removeCommand': removeCommand,
-			'attachEvents': attachEvents
+			'attachEvents': attachEvents,
+			'getEvents': function(){
+				return options.events;
+			}
 		};
 	};
 

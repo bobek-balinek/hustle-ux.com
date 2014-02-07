@@ -95,8 +95,9 @@
 						window.finalTranscript = '';
 						// showInfo('info_speak_now');
 						// start_img.src = 'mic-animate.gif';
-						// console.log('started');
-						$('.speech_output').text('Listening...');
+						console.log('started');
+						$('.speech_output').addClass('active');
+						$('.speech_output__text').text('Listening...');
 
 					},
 					error: function(event) {
@@ -128,7 +129,7 @@
 						// app.get('speech').stop();
 
 						// console.log(window.finalTranscript);
-						$('.speech_output').text(window.finalTranscript);
+						$('.speech_output__text').text(window.finalTranscript);
 						// if (ignore_onend) {
 						//   return;
 						// }
@@ -152,13 +153,13 @@
 					result: function(event) {
 						console.log('RESULT', event);
 						// window.recognizing = false;
-						app.get('speech').stop();
-						$('.speech_output').text('Processing...');
+
+						$('.speech_output__text').text('Processing...');
 
 						for (var i = event.resultIndex; i < event.results.length; ++i) {
 							if (event.results[i].isFinal) {
 								window.finalTranscript = event.results[i][0].transcript;
-								$('.speech_output').text(window.finalTranscript);
+								$('.speech_output__text').text(window.finalTranscript);
 
 							} else {
 								window.finalTranscript = event.results[i][0].transcript;
@@ -207,8 +208,6 @@
 
 			}
 
-			/** Initialise the Slider **/
-			app.get('slider').init();
 		};
 
 		/**
