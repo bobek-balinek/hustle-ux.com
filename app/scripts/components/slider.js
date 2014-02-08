@@ -121,8 +121,8 @@
 
 				return setActive(options.currentIndex);
 			}else{
-
-				return setSlide(0);
+				setSlide(0);
+				return destroy();
 			}
 		};
 
