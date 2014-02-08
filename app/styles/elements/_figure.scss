@@ -1,6 +1,7 @@
 figure{
 	@include flexbox;
-	@include flex-flow(row wrap);
+	@include flex-direction(row);
+	@include flex-wrap(wrap);
 	@include justify-content(center);
 	@include align-items(flex-start);
 

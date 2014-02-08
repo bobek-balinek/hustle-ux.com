@@ -2,7 +2,8 @@
 // Main container element
 .devices-list{
 	@include flexbox;
-	@include flex-flow(row nowrap);
+	@include flex-direction(row);
+	@include flex-wrap(nowrap);
 	@include justify-content(center);
 	@include align-items(flex-start);
 

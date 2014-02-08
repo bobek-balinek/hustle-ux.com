@@ -17,6 +17,20 @@
 			attachEvents();
 		};
 
+		/**
+		 * Check for browser's modern features, otherwise redirect to an upgrade page.
+		 */
+		var checkBrowserCapabilities = function(){
+			if(Modernizr.flexbox && Modernizr.svg){
+				return true;
+			}
+
+			return window.location.href = '/upgrade.html';
+		};
+
+		/**
+		 * Initialise the component
+		 */
 		var init = function(){
 			window.tt = null;
 			window.clickedElement = false;
