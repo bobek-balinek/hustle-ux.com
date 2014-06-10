@@ -334,6 +334,21 @@ module.exports = function (grunt) {
                 // 'svgmin',
                 'htmlmin'
             ]
+        },
+        rsync: {
+            options: {
+                args: ["--verbose"],
+                exclude: [".git*","*.scss","node_modules"],
+                recursive: true
+            },
+            production: {
+                options: {
+                    src: '<%= yeoman.dist %>/',
+                    dest: "/var/www/hustle-ux.com",
+                    host: "root@mothership",
+                    syncDestIgnoreExcl: true
+                }
+            }
         }
     });
 
@@ -373,6 +388,13 @@ module.exports = function (grunt) {
         'copy:dist',
         'rev',
         'usemin'
+    ]);
+
+    grunt.registerTask('deploy', [
+        // 'jshint',
+        // 'test',
+        'build',
+        'rsync:production'
     ]);
 
     grunt.registerTask('default', [
