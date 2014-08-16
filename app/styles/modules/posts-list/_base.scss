@@ -7,7 +7,7 @@
 .posts-list__item{
 	margin: 0;
 	position: relative;
-	border-top: 1px solid #E6E6E6;
+	border-top: 1px solid #E5E5E5;
 
 	&:first-child{
 		border-top: none;
@@ -40,7 +40,9 @@
 }
 
 .posts-list__icon{
-	color: #E6E6E6;
+	width: 28px !important;
+	height: 28px;
+	fill: #E5E5E5;
 	position: absolute;
 	right: 20px;
 	top: 45%;

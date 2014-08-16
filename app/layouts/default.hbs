@@ -12,8 +12,6 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Merriweather:300,700,300italic' type='text/css'>
         <!-- build:css({.tmp,app}) /styles/main.css -->
-        <link rel="stylesheet" href="/styles/font-awesome.css">
-        <link rel="stylesheet" href="/styles/animate.css">
         <link rel="stylesheet" href="/styles/main.css">
         <!-- endbuild -->
         <!-- build:js({.tmp,app}) /scripts/modernizr.js -->
@@ -21,6 +19,7 @@
         <!-- endbuild -->
     </head>
     <body class="{{body_class}}">
+        {{> svg.sources }}
         {{> header}}
 
         <div class="page-wrap" id="pageWrap">
@@ -35,15 +34,6 @@
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src='//www.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
-
-        <script type="text/javascript">
-           var _mfq = _mfq || [];
-           (function() {
-               var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
-               mf.src = "//cdn.mouseflow.com/projects/c6affc39-3ea8-474f-b1d8-4570d7f5565c.js";
-               document.getElementsByTagName("head")[0].appendChild(mf);
-           })();
         </script>
 
         <!-- build:js({.tmp,app}) /scripts/vendors.js -->

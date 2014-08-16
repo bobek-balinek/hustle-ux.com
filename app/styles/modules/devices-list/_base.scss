@@ -71,7 +71,9 @@
 
 // Icons inside first list item
 .devices-list__item-icon{
-	font-size: 2em;
+	fill: $colour-white;
+	width: 36px;
+	height: 36px;
 	margin-right: 1em;
 
 	-webkit-transition: -webkit-transform 0.1s ease-in;

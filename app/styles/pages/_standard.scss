@@ -36,16 +36,18 @@
 
 	a{
 		display: block;
-		color: #333333;
+		color: $colour-black;
 		padding: 1.75em 0;
+		font-weight: bold;
 		line-height: 2;
 		font-size: 1.5em;
 		text-decoration: none;
 	}
 
 	small{
-		color: #d3d3d3;
+		color: $colour-grey;
 		display: block;
 		font-size: 0.75em;
+		font-weight: normal;
 	}
 }

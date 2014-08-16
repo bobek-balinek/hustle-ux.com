@@ -1,6 +1,6 @@
-/**
- * Standard desktop (up to large screens)
- */
+//
+// Standard desktop (up to large screens)
+//
 
 @media screen and (max-width: 1200px){
 	.container{
@@ -11,9 +11,7 @@
 		width: 650px;
 	}
 
-	/**
-	 * Section with two images and one caption box
-	 */
+	// Section with two images and one caption box
 	// .project-section--double-image{
 	// 	min-height: 50%;
 
@@ -26,9 +24,7 @@
 	// 	}
 	// }
 
-	/**
-	 * Section with three images and no caption box
-	 */
+	// Section with three images and no caption box
 	// .project-section--triple-image{
 		// min-height: 50%;
 

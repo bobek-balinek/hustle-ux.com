@@ -1,6 +1,6 @@
-/**
- * Standard section + one image + one caption box
- */
+//
+// Standard section + one image + one caption box
+//
 
 .project-section{
  	@include flexbox;
@@ -30,9 +30,9 @@
 		margin-right: auto;
 	}
 
-	/**
-	 * Media: 1000px
-	 */
+	//
+	// Media: 1000px
+	//
 	@media screen and (max-width: $mq-level2){
 		figure{
 			@include flex-direction(column);

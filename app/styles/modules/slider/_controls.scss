@@ -1,7 +1,7 @@
 // Controls
 
 .slider_controls{
-	color: white;
+	color: $colour-white;
 	display: block;
 	padding: 2em;
 	background: #364967;
@@ -22,4 +22,10 @@
 	@extend .slider_controls;
 
 	right: 0;
+}
+
+.slider__controls-icon{
+	width: 14px;
+	height: 14px;
+	fill: #ffffff;
 }

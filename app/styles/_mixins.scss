@@ -1,7 +1,3 @@
-/**
- * Alters the box sizing to have an absolute width and height
- */
-
 @mixin alter-box-sizing{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -16,10 +12,6 @@
 	display: -webkit-flex;
 	display: flex;
 }
-
-/**
- * 3rd party
- */
 
 // Flexbox Mixins
 // http://philipwalton.github.io/solved-by-flexbox/

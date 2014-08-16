@@ -9,7 +9,7 @@
 		width: 200px;
 
 		.header__label{
-			display: inline-block;
+			display: inline;
 		}
 	}
 }
@@ -70,7 +70,7 @@
 .header__link{
 	display: inline-block;
 	text-align: center;
-	color: #666666;
+	color: $colour-grey;
 	background: #E5E5E5;
 	padding: 8px 11px;
 	z-index: 1;
@@ -85,13 +85,19 @@
 	width: 40px;
 
 	&:hover{
-		color: #ffffff;
-		background: #666666;
+		color: $colour-white;
+		background: $colour-grey;
+
+		.header__icon{
+			fill: $colour-white;
+		}
 	}
 }
 
 .header__icon{
-
+	width: 19px;
+	height: 19px;
+	fill: $colour-grey;
 }
 
 .header__label{
@@ -101,7 +107,7 @@
 
 
 	.is-over-picture &{
-		color: #ffffff;
+		color: $colour-white;
 		@include text-shadow( 1px 1px 0px rgba(0,0,0,0.3) );
 	}
 }
@@ -111,8 +117,8 @@
 
 	&.active{
 		.header__link{
-			color: #ffffff;
-			background: #666666;
+			color: $colour-white;
+			background: $colour-grey;
 		}
 	}
 }

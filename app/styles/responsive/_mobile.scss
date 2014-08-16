@@ -1,6 +1,6 @@
-/**
- * Landscape mobile
- */
+//
+// Landscape mobile
+//
 @media screen and (max-width: 723px){
 
 	body, html {
@@ -88,9 +88,9 @@
 
 	}
 
-	/**
-	 * SVG image
-	 */
+	//
+	// SVG image
+	//
 	svg{
 		width: 100% !important;
 		height: 100%;
@@ -128,9 +128,9 @@
 
 }
 
-/**
- * Portrait devices
- */
+//
+// Portrait devices
+//
 @media screen and (max-width: 360px){
 
 	body{

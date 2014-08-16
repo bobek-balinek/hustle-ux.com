@@ -4,12 +4,9 @@
 
 @import "elements/layout";
 
-/**
- * UI elements
- */
+// UI Elements
 @import "elements/figure";
 @import "elements/top-bar";
-
 
 // Header
 @import "modules/header/header";
@@ -29,24 +26,18 @@
 // Sliders
 @import "modules/slider/slider";
 
-// Interaction parts
-
 // Speech
 @import "modules/speech/speech";
 
 // Motion UI
 @import "modules/motion/motion";
 
-/**
- * Pages of the website
- */
+// Pages of the website
 @import "pages/standard";
 @import "pages/home";
 @import "pages/post";
 
-/**
- * Responsive styles, include element's resposnive aspects
- */
+// Responsive styles, include element's resposnive aspects
 @import "responsive/desktop";
 @import "responsive/tablet";
 @import "responsive/mobile";
