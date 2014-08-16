@@ -72,7 +72,7 @@
 	text-align: center;
 	color: $colour-grey;
 	background: #E5E5E5;
-	padding: 8px 11px;
+	padding: 10px;
 	z-index: 1;
 	font-size: 1.35em;
 	text-decoration: none;
@@ -95,8 +95,8 @@
 }
 
 .header__icon{
-	width: 19px;
-	height: 19px;
+	width: 20px;
+	height: 20px;
 	fill: $colour-grey;
 }
 
@@ -110,6 +110,15 @@
 		color: $colour-white;
 		@include text-shadow( 1px 1px 0px rgba(0,0,0,0.3) );
 	}
+}
+
+.header__label--logotype{
+	@extend .header__label;
+
+	width: 77px;
+	height: 28px;
+	fill: $colour-white;
+	margin-top: 12px !important;
 }
 
 .header__item--speech{
